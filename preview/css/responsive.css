@@ -1,0 +1,250 @@
+/* ===========================================================================
+   Farmreach Technologies — responsive layout
+   Each band is designed, not scaled: 375 / 390 / 480 / 768 / 1024 / 1280 / 1440 / 1920.
+   The India map is never cropped at any width.
+   =========================================================================== */
+
+/* ------------------------------------------------- small mobile (<480px) */
+@media (max-width: 479px) {
+  :root { --header-h: 62px; }
+  .logo img { width: 115px; height: 32px; }
+  .btn-row { flex-direction: column; align-items: stretch; }
+  .btn { width: 100%; }
+  .hero { padding-block: 34px 44px; }
+  .drawer__list a { font-size: 21px; }
+  .arch__foundation-items { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------- mobile (<768px) */
+@media (max-width: 767px) {
+  :root { --header-h: 62px; }
+  .logo img { width: 115px; height: 32px; }
+  .hero { padding-block: clamp(38px, 7vw, 54px) clamp(44px, 8vw, 60px); }
+
+  /* the complete map stays visible; only data density is reduced */
+  .geo__label, .geo__grid-inner { display: none; }
+  .geo__node--minor { display: none; }
+  .geo__dust { opacity: calc(var(--geo-dust-opacity) * 0.7); }
+
+  .eco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .eco__cell { min-height: 118px; }
+  .eco__cell--core { grid-column: 1 / -1; }
+
+  .journey__flow { bottom: -7px; left: clamp(16px, 1.8vw, 24px); transform: rotate(90deg); }
+  .svc__outputs { order: -1; }
+  .site-footer__top { gap: var(--space-md); }
+
+  /* three directions stack, but the rail keeps them one architecture */
+  .arch__connector { height: 40px; }
+  .arch__connector::before { height: 40px; }
+  .arch__rail, .arch__drop { display: none; }
+  .arch__dir + .arch__dir::before {
+    content: ""; position: absolute; left: 50%; top: -20px; width: 1px; height: 20px;
+    background: var(--brand-hairline);
+  }
+}
+
+/* Callouts are pinned around the map from 768px up; below that they flow
+   beneath it in two columns, and the in-map annotations step aside. */
+@media (max-width: 767px) {
+  .geo-figure { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+  .geo { grid-column: 1 / -1; }
+  .geo-annotations { display: none; }
+}
+@media (max-width: 379px) {
+  .geo-figure { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 768px) {
+  .geo-callout { position: absolute; }
+  .geo-callout--tl { top: 1%; left: 0; }
+  .geo-callout--tr { top: 1%; right: 0; align-items: flex-end; text-align: right; }
+  .geo-callout--tr::before { align-self: flex-end; }
+  .geo-callout--ml { top: 28%; left: 0; max-width: 130px; }
+  .geo-callout--mr { top: 24%; right: 0; align-items: flex-end; text-align: right; max-width: 130px; }
+  .geo-callout--mr::before { align-self: flex-end; }
+  .geo-callout--ml2 { top: 69%; left: 0; max-width: 152px; }
+  .geo-callout--mr2 { top: 48%; right: 0; align-items: flex-end; text-align: right; max-width: 130px; }
+  .geo-callout--mr2::before { align-self: flex-end; }
+  .geo-callout--bc { bottom: 2%; left: 50%; transform: translateX(-50%); align-items: center; text-align: center; max-width: 120px; }
+  .geo-callout--bc::before { align-self: center; }
+  .geo-callout--bl { bottom: 2%; left: 0; }
+  .geo-callout--br { bottom: 2%; right: 0; align-items: flex-end; text-align: right; }
+  .geo-callout--br::before { align-self: flex-end; }
+}
+
+/* --------------------------------------------------- mobile 480px - 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .caps, .svc-index, .arc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logo-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pillar-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pillar-strip__item { padding-inline: var(--space-md); }
+  .pillar-strip__item:first-child { padding-left: 0; }
+}
+
+/* ------------------------------------------------------- tablet (768px+) */
+@media (min-width: 768px) {
+  .chrono__item { grid-template-columns: 110px minmax(0, 1fr); align-items: baseline; }
+  /* the journey turns horizontal: one rail through the milestones */
+  .jrn__list { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--space-md); }
+  /* Subgrid gives all milestones shared row tracks, so bodies start on one
+     baseline whatever the title's line count. Without support the stages fall
+     back to their own auto rows. */
+  @supports (grid-template-rows: subgrid) {
+    .jrn__list { grid-template-rows: repeat(2, auto auto auto 1fr); }
+    .jrn__step {
+      grid-row: span 4; grid-template-rows: subgrid; grid-template-areas: none;
+      padding-bottom: 0;
+    }
+    .jrn__marker { grid-row: 1; }
+    .jrn__year { grid-row: 2; }
+    .jrn__title { grid-row: 3; }
+    .jrn__body { grid-row: 4; padding-bottom: var(--space-lg); }
+  }
+  .jrn__step {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "marker" "year" "title" "body";
+    gap: 0; padding: 0 0 var(--space-lg);
+  }
+  .jrn__marker { flex-direction: row; align-items: center; height: 20px; margin: 0 calc(var(--space-md) / -2) var(--space-sm); }
+  .jrn__rail { width: auto; height: 1px; min-height: 0; }
+  .jrn__dot { margin-block: 0; margin-inline: 6px; }
+  .jrn__year { margin-bottom: 6px; }
+  .jrn__body { font-size: 13.5px; }
+  .cap-list__item { grid-template-columns: 40px minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: baseline; }
+  .cap-list__foot { padding-left: 40px; }
+  /* the pathway turns horizontal. Below ~900px seven columns cannot hold a word
+     like "Understand", so it runs as two rows of four and three. */
+  .track { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .track__stage {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "marker" "num" "title" "body";
+    gap: 0; padding: 0 0 var(--space-lg);
+    align-content: start;
+  }
+  /* the marker row spans the whole column so the pathway line is unbroken;
+     text is inset with column-gap rather than padding */
+  .track { column-gap: var(--space-md); }
+  .track__marker { margin-inline: calc(var(--space-md) / -2); }
+  .track__marker { flex-direction: row; align-items: center; height: 20px; margin-bottom: var(--space-sm); }
+  .track__line { width: auto; height: 1px; min-height: 0; }
+  .track__dot { margin-block: 0; margin-inline: 6px; }
+  .track__num { margin-bottom: 6px; }
+  .track__body { font-size: 13px; }
+  .split { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
+  .split--even { grid-template-columns: 1fr 1fr; }
+  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .eco { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .journey__flow { bottom: -7px; left: clamp(16px, 1.8vw, 24px); transform: rotate(90deg); }
+  .os-panels { grid-template-columns: 1fr 1fr; }
+  .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .svc__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+  .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arc { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .logo-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .closing__routes { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--space-lg); }
+  .closing__route { border-bottom: 1px solid var(--line); }
+  /* The button variant keeps the two-column layout; the routes variant stacks,
+     so the heading and body get the full width and the routes span beneath. */
+  .closing__inner { grid-template-columns: minmax(0, 1fr) auto; }
+  .closing--routes .closing__inner { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .pillar-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pillar-strip__item { padding-inline: var(--space-md); }
+  .pillar-strip__item:first-child { padding-left: 0; }
+
+  /* two-plus-one architecture composition on tablet */
+  .arch__directions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .arch__dir--advisory { grid-column: 1 / -1; }
+  .arch__rail { left: 25%; right: 25%; }
+  .arch__drop--1 { left: 25%; }
+  .arch__drop--2 { left: 75%; }
+  .arch__drop--3 { left: 50%; top: 56px; height: 0; }
+}
+
+/* --------------------------------------------- tablet portrait/landscape */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* 6 single cells + a 2-wide core = 8 units; 2 columns divide evenly. */
+  .eco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .eco__cell--core { grid-column: span 2; }
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__visual { max-width: 620px; margin-inline: auto; width: 100%; }
+  .geo__label, .geo__grid-inner { display: none; }
+  .svc-index__item:nth-child(5) { grid-column: 1 / -1; }
+}
+
+/* ------------------------------------------------------ desktop (1024px+) */
+@media (min-width: 1024px) {
+  .site-footer__top { grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 0.9fr)); }
+  .jrn__list { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .jrn__step { padding-bottom: 0; }
+  @supports (grid-template-rows: subgrid) {
+    .jrn__list { grid-template-rows: auto auto auto 1fr; }
+    .jrn__body { padding-bottom: 0; }
+  }
+  .track { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .track__stage { padding-bottom: 0; }
+  .nav { display: flex; }
+  .nav-toggle { display: none; }
+
+  .hero { padding-block: clamp(56px, 5vw, 88px) clamp(56px, 5vw, 88px); }
+  .hero__inner { grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); }
+  /* No negative margins: the complete map plus its pinned callouts must sit
+     inside the section with breathing room. */
+  .hero__visual { margin-right: 0; }
+
+
+  .eco { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .eco__cell--core { grid-column: span 2; }
+  .journey { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .journey__flow { top: clamp(22px, 2.2vw, 32px); right: -7px; bottom: auto; left: auto; transform: none; }
+  .caps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .svc-index { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .arc { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .logo-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .metrics { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+  /* three equal directions from one core */
+  .arch__directions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .arch__dir--advisory { grid-column: auto; }
+  .arch__rail { left: 16.667%; right: 16.667%; }
+  .arch__drop--1 { left: 16.667%; }
+  .arch__drop--2 { left: 50%; }
+  .arch__drop--3 { left: 83.333%; height: 28px; top: 28px; }
+  .arch__foundation-items { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nav { gap: 18px; }
+}
+
+/* --------------------------------------------------------- large desktop */
+@media (min-width: 1440px) {
+  :root { --gutter: 72px; --container-max: 1360px; }
+  .journey { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  /* .eco stays at 4 columns: 8 units tile exactly, 5 would orphan two cells. */
+}
+
+@media (min-width: 1800px) {
+  :root { --container-max: 1400px; }
+}
+
+@media print {
+  .site-header, .drawer, .hero__bg, .closing__bg, .os-panel__bg, .page-head__bg, .arch__dir-mark { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+@media (max-width: 900px) {
+  .enquiry, .office { grid-template-columns: minmax(0, 1fr); }
+  .enquiry__form .form { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .legal__grid { grid-template-columns: 250px minmax(0, 1fr); }
+  .legal__toc { position: sticky; top: 104px; max-height: calc(100vh - 150px); overflow-y: auto; }
+  .legal__tocToggle { display: none; }
+  .legal__tocList { display: flex; }
+}

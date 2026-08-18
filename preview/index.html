@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-IN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farmreach Technologies — India's Agricultural Operating Systems &amp; Transformation Company</title>
+<meta name="description" content="Farmreach Technologies combines agricultural operating expertise, technology, data and transformation consulting to help governments and enterprises design, build and operate agricultural systems at scale.">
+<link rel="canonical" href="https://farmreach.in/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>
+(function () {
+  try {
+    var s = localStorage.getItem('farmreach-theme');
+    document.documentElement.setAttribute('data-theme', (s === 'light' || s === 'dark') ? s : 'dark');
+  } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+})();
+</script>
+<!-- Overpass is loaded without blocking first paint; the stack falls back to a
+     system sans if the request is blocked. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/responsive.css">
+<!-- React and Babel are vendored locally, so this review file opens offline and
+     on networks that block public CDNs. Production does not use them: Vite
+     bundles React and compiles JSX ahead of time. -->
+<script src="vendor/react.production.min.js"></script>
+<script src="vendor/react-dom.production.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+</head>
+<body>
+<div id="root">
+  <noscript>
+    <div style="padding:48px 24px;font:400 16px/1.6 'Overpass',ui-sans-serif,system-ui,sans-serif;color:#A7AFA9;background:#121614">
+      <strong style="display:block;color:#F7F5F0;font-size:20px;margin-bottom:8px">Farmreach Technologies</strong>
+      This review preview needs JavaScript. The production site is statically generated and works without it.
+    </div>
+  </noscript>
+</div>
+<div id="preview-fallback" hidden
+     style="padding:48px 24px;font:400 16px/1.6 'Overpass',ui-sans-serif,system-ui,sans-serif;color:#A7AFA9;background:#121614">
+  <strong style="display:block;color:#F7F5F0;font-size:20px;margin-bottom:8px">Preview could not start</strong>
+  React or Babel did not load from <code>preview/vendor/</code>. Re-run
+  <code>node tools/build-preview.mjs</code>, or run the real site with
+  <code>npm run dev</code>.
+</div>
+<script type="text/babel" data-presets="react" src="app.jsx"></script>
+<script>
+/* If the transpiled app has not mounted, show a message instead of a blank page. */
+window.setTimeout(function () {
+  var root = document.getElementById('root');
+  if (root && root.children.length === 0 || !window.React || !window.Babel) {
+    document.getElementById('preview-fallback').hidden = false;
+  }
+}, 4000);
+</script>
+</body>
+</html>

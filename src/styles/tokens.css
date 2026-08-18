@@ -1,0 +1,207 @@
+/* ===========================================================================
+   Farmreach Technologies — design tokens
+
+   Brand signature:
+     LIGHT  #FFFFFF + #EBF2F0 + #016F3B
+     DARK   charcoal + graphite + #016F3B
+
+   Components consume the semantic tokens only. No component hardcodes a
+   background colour, so both themes are controlled from this file.
+   =========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------- brand */
+  --color-brand: #016F3B;
+  --brand: #016F3B;
+  --brand-deep: #014A28;      /* deepest tone — public enterprise */
+  --brand-medium: #0E8A4E;    /* commercial tone — private enterprise */
+  --brand-muted: #5C8A72;     /* desaturated supporting tone */
+  --brand-soft: #A9C7B6;      /* hairlines on light surfaces */
+  --brand-mist: #EBF2F0;      /* official light secondary surface */
+  --brand-light: #3FA96F;     /* legible green on dark surfaces */
+
+  /* ------------------------------------------------------------- neutrals */
+  --white: #FFFFFF;
+  --ink-900: #0B0E0C;
+  --ink-800: #121614;
+  --ink-700: #181D1A;
+  --ink-600: #1F2622;
+  --charcoal: #101413;
+  --charcoal-muted: #46514C;
+  --graphite-500: #6E7671;
+  --graphite-400: #8B938D;
+  --grey-200: #E3E2DC;
+
+  /* ------------------------------------------------------------------ type */
+  --font: 'Overpass', ui-sans-serif, system-ui, sans-serif;
+
+  --step-micro: 10px;
+  --step-eyebrow: 10.5px;
+  --step-small: 13px;
+  --step-body: clamp(15px, 0.5vw + 13.7px, 16.5px);
+  --step-lead: clamp(17px, 0.8vw + 15px, 21px);
+  --step-h4: clamp(16px, 0.5vw + 14.8px, 18px);
+  --step-h3: clamp(19px, 0.9vw + 16px, 24px);
+  --step-h2: clamp(27px, 2.4vw + 17px, 48px);
+  --step-h1: clamp(33px, 3.4vw + 16px, 64px);
+  --step-display: clamp(38px, 4.2vw + 16px, 76px);
+  --step-metric: clamp(34px, 3.4vw + 17px, 64px);
+
+  /* ---------------------------------------------------------- space/layout */
+  --container-max: 1320px;
+  --measure: 62ch;
+  --radius-sm: 3px;
+  --radius-md: 5px;
+
+  --space-3xs: 4px;
+  --space-2xs: 8px;
+  --space-xs: 12px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --space-2xl: 96px;
+  --space-3xl: 136px;
+
+  --section-y: clamp(68px, 8.5vw, 132px);
+  --gutter: clamp(20px, 4vw, 56px);
+  --header-h: 78px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 240ms;
+}
+
+/* ===========================================================================
+   LIGHT THEME — white and #EBF2F0 carry the page. Nothing large is dark
+   except the footer. Green appears as accent, action and data.
+   =========================================================================== */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-surface-primary: var(--white);
+  --color-surface-secondary: var(--brand-mist);
+  --color-surface-elevated: var(--white);
+
+  --surface-1: var(--white);            /* section-light */
+  --surface-2: var(--brand-mist);       /* section-soft-green */
+  --surface-3: var(--white);            /* elevated card */
+  --surface-deep: var(--ink-900);       /* footer only */
+  --surface-tint: var(--brand-mist);
+
+  --color-text-primary: var(--charcoal);
+  --text-primary: var(--charcoal);
+  --text-secondary: var(--charcoal-muted);
+  --text-tertiary: #5C6561;
+
+  --color-border: rgba(16, 20, 19, 0.11);
+  --line: rgba(16, 20, 19, 0.11);
+  --line-strong: rgba(16, 20, 19, 0.26);
+  --line-hair: rgba(16, 20, 19, 0.06);
+
+  --color-accent: var(--brand);
+  --brand-accent: var(--brand);
+  --brand-hairline: var(--brand-soft);
+
+  /* cards sitting on a soft-green section become white, and vice versa */
+  --card-on-soft: var(--white);
+
+  /* secondary button reads as brand, not neutral */
+  --btn-2-border: var(--brand);
+  --btn-2-text: var(--brand);
+  --btn-2-hover-bg: var(--brand-mist);
+
+  /* geographic visual — drawn in brand tones on light */
+  --geo-outline: rgba(1, 111, 59, 0.55);
+  --geo-fill-a: rgba(1, 111, 59, 0.05);
+  --geo-fill-b: rgba(1, 111, 59, 0.015);
+  --geo-grid: rgba(16, 20, 19, 0.08);
+  --geo-grid-inner: rgba(1, 111, 59, 0.16);
+  --geo-dust: var(--brand);
+  --geo-dust-opacity: 0.24;
+  --geo-node: var(--brand-muted);
+  --geo-node-hot: var(--brand);
+  --geo-label: #5C6561;
+
+  --header-bg: rgba(255, 255, 255, 0.9);
+}
+
+/* ===========================================================================
+   DARK THEME — a designed dark surface system, not an inversion and not a
+   green website. Charcoal and graphite carry the page; green is the accent.
+   =========================================================================== */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-surface-primary: var(--ink-800);
+  --color-surface-secondary: var(--ink-900);
+  --color-surface-elevated: var(--ink-700);
+
+  --surface-1: var(--ink-800);
+  --surface-2: var(--ink-900);
+  --surface-3: var(--ink-700);
+  --surface-deep: #070908;
+  --surface-tint: rgba(1, 111, 59, 0.12);
+
+  --color-text-primary: #F7F5F0;
+  --text-primary: #F7F5F0;
+  --text-secondary: #A7AFA9;
+  --text-tertiary: #8E978F;
+
+  --color-border: rgba(255, 255, 255, 0.09);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --line-hair: rgba(255, 255, 255, 0.055);
+
+  --color-accent: var(--brand-light);
+  --brand-accent: var(--brand-light);
+  --brand-hairline: rgba(63, 169, 111, 0.42);
+
+  --card-on-soft: var(--ink-700);
+
+  --btn-2-border: var(--line-strong);
+  --btn-2-text: var(--text-primary);
+  --btn-2-hover-bg: transparent;
+
+  --geo-outline: rgba(230, 228, 223, 0.4);
+  --geo-fill-a: rgba(255, 255, 255, 0.055);
+  --geo-fill-b: rgba(255, 255, 255, 0.014);
+  --geo-grid: rgba(255, 255, 255, 0.05);
+  --geo-grid-inner: rgba(255, 255, 255, 0.1);
+  --geo-dust: #E6E4DF;
+  --geo-dust-opacity: 0.2;
+  --geo-node: var(--graphite-400);
+  --geo-node-hot: var(--brand-light);
+  --geo-label: #8E978F;
+
+  --header-bg: rgba(11, 14, 12, 0.86);
+}
+
+/* ===========================================================================
+   .on-ink — a deliberately dark context. Reserved for the footer, where a
+   darker surface closes the page. It must not spread into content sections.
+   =========================================================================== */
+.on-ink {
+  color-scheme: dark;
+
+  --surface-1: var(--ink-900);
+  --surface-2: var(--ink-900);
+  --surface-3: var(--ink-800);
+  --surface-tint: rgba(1, 111, 59, 0.12);
+
+  --text-primary: #F7F5F0;
+  --text-secondary: #A7AFA9;
+  --text-tertiary: #8E978F;
+
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --line-hair: rgba(255, 255, 255, 0.055);
+
+  --brand-accent: var(--brand-light);
+  --brand-hairline: rgba(63, 169, 111, 0.42);
+
+  --card-on-soft: var(--ink-800);
+  --btn-2-border: var(--line-strong);
+  --btn-2-text: var(--text-primary);
+  --btn-2-hover-bg: transparent;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "farmreach-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Farmreach Technologies corporate website — India's Agricultural Operating Systems & Transformation Company",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node prerender.mjs",
+    "preview": "vite preview",
+    "build:spa": "vite build"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "@vitejs/plugin-react": "^4.3.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

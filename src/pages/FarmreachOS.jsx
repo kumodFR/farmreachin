@@ -1,0 +1,167 @@
+import React from 'react';
+import PageHead from '../components/PageHead.jsx';
+import SectionHeading from '../components/SectionHeading.jsx';
+import Capabilities from '../components/Capabilities.jsx';
+import TransformationJourney from '../components/TransformationJourney.jsx';
+import Metrics from '../components/Metrics.jsx';
+import GeoVisual from '../components/GeoVisual.jsx';
+import Reveal from '../components/Reveal.jsx';
+import CTA from '../components/CTA.jsx';
+import { METRICS } from '../data/metrics.js';
+import {
+  FARMREACH_OS_CAPABILITIES,
+  FARMREACH_OS_ARCHITECTURE,
+  FARMREACH_OS_PRINCIPLES,
+  FARMREACH_OS_STAKEHOLDERS,
+  FARMREACH_OS_DELIVERY,
+  OPERATING_SYSTEMS
+} from '../data/operatingSystems.js';
+
+export const meta = {
+  path: '/farmreach-os',
+  title: 'Farmreach OS — Government Agriculture Operating System | Farmreach Technologies',
+  description: 'Farmreach OS is the government agriculture operating system: intelligence, orchestration, field operations and decision infrastructure for state agriculture, working with existing government systems.'
+};
+
+const [FARMREACH_OS] = OPERATING_SYSTEMS;
+
+export default function FarmreachOS() {
+  return (
+    <>
+      <PageHead
+        eyebrow="Public Enterprise"
+        title="Government Agriculture Operating System"
+        lede="Intelligence infrastructure for state agriculture."
+        crumb="Farmreach OS"
+      />
+
+      <section className="section section--light">
+        <div className="container split">
+          <Reveal className="prose">
+            <p className="lead">{FARMREACH_OS.blurb}</p>
+            <p>
+              A state does not need another system to log into. It needs the systems it already runs to
+              agree with the field. Farmreach OS orchestrates existing departmental systems, resolves the
+              farmer and land record underneath them, and gives district and state officers one operating
+              view built from field activity rather than from returns.
+            </p>
+          </Reveal>
+          <Reveal>
+            <p className="eyebrow">Who it serves</p>
+            <ul className="stack" style={{ gap: 0 }}>
+              {FARMREACH_OS.audience.map((a) => (
+                <li
+                  key={a}
+                  style={{
+                    padding: '13px 0',
+                    borderBottom: '1px solid var(--line)',
+                    fontSize: '15.5px',
+                    color: 'var(--text-primary)'
+                  }}
+                >
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--tight section--soft-green" aria-labelledby="arch-title">
+        <div className="container">
+          <SectionHeading
+            id="arch-title"
+            eyebrow="Core architecture"
+            title="Data, analysis, insight, action, impact."
+            body="The architecture is a loop, not a pipeline. What is measured at the end changes what is captured at the start of the next season."
+          />
+        </div>
+        <div className="container">
+          <TransformationJourney steps={FARMREACH_OS_ARCHITECTURE} dark />
+        </div>
+      </section>
+
+      <section className="section section--light" aria-labelledby="cap-title">
+        <div className="container">
+          <SectionHeading
+            id="cap-title"
+            eyebrow="Capabilities"
+            title="Nine capabilities on one operating record."
+            body="Each capability reads from the same farmer, land, crop and activity record, which is why a district view and a state view never disagree."
+          />
+        </div>
+        <div className="container">
+          <Capabilities items={FARMREACH_OS_CAPABILITIES} />
+        </div>
+      </section>
+
+      <section className="section section--soft-green" aria-labelledby="principles-title">
+        <div className="container">
+          <SectionHeading
+            id="principles-title"
+            eyebrow="Design principles"
+            title="Extension-first, and built for the department that already exists."
+            body="These principles decide what Farmreach OS refuses to do as much as what it does."
+          />
+          <div className="split split--even">
+            {FARMREACH_OS_PRINCIPLES.map((p) => (
+              <Reveal key={p.title} style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--space-md)' }}>
+                <h3>{p.title}</h3>
+                <p style={{ marginTop: 'var(--space-2xs)' }}>{p.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--light" aria-labelledby="geo-title">
+        <div className="container split">
+          <div>
+            <SectionHeading
+              id="geo-title"
+              eyebrow="Stakeholders & geography"
+              title="The state, the district, the block, the plot."
+              body="An operating system for state agriculture has to hold every level at once, because the officer, the district and the department each need a different resolution of the same record."
+            />
+            <Reveal>
+              <ul className="svc__list" style={{ gridTemplateColumns: '1fr' }}>
+                {FARMREACH_OS_STAKEHOLDERS.map((s) => <li key={s}>{s}</li>)}
+              </ul>
+            </Reveal>
+          </div>
+          <Reveal>
+            <GeoVisual callouts={false} />
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--tight section--soft-green" aria-labelledby="delivery-title">
+        <div className="container">
+          <SectionHeading
+            id="delivery-title"
+            eyebrow="Delivery"
+            title="From programme design to steady operation."
+            body="Deployment usually begins with one district and one season, then extends once the record holds."
+          />
+        </div>
+        <div className="container">
+          <TransformationJourney steps={FARMREACH_OS_DELIVERY} dark />
+        </div>
+      </section>
+
+      <section className="section section--tight section--light" aria-labelledby="found-title">
+        <div className="container">
+          <p className="eyebrow" id="found-title">Foundation &amp; scale</p>
+          <Metrics items={METRICS} />
+        </div>
+      </section>
+
+      <CTA
+        title="Start with one district."
+        body="Tell us the district, the scheme or the department system you need this to work with. We will come back with what the first season would involve."
+        primary={{ href: '/contact', label: 'Talk to us' }}
+        secondary={{ href: '/consulting', label: 'Explore Consulting' }}
+      />
+    </>
+  );
+}

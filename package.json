@@ -6,6 +6,7 @@
   "description": "Farmreach Technologies corporate website — India's Agricultural Operating Systems & Transformation Company",
   "scripts": {
     "dev": "vite",
+    "start": "node server.mjs",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node prerender.mjs",
     "preview": "vite preview",
     "build:spa": "vite build"

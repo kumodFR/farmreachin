@@ -82,8 +82,23 @@ function subjectOrganisation(organisation) {
 }
 
 const SUBJECTS = {
-  internal: (organisation) => `Farmreach Enquiry - ${subjectOrganisation(organisation)}`,
-  visitor: (organisation) => `Farmreach Enquiry Received - ${subjectOrganisation(organisation)}`
+  internal: (organisation, route) => {
+    const parts = ['Farmreach Enquiry'];
+    const r = subjectOrganisation(route);
+    if (route) parts.push(r);
+    parts.push(subjectOrganisation(organisation));
+    return parts.join(' \u2014 ');
+  },
+  visitor: () => 'Thank you for contacting Farmreach'
+};
+
+/* Display-only routing, mirrored in the preview dialog so a visitor can see
+   exactly where the enquiry goes. The server reads its real values from
+   CONTACT_TO_EMAIL / CONTACT_CC_EMAIL; nothing here is a credential. */
+const ROUTING = {
+  from: 'no-reply@farmreach.in',
+  to: 'ypr@farmreach.in',
+  cc: 'abila@farmreach.in'
 };
 
 const CONFIRMATION =
@@ -98,6 +113,152 @@ function looksAutomated({ honeypot, elapsedMs }) {
   if (clean(honeypot, 200)) return true;
   if (typeof elapsedMs === 'number' && elapsedMs >= 0 && elapsedMs < MIN_FILL_MS) return true;
   return false;
+}
+
+
+/* ==== src/lib/emailTemplates.js ==== */
+/* Farmreach enquiry emails. Table-based, inline-styled, email-client safe.
+   Brand: #016F3B primary, #EBF2F0 tint, white content surface, Overpass with
+   system fallbacks. Pure functions — no provider or credential knowledge. */
+
+const BRAND = '#016F3B';
+const TINT = '#EBF2F0';
+const INK = '#12201A';
+const MUTED = '#5A6B63';
+const LINE = '#D8E4DF';
+const FONT = "'Overpass', 'Segoe UI', Helvetica, Arial, sans-serif";
+
+const POSITIONING = "India's Agricultural Operating Systems & Transformation Company";
+const LEGAL = 'Farmreach Technologies Pvt Ltd';
+const CITY = 'Hyderabad, India';
+
+function escapeHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+const nl2br = (value) => escapeHtml(value).replace(/\n/g, '<br />');
+
+function shell(inner, preheader) {
+  return `<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Farmreach</title>
+</head>
+<body style="margin:0;padding:0;background:${TINT};">
+<div style="display:none;font-size:1px;color:${TINT};max-height:0;overflow:hidden;">${escapeHtml(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${TINT};padding:24px 12px;">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#FFFFFF;border:1px solid ${LINE};">
+<tr><td style="background:${BRAND};padding:22px 28px;">
+  <div style="font:700 18px/1.2 ${FONT};letter-spacing:0.10em;color:#FFFFFF;">Farmreach Technologies</div>
+  <div style="font:400 13px/1.5 ${FONT};color:#D7EBE0;padding-top:6px;">${escapeHtml(POSITIONING)}</div>
+</td></tr>
+${inner}
+<tr><td style="padding:20px 28px 26px;border-top:1px solid ${LINE};background:#FFFFFF;">
+  <div style="font:700 13px/1.6 ${FONT};color:${INK};">${escapeHtml(LEGAL)}</div>
+  <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(POSITIONING)}</div>
+  <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(CITY)}</div>
+  <div style="font:400 13px/1.6 ${FONT};padding-top:8px;"><a href="https://farmreach.in" style="color:${BRAND};text-decoration:none;">farmreach.in</a></div>
+</td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
+}
+
+function row(label, value, multiline) {
+  return `<tr><td style="padding:0 28px 16px;">
+  <div style="font:700 11px/1.4 ${FONT};letter-spacing:0.16em;text-transform:uppercase;color:${MUTED};padding-bottom:5px;">${escapeHtml(label)}</div>
+  <div style="font:400 15px/1.6 ${FONT};color:${INK};">${multiline ? nl2br(value) : escapeHtml(value)}</div>
+</td></tr>`;
+}
+
+function internalEmail(d) {
+  const route = d.route || 'Website';
+  const inner = `<tr><td style="padding:26px 28px 18px;">
+  <div style="font:700 22px/1.3 ${FONT};color:${INK};">${escapeHtml(route)} Enquiry</div>
+</td></tr>
+<tr><td style="padding:0 28px 16px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Hi Pradeep Raj,</div>
+</td></tr>
+<tr><td style="padding:0 28px 16px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I am ${escapeHtml(d.name)} from ${escapeHtml(d.organisation)}, based in ${escapeHtml(d.region)}.</div>
+</td></tr>
+<tr><td style="padding:0 28px 18px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I came across the Farmreach website and wanted to connect with you regarding the following:</div>
+</td></tr>
+<tr><td style="padding:0 28px 20px;">
+  <div style="font:400 17px/1.65 ${FONT};color:${INK};background:${TINT};border-left:4px solid ${BRAND};padding:18px 20px;">&ldquo;${nl2br(d.message)}&rdquo;</div>
+</td></tr>
+<tr><td style="padding:0 28px 20px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I would be interested in discussing this with your team and understanding how Farmreach could support this requirement.</div>
+</td></tr>
+<tr><td style="padding:0 28px 24px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Regards,</div>
+  <div style="font:700 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.name)}</div>
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.organisation)}</div>
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.region)}</div>
+  <div style="font:400 15px/1.7 ${FONT};"><a href="mailto:${escapeHtml(d.email)}" style="color:${BRAND};text-decoration:none;">${escapeHtml(d.email)}</a></div>
+</td></tr>`;
+  const text = [
+    `${route} Enquiry`,
+    '',
+    'Hi Pradeep Raj,',
+    '',
+    `I am ${d.name} from ${d.organisation}, based in ${d.region}.`,
+    '',
+    'I came across the Farmreach website and wanted to connect with you regarding the following:',
+    '',
+    `"${d.message}"`,
+    '',
+    'I would be interested in discussing this with your team and understanding how Farmreach could support this requirement.',
+    '',
+    'Regards,',
+    d.name,
+    d.organisation,
+    d.region,
+    d.email,
+    '',
+    LEGAL,
+    POSITIONING,
+    CITY,
+    'farmreach.in'
+  ].join('\n');
+  return { html: shell(inner, `${route} enquiry from ${d.organisation}`), text };
+}
+
+function visitorEmail(d) {
+  const inner = `<tr><td style="padding:26px 28px 6px;">
+  <div style="font:400 16px/1.6 ${FONT};color:${INK};">Hello ${escapeHtml(d.name)},</div>
+</td></tr>
+<tr><td style="padding:14px 28px 6px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Thank you for contacting Farmreach Technologies.</div>
+</td></tr>
+<tr><td style="padding:10px 28px 24px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">We have received your enquiry and our team will review it and get back to you.</div>
+</td></tr>
+<tr><td style="padding:0 28px 24px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Regards,</div>
+  <div style="font:700 15px/1.7 ${FONT};color:${INK};">${escapeHtml(LEGAL)}</div>
+  <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(POSITIONING)}</div>
+</td></tr>`;
+  const text = [
+    `Hello ${d.name},`,
+    '',
+    'Thank you for contacting Farmreach Technologies.',
+    'We have received your enquiry and our team will review it and get back to you.',
+    '',
+    'Regards,',
+    LEGAL,
+    CITY,
+    'farmreach.in'
+  ].join('\n');
+  return { html: shell(inner, 'We have received your enquiry.'), text };
 }
 
 
@@ -131,8 +292,8 @@ const SITE = {
   /* Existing Farminsta profiles. Farmreach-specific profiles do not exist yet —
      do not invent them; leave a value empty to hide that link. */
   social: {
-    linkedin: 'https://www.linkedin.com/company/farminsta10/',
-    facebook: 'https://www.facebook.com/farminsta/'
+    linkedin: 'https://www.linkedin.com/company/farmreach-technologies-private-limited/',
+    facebook: 'https://www.facebook.com/profile.php?id=61593161893649'
   },
   xpeditionUrl: 'https://xpeditionlabs.com',
   contactEndpoint: env.VITE_CONTACT_ENDPOINT || '/api/contact'
@@ -147,23 +308,10 @@ const NAV = [
   { href: FARMINSTA_URL, label: 'Farminsta OS', external: true },
   { href: '/consulting', label: 'Consulting' },
   { href: '/company', label: 'Our Story' },
+  { href: '/recognition', label: 'Recognition' },
   { href: '/contact', label: 'Contact' }
 ];
 
-
-
-/* ==== src/data/metrics.js ==== */
-/* Approved Farmreach operating figures. `to` and `suffix` drive the count-up;
-   the rendered fallback is always the literal `value`. Do not edit without
-   sign-off. */
-const METRICS = [
-  { value: '50M+', label: 'GPS-tagged field activities', to: 50, suffix: 'M+' },
-  { value: '5M+', label: 'Farmers engaged', to: 5, suffix: 'M+' },
-  { value: '5L+', label: 'Villages reached', to: 5, suffix: 'L+' },
-  { value: '20', label: 'States', to: 20, suffix: '' },
-  { value: '10K+', label: 'Field officers active daily', to: 10, suffix: 'K+' },
-  { value: '21 days', label: 'To implementation', to: 21, suffix: ' days' }
-];
 
 
 /* ==== src/data/heroMetrics.js ==== */
@@ -198,19 +346,34 @@ const MAP_ANNOTATIONS = [
 
 
 /* ==== src/data/services.js ==== */
-/* Consulting & transformation — four capabilities: WHAT Farmreach can do for an
-   organisation. Approach and principles live in Operating Philosophy; keep that
-   language out of here.
-   `homeSummary` appears on the homepage; `explain` and `outputs` on /consulting. */
+/* Consulting & transformation.
+   CAPABILITY_AREAS — what Farmreach helps transform (compact, /consulting).
+   SERVICES — the engagement types, with scope and outputs (/consulting detail).
+   `homeName`/`homeSummary` are the homepage capability list; keep them stable.
+   AUDIENCES — who the practice works with. Approach and principles live in
+   Operating Philosophy; keep that language out of here. */
+
+const CAPABILITY_AREAS = [
+  { id: 'operating-model', short: 'Business & Operating Model', summary: 'Designing practical operating models, workflows, roles and governance for agricultural organisations.' },
+  { id: 'digital', short: 'Digital Transformation', summary: 'Assessing existing processes and systems and designing digital workflows, platforms and integrations that support real operations.' },
+  { id: 'process', short: 'Process & Operations Consulting', summary: 'Mapping current operations, identifying opportunities for improvement and building scalable processes across field, farmer, channel and value-chain operations.' },
+  { id: 'growth', short: 'Go-to-Market & Growth', summary: 'Designing market-entry, farmer engagement, channel, digital outreach and execution strategies for agricultural businesses.' }
+];
+
+const AUDIENCES = [
+  { title: 'Public Enterprise', body: 'State agriculture departments, commissionerates and public institutions seeking to modernise agricultural programmes and operating systems.' },
+  { title: 'Private Enterprise', body: 'Agri-input companies, seed businesses, contract production organisations and other agricultural enterprises seeking operational and digital transformation.' },
+  { title: 'Agricultural Ecosystem', body: 'Research institutions, development organisations, FPOs, technology companies and ecosystem partners working on agricultural transformation.' }
+];
 
 const SERVICES = [
   {
-    id: 'agricultural-transformation',
+    id: 'transformation-audit',
     homeName: 'Agricultural Transformation',
     homeSummary: 'Transformation strategy and operating-model redesign for organisations working across agriculture.',
-    name: 'Agricultural Transformation',
-    short: 'Agricultural Transformation',
-    summary: 'Transformation strategy, operating-model redesign, roadmaps and programme structuring.',
+    name: 'Transformation Audit',
+    short: 'Transformation Audit',
+    summary: 'A structured assessment of existing agricultural operations, processes, systems and data to identify transformation priorities.',
     explain: [
       'Current-state assessment',
       'Operating-model assessment',
@@ -230,12 +393,12 @@ const SERVICES = [
     ]
   },
   {
-    id: 'process-operations',
+    id: 'process-consulting',
     homeName: 'Process & Operations',
     homeSummary: 'Business process audits, workflow redesign, operating structures and process improvement across agricultural operations.',
-    name: 'Process & Operations Consulting',
-    short: 'Process & Operations',
-    summary: 'Process audits, workflow redesign, operating structures and SOP design.',
+    name: 'Process Consulting',
+    short: 'Process Consulting',
+    summary: 'Redesigning field, farmer, channel, production and value-chain processes for greater operational clarity and scalability.',
     explain: [
       'Business process mapping',
       'Field process mapping',
@@ -255,12 +418,12 @@ const SERVICES = [
     ]
   },
   {
-    id: 'technology-digital-systems',
+    id: 'digital-transformation',
     homeName: 'Technology & Digital Systems',
     homeSummary: 'Digital product strategy, solution architecture, platform design, data systems and technology implementation.',
-    name: 'Technology & Digital Systems',
-    short: 'Technology & Digital Systems',
-    summary: 'Digital product strategy, solution architecture, platform and data design, and technology implementation.',
+    name: 'Digital Transformation',
+    short: 'Digital Transformation',
+    summary: 'Designing the digital operating model, workflows and technology roadmap required to move from fragmented processes to connected operations.',
     explain: [
       'Digital maturity assessment',
       'Technology roadmap',
@@ -283,12 +446,12 @@ const SERVICES = [
     ]
   },
   {
-    id: 'gtm',
+    id: 'gtm-consulting',
     homeName: 'Go-to-market',
     homeSummary: 'GTM strategy, channel models, field-force structures, farmer engagement and commercial execution.',
-    name: 'Go-to-market',
-    short: 'Go-to-market',
-    summary: 'GTM strategy, channel models, field-force structures, farmer engagement and commercial execution.',
+    name: 'GTM Consulting',
+    short: 'GTM Consulting',
+    summary: 'Helping agricultural businesses design market-entry, farmer acquisition, channel and digital engagement strategies aligned to their operating model.',
     explain: [
       'Market segmentation',
       'Territory strategy',
@@ -322,15 +485,15 @@ const APPROACH = [
   { num: '07', title: 'Measure', body: 'Measure adoption, execution and progress against the transformation objectives.' }
 ];
 
-/* Methodology used by the /consulting page's own method section. */
+/* The seven-step transformation sequence used by /consulting. */
 const METHOD = [
-  { num: '01', title: 'Understand', body: 'Agriculture, the organisation, the field reality and the constraints that are not written down.' },
-  { num: '02', title: 'Assess', body: 'Operating model, processes, data and digital maturity, measured rather than assumed.' },
-  { num: '03', title: 'Design', body: 'The target operating model, the processes to support it and the systems it needs.' },
-  { num: '04', title: 'Build', body: 'Platforms, integrations and workflows, built on operating systems that already run at state scale.' },
-  { num: '05', title: 'Implement', body: 'Rollout, field onboarding, training and the change management that decides adoption.' },
-  { num: '06', title: 'Operate', body: 'Run the model through a season, with the field as the system of record.' },
-  { num: '07', title: 'Measure', body: 'Attribute outcomes back to the design that produced them, then iterate.' }
+  { num: '01', title: 'Understand', body: 'Understand the organisation, operating environment, objectives and constraints.' },
+  { num: '02', title: 'Diagnose', body: 'Assess current processes, systems, data and field execution.' },
+  { num: '03', title: 'Design', body: 'Define the target operating model, workflows and transformation priorities.' },
+  { num: '04', title: 'Digitise', body: 'Translate approved processes into appropriate digital systems and technology.' },
+  { num: '05', title: 'Pilot', body: 'Test the model in a controlled operating environment and refine it through real use.' },
+  { num: '06', title: 'Scale', body: 'Extend the validated model across teams, territories, programmes or markets.' },
+  { num: '07', title: 'Measure & Evolve', body: 'Track adoption and operating performance and continuously improve the system.' }
 ];
 
 
@@ -398,25 +561,27 @@ const FARMREACH_OS_CAPABILITIES = [
 ];
 
 const FARMREACH_OS_ARCHITECTURE = [
-  { num: '01', title: 'Data', body: 'Farmer, land, crop, activity and departmental records, resolved into one operating record.' },
-  { num: '02', title: 'Analysis', body: 'Coverage, gaps, stage and performance computed at the geography that matters.' },
-  { num: '03', title: 'Insights', body: 'What is happening, where it is happening, and what is not happening at all.' },
-  { num: '04', title: 'Action', body: 'Advisory, tasks and interventions routed to the officer or farmer who can act.' },
-  { num: '05', title: 'Measure Impact', body: 'Outcomes attributed to the programme design that produced them.' }
+  { num: '01', title: 'Data', body: 'Satellite intelligence, ground surveys, field officer capture and integration with existing state systems.' },
+  { num: '02', title: 'Analysis', body: 'Crop mapping, land intelligence and agricultural analytics resolved against ground-level records.' },
+  { num: '03', title: 'Insights', body: 'Exception flags, advisory triggers and situational intelligence at village, block, district and state levels.' },
+  { num: '04', title: 'Action', body: 'Advisory dissemination, field task allocation and workflows that carry decisions back to the field.' },
+  { num: '05', title: 'Measure Impact', body: 'Coverage, compliance, programme progress and outcomes recorded through ongoing operations.' }
 ];
 
 const FARMREACH_OS_PRINCIPLES = [
-  { title: 'Extension-first', body: 'The extension officer is the operating unit of state agriculture. Anything that adds work without giving them something back does not survive a season.' },
+  { title: 'The cadre comes first', body: 'Farmreach OS strengthens the state\u2019s existing agricultural extension capability, giving the cadre already working with farmers intelligence, task support and operational visibility rather than replacing their role.' },
   { title: 'Work with what exists', body: 'Departments already run systems, registries and processes. The operating system orchestrates them rather than asking a state to start again.' },
   { title: 'Field as system of record', body: 'A record created where the activity happened outranks a record assembled afterwards.' },
   { title: 'Auditable by design', body: 'Every record carries its geography, time and author, so verification and audit read the same data.' }
 ];
 
+/* The public extension cadre is listed first: the field officer is the primary
+   operational connection between the state and the farmer. */
 const FARMREACH_OS_STAKEHOLDERS = [
+  'Extension officers — Krishi Paryavekshak and equivalent field cadre',
+  'District and block officers',
   'State agriculture departments',
   'Commissionerates and directorates',
-  'District and block officers',
-  'Extension officers',
   'Farmers and farmer groups',
   'Programme and scheme owners'
 ];
@@ -427,6 +592,201 @@ const FARMREACH_OS_DELIVERY = [
   { num: '03', title: 'Field rollout', body: 'Officer onboarding, training and the first season of live capture.' },
   { num: '04', title: 'Operate & measure', body: 'Steady-state operation with departmental reporting reconciled to the field record.' }
 ];
+
+
+/* ==== src/data/recognition.js ==== */
+/* Recognition entries. Nothing here is invented: a year, citation or photograph
+   stays a marked placeholder (`year: ''`, `photo: null`, `pending: true`) until
+   Farmreach supplies it. `photoNote` is the caption shown in an empty frame. */
+
+const RECOGNITION = {
+  hero: {
+    title: 'Recognition along the journey',
+    lede: 'Recognition for the work we have built and operated across agricultural technology, rural markets and digital transformation.'
+  },
+  entries: [
+    {
+      id: 'hysea-10x',
+      year: '2020',
+      title: 'HYSEA 10X Product Awards',
+      subtitle: 'Recognised among innovative technology products',
+      narration:
+        "Farmreach was recognised through the HYSEA 10X Product Awards for its work in building technology solutions for agriculture. The recognition was presented by the Hon'ble Chief Minister of Telangana at the time, marking an important milestone in Farmreach's technology journey.",
+      photo: 'assets/img/recognition/hysea-10x-2020.jpg',
+      photoAlt: 'Farmreach Technologies receiving the HYSEA 10X Product Awards recognition on stage',
+      photoNote: 'Event photograph to be supplied'
+    },
+    {
+      id: 'champions-rural-markets',
+      year: '2023',
+      title: 'Champions of Rural Markets',
+      subtitle: 'The Economic Times \u00b7 Mumbai',
+      narration:
+        "Farmreach was recognised by The Economic Times at the Champions of Rural Markets programme in Mumbai for its work in connecting technology, rural markets and agricultural ecosystems. The recognition reflected the company's focus on building practical systems for India's rural and agricultural economy.",
+      photo: 'assets/img/recognition/et-champions-rural-markets.jpg',
+      photoAlt: 'Farmreach Technologies receiving The Economic Times Champions of Rural Markets recognition on stage in Mumbai',
+      photoNote: 'Event photograph to be supplied'
+    },
+    {
+      id: 'recognition-03',
+      year: '',
+      title: '',
+      subtitle: '',
+      narration: '',
+      photo: null,
+      photoNote: 'Photograph to be supplied',
+      pending: true
+    }
+  ]
+};
+
+
+/* ==== src/data/gallery.js ==== */
+/* Gallery content. Photographs and captions live here so they can be added or
+   replaced without touching the presentation component.
+
+   To publish a photograph: set `src` (a file in public/assets/img/gallery/),
+   `year`, `caption`, `description`, `category` and `alt`. Optional flags:
+   `wide` (full-row tile), `contain` (fit rather than crop), `focus`
+   (object-position for the crop). Entries are sorted newest year first at
+   render time, so a new photograph can be appended anywhere in this list. */
+
+const GALLERY = {
+  hero: {
+    title: 'A decade in the field',
+    lede: 'Moments from the people, programmes, partnerships and milestones that have shaped Farmreach since 2016.'
+  },
+  intro: {
+    eyebrow: 'Gallery',
+    title: 'A record of the work, not a showcase',
+    body: 'These are photographs from programmes, field operations, events and partnerships as they happened, added as they are cleared for publication.'
+  },
+  items: [
+    {
+      id: 'albaugh-farminsta-2026',
+      year: '2026',
+      caption: 'Albaugh PT Indonesia \u2014 Farminsta Launch',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/albaugh-pt-indonesia-farminsta-launch.jpg',
+      alt: 'The Albaugh PT Indonesia team at the Farminsta launch, holding up the app on their phones',
+      wide: true
+    },
+    {
+      id: 'hysea-2020',
+      year: '2020',
+      caption: 'HYSEA 10X Product Awards',
+      category: 'Recognition',
+      src: 'assets/img/recognition/hysea-10x-2020.jpg',
+      alt: 'Farmreach Technologies receiving the HYSEA 10X Product Awards recognition on stage',
+      wide: true
+    },
+    {
+      id: 'et-champions-2023',
+      year: '2023',
+      caption: 'The Economic Times Champions of Rural Markets, Mumbai',
+      category: 'Recognition',
+      src: 'assets/img/recognition/et-champions-rural-markets.jpg',
+      alt: 'Farmreach Technologies receiving The Economic Times Champions of Rural Markets recognition on stage in Mumbai'
+    },
+    {
+      id: 'advanta-2018',
+      year: '2018',
+      caption: 'Advanta Field Crop Team \u2014 Farminsta Launch',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/advanta-field-crop-team-2018.jpg',
+      alt: 'The Advanta field crop team gathered at the Farminsta launch',
+      wide: true
+    },
+    {
+      id: 'advanta-vegetable-2018',
+      year: '2018',
+      caption: 'Advanta Vegetable Crop Team \u2014 Farminsta Launch, Maharashtra',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/advanta-vegetable-crop-team-2018.jpg',
+      alt: 'The Advanta vegetable crop team gathered at the Farminsta launch in Maharashtra'
+    },
+    {
+      id: 'advanta-jaani-2018',
+      year: '2018',
+      caption: 'Advanta Vegetable Crop Team \u2014 Jaani Campaign, Tamil Nadu',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/advanta-jaani-campaign-2018.jpg',
+      alt: 'The Advanta vegetable crop team with Jaani campaign material in Tamil Nadu'
+    },
+    {
+      id: 'icrisat-walmart-2019',
+      year: '2019',
+      caption: 'ICRISAT \u00d7 Walmart Foundation \u2014 Anantha Samruddhi Programme',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/icrisat-walmart-anantha-samruddhi-2019.jpg',
+      alt: 'Project inauguration of the ICRISAT and Walmart Foundation Anantha Samruddhi programme, with farmers seated before the dais'
+    },
+    {
+      id: 'nrsc-geospatial',
+      year: '2013',
+      caption: 'Geospatial Technology in Agriculture \u2014 NRSC, Hyderabad',
+      description: 'Early exposure to the application of geospatial analysis and remote sensing technologies in agriculture, at NRSC, Hyderabad.',
+      category: 'Technology & Products',
+      src: 'assets/img/gallery/nrsc-geospatial-workshop.jpg',
+      alt: 'A speaker addressing the workshop on emerging geospatial technology innovations at the NRSC campus in Hyderabad',
+      focus: 'center 42%'
+    },
+    {
+      id: 'icrisat-nutri-basket-2017',
+      year: '2017',
+      caption: 'ICRISAT \u2014 Nutri Basket Programme',
+      description: 'Digitising nutrition measurement for enriched millet-based food distribution through Anganwadi centres in Andhra Pradesh.',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/icrisat-nutri-basket-2017.jpg',
+      alt: 'Officials and Anganwadi staff reviewing the Nutri Basket programme app at a demonstration in Andhra Pradesh',
+      wide: true,
+      focus: 'center 45%'
+    },
+    {
+      id: 'vegetable-value-chain-2017',
+      year: '2017',
+      caption: 'Vegetable Value Chain \u2014 Farmer-to-Market Linkage',
+      description: 'Connecting farmers directly to markets through primary processing, improving value realisation and market access.',
+      category: 'Field & Agriculture',
+      src: 'assets/img/gallery/vegetable-value-chain-2017.jpg',
+      alt: 'Farmreach staff inspecting graded cabbage crates in a vegetable primary processing area',
+      wide: true
+    },
+    {
+      id: 'upl-farminsta-2022',
+      year: '2022',
+      caption: 'UPL \u2014 Farminsta Launch',
+      category: 'Partnerships',
+      src: 'assets/img/gallery/upl-farminsta-launch-2022.jpg',
+      alt: 'The UPL field team at the Farminsta launch session, seated as a colleague presents',
+      wide: true,
+      contain: true
+    },
+    {
+      id: 'farmer-app-launch-2023',
+      year: '2023',
+      caption: 'Farmer App Launch \u2014 On-Demand Field Advisory',
+      description: 'Launching a farmer-facing platform for on-demand Field Officer visits and personalised agricultural advisory.',
+      category: 'Technology & Products',
+      src: 'assets/img/gallery/farmer-app-launch-2023.jpg',
+      alt: 'A Farminsta team member being interviewed at the farmer app launch stand, with two colleagues and the Farminsta banner behind'
+    },
+    {
+      id: 'drone-spraying-2025',
+      year: '2025',
+      caption: 'Digital Drone Spraying Services \u2014 Farmer Access',
+      description: 'Digitising drone spraying services to connect farmers with efficient, technology-enabled crop protection solutions.',
+      category: 'Technology & Products',
+      src: 'assets/img/gallery/drone-spraying-services-2025.jpg',
+      alt: 'A spraying drone on a bund between paddy fields, with farmers and mixing containers behind it',
+      focus: 'center 46%'
+    }
+  ],
+  closing: {
+    title: 'Part of the journey',
+    body: "Farmreach's work is shaped by the people, organisations and agricultural communities we work with."
+  }
+};
 
 
 /* ==== src/data/content.js ==== */
@@ -623,7 +983,7 @@ const COMPANY = {
     {
       name: 'Pradeep Raj Y',
       role: 'Founder & CEO',
-      photo: '/assets/img/people/pradeep-raj-y-cut.png',
+      photo: 'assets/img/people/pradeep-raj-y-cut.png',
       focus: 'Agriculture \u00b7 Business transformation \u00b7 Value chains \u00b7 Digital operations',
       linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
       bio: [
@@ -636,7 +996,7 @@ const COMPANY = {
       name: 'Thangathtamilazhagie V',
       alias: 'Abila',
       role: 'Director & COO',
-      photo: '/assets/img/people/abila-cut.png',
+      photo: 'assets/img/people/abila-cut.png',
       focus: 'Digital transformation \u00b7 Product \u00b7 Operations \u00b7 Growth',
       linkedin: 'https://www.linkedin.com/in/thangathtamilazhagie/',
       bio: [
@@ -657,14 +1017,6 @@ const COMPANY = {
   capability: [
     { title: 'Technology capability', body: 'Two production operating systems, built for offline-first field capture, government integration and state-scale geography.' },
     { title: 'Consulting capability', body: 'Transformation, process, digital, GTM and implementation consulting delivered by people who have operated what they design.' }
-  ],
-  partners: [
-    'State agriculture department',
-    'State horticulture mission',
-    'Agri-input enterprise',
-    'Seed enterprise',
-    'Contract production organisation',
-    'Development programme'
   ],
   careers: {
     title: 'Careers',
@@ -691,19 +1043,38 @@ const CONTACT = {
 
 const CONSULTING = {
   hero: {
-    title: 'Transform agriculture from strategy to execution.',
-    lede: 'Farmreach helps agricultural organisations understand their current operating model, identify transformation priorities, design the right processes and systems, and support implementation through execution.'
+    title: 'Transforming how agriculture operates.',
+    lede: 'Farmreach combines a decade of agricultural operating experience with technology, process and market expertise to help organisations design, digitise and scale better ways of working.'
+  },
+  layers: {
+    eyebrow: 'What we help transform',
+    title: 'Transformation across the operating system',
+    body: 'Agricultural transformation happens when strategy, people, processes, technology and market execution work together. Farmreach works across these layers to identify what needs to change, design the operating model and help move it into execution.'
   },
   method: {
-    eyebrow: 'How we work',
-    title: 'Seven stages, one line from strategy to operation.',
-    body: 'The same method underpins a state programme and an enterprise transformation. Where an engagement starts differs; the sequence does not.'
+    eyebrow: 'Transformation approach',
+    title: 'From understanding to transformation',
+    body: 'Where an engagement starts differs by organisation. The sequence does not: understand the operating environment first, then change it in steps that can be tested in the field.'
   },
-  why: [
-    { title: 'We have operated it', body: 'Every recommendation has been run somewhere, under a season and a field force.' },
-    { title: 'We can build it', body: 'The design does not stop at a deck. Farmreach builds and rolls out what it specifies.' },
-    { title: 'We stay through adoption', body: 'Transformation is decided in the months after go-live, so that is where the engagement holds.' }
-  ]
+  engagements: {
+    eyebrow: 'Consulting engagements',
+    title: 'Where we engage',
+    body: 'Four engagement types, each with a defined scope and a defined set of outputs.'
+  },
+  audience: {
+    eyebrow: 'Who we work with',
+    title: 'Public, private and the wider agricultural ecosystem'
+  },
+  why: {
+    eyebrow: 'Why Farmreach',
+    title: 'Consulting grounded in operating experience',
+    body: "Farmreach's consulting approach comes from operating agricultural systems, not only studying them. Since 2016, the team has worked across field operations, farmer systems, production, value chains, government programmes, channel management and digital outreach \u2014 experience that informs how transformation programmes are designed and implemented."
+  },
+  bridge: {
+    eyebrow: 'Consulting and the operating systems',
+    title: 'From transformation strategy to operating capability',
+    body: 'Consulting can stand alone or lead into technology implementation. Where appropriate, Farmreach can translate the transformation roadmap into Farmreach OS for public enterprise or Farminsta OS for private enterprise.'
+  }
 };
 
 
@@ -1681,7 +2052,7 @@ function SectionHeading({ eyebrow, title, body, id, children, aside }) {
 /* ==== src/components/PageHead.jsx ==== */
 
 
-function PageHead({ eyebrow, title, lede, crumb }) {
+function PageHead({ eyebrow, title, lede, crumb, actions }) {
   return (
     <section className="page-head">
       <span className="page-head__bg" aria-hidden="true" />
@@ -1696,6 +2067,7 @@ function PageHead({ eyebrow, title, lede, crumb }) {
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <h1>{title}</h1>
         {lede ? <p className="page-head__lede">{lede}</p> : null}
+        {actions ? <div className="btn-row" style={{ marginTop: 'var(--space-lg)' }}>{actions}</div> : null}
       </div>
     </section>
   );
@@ -1740,62 +2112,6 @@ function CTA({ title, body, primary, secondary, routes }) {
         )}
       </div>
     </section>
-  );
-}
-
-
-/* ==== src/components/Metrics.jsx ==== */
-
-/* Count-up enhances a value that is already in the server-rendered HTML, so
-   crawlers and no-JS visitors see the real figure. */
-function useCountUp(ref, metric) {
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !metric.to) return;
-    if (!('IntersectionObserver' in window) ||
-        document.visibilityState !== 'visible' ||
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        io.unobserve(entry.target);
-        const duration = 1200;
-        let start = null;
-        const step = (now) => {
-          if (start === null) start = now;
-          const t = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = Math.round(metric.to * eased) + metric.suffix;
-          if (t < 1) requestAnimationFrame(step);
-          else el.textContent = metric.value;
-        };
-        requestAnimationFrame(step);
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
-
-    io.observe(el);
-    /* Whatever interrupts the animation, the approved literal is what remains. */
-    return () => { io.disconnect(); el.textContent = metric.value; };
-  }, [ref, metric]);
-}
-
-function Metric({ metric }) {
-  const ref = useRef(null);
-  useCountUp(ref, metric);
-  return (
-    <div className="metric">
-      <span className="metric__value" ref={ref}>{metric.value}</span>
-      <span className="metric__label">{metric.label}</span>
-    </div>
-  );
-}
-
-function Metrics({ items }) {
-  return (
-    <div className="metrics">
-      {items.map((m) => <Metric key={m.label} metric={m} />)}
-    </div>
   );
 }
 
@@ -2017,7 +2333,7 @@ function ConsultingService({ service, index }) {
 }
 
 /* Compact index of the capability areas. */
-function ServiceIndex({ services, onNavigateLabel = 'Learn more' }) {
+function ServiceIndex({ services, onNavigateLabel = 'Learn more', link = true }) {
   return (
     <div className="svc-index">
       {services.map((s, i) => (
@@ -2025,43 +2341,12 @@ function ServiceIndex({ services, onNavigateLabel = 'Learn more' }) {
           <span className="svc-index__num">{String(i + 1).padStart(2, '0')}</span>
           <h3>{s.short}</h3>
           <p>{s.summary}</p>
-          <a className="textlink" href={`#/consulting`}>{onNavigateLabel} <span aria-hidden="true">&rarr;</span></a>
+          {link ? (
+            <a className="textlink" href={`#/consulting`}>{onNavigateLabel} <span aria-hidden="true">&rarr;</span></a>
+          ) : null}
         </div>
       ))}
     </div>
-  );
-}
-
-
-/* ==== src/components/Timeline.jsx ==== */
-
-
-/* Stage-based evolution. Stages, not invented dates. */
-function Timeline({ items }) {
-  return (
-    <Reveal as="ol" className="arc">
-      {items.map((item) => (
-        <li className="arc__item" key={item.title}>
-          <span className="arc__stage">{item.stage}</span>
-          <h3>{item.title}</h3>
-          <p>{item.body}</p>
-        </li>
-      ))}
-    </Reveal>
-  );
-}
-
-
-/* ==== src/components/LogoWall.jsx ==== */
-
-
-/* Placeholder cells only — no partner marks are invented. Replace each cell
-   with an <img> once Farmreach supplies approved logos. */
-function LogoWall({ slots }) {
-  return (
-    <Reveal className="logo-wall">
-      {slots.map((s) => <div className="logo-wall__cell" key={s}>{s}</div>)}
-    </Reveal>
   );
 }
 
@@ -2077,22 +2362,23 @@ function People({ items }) {
     <Reveal className="people">
       {items.map((p) => (
         <article className="person" key={p.name}>
+          {/* Portrait left, the whole profile block right — identical for every profile. */}
           <div className="person__head">
-            <h3 className="person__title">
-              <span className="person__name">{p.name}</span>
-              {p.alias ? (
-                <>
-                  <span className="person__aliasLabel"> alias </span>
-                  <span className="person__alias">({p.alias})</span>
-                </>
-              ) : null}
-            </h3>
             {p.photo ? (
               <img className="person__portrait person__portrait--img" src={p.photo} alt={`Portrait of ${p.name}`} loading="lazy" />
             ) : (
               <div className="person__portrait" role="img" aria-label={`Portrait of ${p.name} to be supplied`}>Portrait</div>
             )}
             <div className="person__id">
+              <h3 className="person__title">
+                <span className="person__name">{p.name}</span>
+                {p.alias ? (
+                  <>
+                    <span className="person__aliasLabel"> alias </span>
+                    <span className="person__alias">({p.alias})</span>
+                  </>
+                ) : null}
+              </h3>
               <p className="person__role">{p.role}</p>
               {p.focus ? <p className="person__focus">{p.focus}</p> : null}
               {p.linkedin ? (
@@ -2321,6 +2607,99 @@ function Capabilities({ items, columns3 = true }) {
 }
 
 
+/* ==== src/components/GalleryGrid.jsx ==== */
+
+
+/* Editorial photo grid with a lightbox, newest year first. */
+function GalleryGrid({ items }) {
+  const [openId, setOpenId] = useState(null);
+  const panelRef = useRef(null);
+
+  /* Newest year first, whatever order entries are authored in, so a future
+     photograph lands in the right place by year alone. Same-year entries keep
+     their authored order (Array.sort is stable). */
+  const ordered = [...items].sort((a, b) => (Number(b.year) || -1) - (Number(a.year) || -1));
+  const index = ordered.findIndex((i) => i.id === openId);
+  const current = index >= 0 ? ordered[index] : null;
+
+  const step = useCallback((dir) => {
+    if (!ordered.length) return;
+    const next = (index + dir + ordered.length) % ordered.length;
+    setOpenId(ordered[next].id);
+  }, [index, ordered]);
+
+  useEffect(() => {
+    if (!current) return undefined;
+    const onKey = (ev) => {
+      if (ev.key === 'Escape') setOpenId(null);
+      if (ev.key === 'ArrowRight') step(1);
+      if (ev.key === 'ArrowLeft') step(-1);
+    };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    if (panelRef.current) panelRef.current.focus();
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [current, step]);
+
+  return (
+    <>
+      <ul className="gal">
+        {ordered.map((item) => (
+          <li className={['gal__cell', item.wide ? 'gal__cell--wide' : '', item.contain ? 'gal__cell--contain' : ''].filter(Boolean).join(' ')} key={item.id}>
+            <button type="button" className="gal__tile" onClick={() => setOpenId(item.id)}>
+              <img
+                src={item.src}
+                alt={item.alt || item.caption}
+                loading="lazy"
+                style={item.focus ? { objectPosition: item.focus } : undefined}
+              />
+              <span className="gal__caption">
+                <span className="gal__year">{item.year}</span>
+                <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
+                {item.caption}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {current
+        ? ReactDOM.createPortal(
+            <div className="lbx" role="presentation" onMouseDown={(ev) => { if (ev.target === ev.currentTarget) setOpenId(null); }}>
+              <div className="lbx__panel" role="dialog" aria-modal="true" aria-label={current.caption} tabIndex={-1} ref={panelRef}>
+                <img src={current.src} alt={current.alt || current.caption} />
+                <div className="lbx__bar">
+                  <div>
+                    <p className="lbx__caption">
+                      <span className="gal__year">{current.year}</span>
+                      <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
+                      {current.caption}
+                    </p>
+                    {current.description ? <p className="lbx__desc">{current.description}</p> : null}
+                  </div>
+                  <div className="lbx__nav">
+                    <button type="button" className="tst__arrow" onClick={() => step(-1)} aria-label="Previous photograph">
+                      <span aria-hidden="true">&larr;</span>
+                    </button>
+                    <button type="button" className="tst__arrow" onClick={() => step(1)} aria-label="Next photograph">
+                      <span aria-hidden="true">&rarr;</span>
+                    </button>
+                    <button type="button" className="tst__arrow" onClick={() => setOpenId(null)} aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
+    </>
+  );
+}
+
+
 /* ==== src/components/GeoVisual.jsx ==== */
 
 
@@ -2499,6 +2878,8 @@ function Hero() {
 
 
 
+
+
 const FIELDS = [
   { name: 'name', label: 'Full name', type: 'text', autoComplete: 'name', full: true },
   { name: 'email', label: 'Work email', type: 'email', autoComplete: 'email' },
@@ -2514,7 +2895,23 @@ function ContactForm() {
   const [status, setStatus] = useState(null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [preview, setPreview] = useState(null);
   const startedAt = useRef(Date.now());
+  const dialogRef = useRef(null);
+
+  /* Preview is a dialog: escape closes it, the page behind does not scroll. */
+  useEffect(() => {
+    if (!preview) return undefined;
+    const onKey = (ev) => { if (ev.key === 'Escape' && !sending) setPreview(null); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    if (dialogRef.current) dialogRef.current.focus();
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [preview, sending]);
 
   const validateField = (name, value) => {
     const single = validateEnquiry(normaliseEnquiry({ [name]: value }))[name] || '';
@@ -2535,14 +2932,23 @@ function ContactForm() {
       return;
     }
 
+    /* Nothing is sent yet: show the exact email first. */
+    setStatus(null);
+    setPreview({ data, honeypot: entries[HONEYPOT_FIELD] || '' });
+  };
+
+  const send = async () => {
+    if (sending || !preview) return;
+    const { data, honeypot } = preview;
     const payload = {
       ...data,
-      [HONEYPOT_FIELD]: entries[HONEYPOT_FIELD] || '',
+      [HONEYPOT_FIELD]: honeypot,
       elapsedMs: Date.now() - startedAt.current
     };
 
     /* No endpoint configured (design review builds): confirm without sending. */
     if (!SITE.contactEndpoint) {
+      setPreview(null);
       setSent(true);
       setStatus({ ok: true, message: CONFIRMATION });
       return;
@@ -2557,14 +2963,15 @@ function ContactForm() {
       });
       const body = await res.json().catch(() => ({}));
       if (res.ok && body.ok) {
+        setPreview(null);
         setSent(true);
         setStatus({ ok: true, message: body.message || CONFIRMATION });
       } else {
         if (body.errors) setErrors(body.errors);
-        setStatus({ ok: false, message: body.error || 'We could not send that just now. Please try again shortly.' });
+        setStatus({ ok: false, message: body.error || 'Something went wrong while sending your enquiry. Please try again.' });
       }
     } catch {
-      setStatus({ ok: false, message: 'We could not send that just now. Please check your connection and try again.' });
+      setStatus({ ok: false, message: 'Something went wrong while sending your enquiry. Please try again.' });
     } finally {
       setSending(false);
     }
@@ -2587,6 +2994,7 @@ function ContactForm() {
   }
 
   return (
+    <>
     <form className="form" onSubmit={onSubmit} noValidate>
       {FIELDS.map((f) => (
         <div className={`field${f.full ? ' field--full' : ''}`} data-invalid={Boolean(errors[f.name])} key={f.name}>
@@ -2635,15 +3043,89 @@ function ContactForm() {
         <input id={`c-${HONEYPOT_FIELD}`} name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      {status && !status.ok ? <p className="form__status form__status--error" role="alert">{status.message}</p> : null}
+      {status && !status.ok && !preview ? <p className="form__status form__status--error" role="alert">{status.message}</p> : null}
 
       <div className="form__actions">
         <button className="btn btn--primary" type="submit" disabled={sending}>
-          {sending ? 'Sending…' : 'Send Enquiry'} <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+          Send Enquiry <span className="btn__arrow" aria-hidden="true">&rarr;</span>
         </button>
         <span style={{ fontSize: '13px', color: 'var(--text-tertiary)' }}>We reply within two working days.</span>
       </div>
     </form>
+
+    {/* Portalled to <body>: the form sits inside a transformed Reveal wrapper,
+        which would otherwise become the containing block for position: fixed. */}
+    {preview
+      ? ReactDOM.createPortal(
+          <EnquiryPreview
+            data={preview.data}
+            sending={sending}
+            error={status && !status.ok ? status.message : ''}
+            onEdit={() => { if (!sending) setPreview(null); }}
+            onSend={send}
+            dialogRef={dialogRef}
+          />,
+          document.body
+        )
+      : null}
+    </>
+  );
+}
+
+/* Preview of the email itself, rendered from the same template the server
+   sends, inside a sandboxed iframe so email CSS cannot touch the page. */
+function EnquiryPreview({ data, sending, error, onEdit, onSend, dialogRef }) {
+  const html = internalEmail(data).html;
+  const rows = [
+    ['From', ROUTING.from],
+    ['To', ROUTING.to],
+    ['CC', ROUTING.cc],
+    ['Reply-To', data.email],
+    ['Subject', SUBJECTS.internal(data.organisation, data.route)]
+  ];
+
+  return (
+    <div className="dlg" role="presentation" onMouseDown={(ev) => { if (ev.target === ev.currentTarget) onEdit(); }}>
+      <div
+        className="dlg__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dlg-title"
+        tabIndex={-1}
+        ref={dialogRef}
+      >
+        <div className="dlg__head">
+          <p className="eyebrow">Before sending</p>
+          <h2 id="dlg-title">Review your enquiry</h2>
+          <p className="dlg__note">This is the email that will be sent to the Farmreach team.</p>
+        </div>
+
+        <dl className="dlg__routing">
+          {rows.map(([label, value]) => (
+            <div className="dlg__routing-row" key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="dlg__mail">
+          <iframe title="Email preview" srcDoc={html} sandbox="" loading="lazy" />
+        </div>
+
+        {error ? <p className="form__status form__status--error" role="alert">{error}</p> : null}
+
+        <div className="dlg__actions">
+          <button className="btn btn--secondary" type="button" onClick={onEdit} disabled={sending}>
+            Edit Enquiry
+          </button>
+          <button className="btn btn--primary" type="button" onClick={onSend} disabled={sending}>
+            {sending ? 'Sending…' : error ? 'Try again' : 'Send Enquiry'}{' '}
+            <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -2749,7 +3231,7 @@ function Header() {
       <header className="site-header">
         <div className="container site-header__inner">
           <Link to="/" className="logo" aria-label={`${SITE.name} — home`}>
-            <img className="logo-img logo-img--ink" src="assets/img/farmreach-logo-ink.png" alt={SITE.name} width="151" height="42" fetchPriority="high" />
+            <img className="logo-img logo-img--ink" src="assets/img/farmreach-logo.png" alt={SITE.name} width="151" height="42" fetchpriority="high" />
             <img className="logo-img logo-img--mono" src="assets/img/farmreach-logo-mono.png" alt="" aria-hidden="true" width="151" height="42" />
           </Link>
 
@@ -2787,7 +3269,7 @@ function Header() {
       >
         <div className="drawer__top">
           <Link to="/" className="logo" onClick={() => setOpen(false)} aria-label={`${SITE.name} — home`}>
-            <img className="logo-img logo-img--ink" src="assets/img/farmreach-logo-ink.png" alt={SITE.name} width="115" height="32" />
+            <img className="logo-img logo-img--ink" src="assets/img/farmreach-logo.png" alt={SITE.name} width="115" height="32" />
             <img className="logo-img logo-img--mono" src="assets/img/farmreach-logo-mono.png" alt="" aria-hidden="true" width="115" height="32" />
           </Link>
           <button
@@ -2841,11 +3323,11 @@ function Footer() {
       <div className="container">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <img src="assets/img/farmreach-logo-mono.png" alt={SITE.name} width="151" height="42" loading="lazy" />
+            <img src="assets/img/farmreach-logo-mono.png" alt={SITE.name} width="151" height="42" style={{ width: '151px', height: 'auto' }} loading="lazy" />
             <p className="site-footer__brandline">{SITE.positioning}.</p>
             <p className="site-footer__social">
-              <Ext href={SITE.social.linkedin}>Farminsta LinkedIn</Ext>
-              <Ext href={SITE.social.facebook}>Farminsta Facebook</Ext>
+              <Ext href={SITE.social.linkedin}>Farmreach LinkedIn</Ext>
+              <Ext href={SITE.social.facebook}>Farmreach Facebook</Ext>
             </p>
           </div>
 
@@ -2856,6 +3338,8 @@ function Footer() {
               <Ext href={FARMINSTA_URL}>Farminsta OS</Ext>
               <Link to="/consulting">Consulting &amp; Transformation</Link>
               <Link to="/company">Our Story</Link>
+              <Link to="/recognition">Recognition</Link>
+              <Link to="/gallery">Gallery</Link>
               <Link to="/contact">Contact</Link>
             </div>
           </div>
@@ -3044,8 +3528,6 @@ function Home() {
 
 
 
-
-
 const meta_FarmreachOS = {
   path: '/farmreach-os',
   title: 'Farmreach OS — Government Agriculture Operating System | Farmreach Technologies',
@@ -3067,12 +3549,15 @@ function FarmreachOS() {
       <section className="section section--light">
         <div className="container split">
           <Reveal className="prose">
-            <p className="lead">{FARMREACH_OS.blurb}</p>
+            <p className="lead">
+              Farmreach OS gives a state the ability to see its agriculture as it happens, and act on what
+              it sees &mdash; without replacing the systems already in place.
+            </p>
             <p>
-              A state does not need another system to log into. It needs the systems it already runs to
-              agree with the field. Farmreach OS orchestrates existing departmental systems, resolves the
-              farmer and land record underneath them, and gives district and state officers one operating
-              view built from field activity rather than from returns.
+              It is an intelligence and operating layer above the digital systems a department already runs.
+              It connects existing data, field intelligence, geospatial information and agricultural
+              workflows so that decisions at village, block, district and state level read from the same
+              record, and so that action can be coordinated across the people already working with farmers.
             </p>
           </Reveal>
           <Reveal>
@@ -3178,17 +3663,10 @@ function FarmreachOS() {
         </div>
       </section>
 
-      <section className="section section--tight section--light" aria-labelledby="found-title">
-        <div className="container">
-          <p className="eyebrow" id="found-title">Foundation &amp; scale</p>
-          <Metrics items={METRICS} />
-        </div>
-      </section>
-
       <CTA
-        title="Start with one district."
-        body="Tell us the district, the scheme or the department system you need this to work with. We will come back with what the first season would involve."
-        primary={{ href: '/contact', label: 'Talk to us' }}
+        title="For states considering this"
+        body="Tell us the district, the scheme or the department system this needs to work with. We will come back with what the first season would involve."
+        primary={{ href: '/contact', label: 'Request a state briefing' }}
         secondary={{ href: '/consulting', label: 'Explore Consulting' }}
       />
     </>
@@ -3206,12 +3684,16 @@ function FarmreachOS() {
 
 
 
+
+
 const meta_Consulting = {
   path: '/consulting',
   title: 'Consulting & Transformation — Farmreach Technologies',
-  description: 'Agriculture transformation, process audit, digital transformation, GTM and implementation consulting from a company that has operated agricultural systems at state scale.'
+  description: 'Agricultural transformation and advisory: operating model, digital transformation, process consulting and go-to-market work from a company that has operated agricultural systems at scale.'
 };
 
+/* Three customer groups and the four capability areas are compact by intent:
+   this is an advisory page, so the argument is the sequence, not the cards. */
 function Consulting() {
   return (
     <>
@@ -3220,23 +3702,33 @@ function Consulting() {
         title={CONSULTING.hero.title}
         lede={CONSULTING.hero.lede}
         crumb="Consulting"
+        actions={
+          <>
+            <Link to="/contact" className="btn btn--primary">
+              Talk to us <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+            </Link>
+            <a href="#why-title" className="btn btn--secondary">
+              Our experience <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </>
+        }
       />
 
-      <section className="section section--tight section--soft-green">
+      <section className="section section--soft-green" aria-labelledby="layers-title">
         <div className="container">
-          <ServiceIndex services={SERVICES} onNavigateLabel="Read more" />
+          <SectionHeading
+            id="layers-title"
+            eyebrow={CONSULTING.layers.eyebrow}
+            title={CONSULTING.layers.title}
+            body={CONSULTING.layers.body}
+          />
+        </div>
+        <div className="container">
+          <ServiceIndex services={CAPABILITY_AREAS} link={false} />
         </div>
       </section>
 
-      <section className="section section--light">
-        <div className="container">
-          {SERVICES.map((service, i) => (
-            <ConsultingService service={service} index={i} key={service.id} />
-          ))}
-        </div>
-      </section>
-
-      <section className="section section--soft-green" aria-labelledby="method-title">
+      <section className="section section--light" aria-labelledby="method-title">
         <div className="container">
           <SectionHeading
             id="method-title"
@@ -3245,28 +3737,87 @@ function Consulting() {
             body={CONSULTING.method.body}
           />
         </div>
-        <TransformationJourney steps={METHOD.slice(0, 6)} />
+        <div className="container">
+          <TransformationJourney steps={METHOD} />
+        </div>
       </section>
 
-      <section className="section section--tight section--light" aria-labelledby="why-title">
+      <section className="section section--soft-green" aria-labelledby="engage-title">
         <div className="container">
-          <p className="eyebrow" id="why-title">Why Farmreach</p>
-          <div className="split split--even" style={{ marginTop: 'var(--space-lg)' }}>
-            {CONSULTING.why.map((w) => (
-              <Reveal key={w.title} style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--space-md)' }}>
-                <h3>{w.title}</h3>
-                <p style={{ marginTop: 'var(--space-2xs)' }}>{w.body}</p>
+          <SectionHeading
+            id="engage-title"
+            eyebrow={CONSULTING.engagements.eyebrow}
+            title={CONSULTING.engagements.title}
+            body={CONSULTING.engagements.body}
+          />
+          {SERVICES.map((service, i) => (
+            <ConsultingService service={service} index={i} key={service.id} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--tight section--light" aria-labelledby="audience-title">
+        <div className="container">
+          <SectionHeading
+            id="audience-title"
+            eyebrow={CONSULTING.audience.eyebrow}
+            title={CONSULTING.audience.title}
+          />
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: 'var(--space-lg)',
+              marginTop: 'var(--space-lg)'
+            }}
+          >
+            {AUDIENCES.map((a) => (
+              <Reveal key={a.title} style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--space-md)' }}>
+                <h3>{a.title}</h3>
+                <p style={{ marginTop: 'var(--space-2xs)' }}>{a.body}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
+      <section className="section section--tight section--soft-green" aria-labelledby="why-title">
+        <div className="container">
+          <p className="eyebrow" id="why-title">{CONSULTING.why.eyebrow}</p>
+          <div className="split" style={{ marginTop: 'var(--space-md)' }}>
+            <Reveal>
+              <h2>{CONSULTING.why.title}</h2>
+            </Reveal>
+            <Reveal className="prose">
+              <p className="lead">{CONSULTING.why.body}</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight section--light" aria-labelledby="bridge-title">
+        <div className="container">
+          <SectionHeading
+            id="bridge-title"
+            eyebrow={CONSULTING.bridge.eyebrow}
+            title={CONSULTING.bridge.title}
+            body={CONSULTING.bridge.body}
+          />
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', marginTop: 'var(--space-md)' }}>
+            <Link to="/farmreach-os" className="textlink">
+              Explore Farmreach OS <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link to={FARMINSTA_URL} external className="textlink">
+              Explore Farminsta OS <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <CTA
-        title="Where is the operating model breaking?"
-        body="Most engagements start with an assessment of the current state. That is usually enough to know whether the answer is process, technology, go-to-market or all three."
-        primary={{ href: '/contact', label: 'Talk to us' }}
-        secondary={{ href: '/farmreach-os', label: 'Explore Farmreach OS' }}
+        title="Have a transformation challenge to solve?"
+        body="Tell us what you are trying to change. We will bring the right agricultural, operating and technology perspective to the conversation."
+        primary={{ href: '/contact', label: 'Start a conversation' }}
       />
     </>
   );
@@ -3274,7 +3825,6 @@ function Consulting() {
 
 
 /* ==== src/pages/Company.jsx ==== */
-
 
 
 
@@ -3387,16 +3937,8 @@ function Company() {
         </div>
       </section>
 
-      <section className="section section--soft-green" aria-labelledby="partners-title">
-        <div className="container">
-          <p className="eyebrow" id="partners-title">Partnerships</p>
-          <h2 style={{ maxWidth: '24ch', marginBottom: 'var(--space-lg)' }}>Governments, enterprises and programmes</h2>
-          <LogoWall slots={COMPANY.partners} />
-          <p style={{ marginTop: 'var(--space-md)', fontSize: '13px', color: 'var(--text-secondary)' }}>
-            Partner marks to be supplied by Farmreach. Placeholders shown.
-          </p>
-        </div>
-      </section>
+      {/* Partnerships section removed until real partner marks are supplied —
+          the old placeholder logo wall lives in farmreach-v2/web if needed. */}
 
       <section className="section section--tight section--light" aria-labelledby="careers-title">
         <div className="container split">
@@ -3413,6 +3955,124 @@ function Company() {
       <CTA
         title="Work with us, or work at Farmreach."
         body="Programme enquiries, transformation engagements, partnerships and roles all route through the same place."
+        primary={{ href: '/contact', label: 'Talk to us' }}
+      />
+    </>
+  );
+}
+
+
+/* ==== src/pages/Recognition.jsx ==== */
+
+
+
+
+const meta_Recognition = {
+  path: '/recognition',
+  title: 'Recognition — Farmreach Technologies',
+  description: 'Recognition for Farmreach Technologies across agricultural technology, rural markets and digital transformation, including the HYSEA 10X Product Awards and The Economic Times Champions of Rural Markets.'
+};
+
+/* A curated timeline: year and citation on one side, the event photograph on
+   the other, alternating surfaces down the page. Photographs carry the page,
+   so an unsupplied one leaves a labelled frame rather than a stand-in image. */
+function Entry({ entry, index }) {
+  const soft = index % 2 === 1;
+  const pending = Boolean(entry.pending);
+  return (
+    <section
+      className={`section ${soft ? 'section--soft-green' : 'section--light'}`}
+      id={entry.id}
+      aria-labelledby={`${entry.id}-title`}
+    >
+      <div className="container rec">
+        <Reveal className="rec__head">
+          <p className={entry.year ? 'rec__year' : 'rec__year rec__year--pending'}>
+            {entry.year || 'Year to be confirmed'}
+          </p>
+          <h2 id={`${entry.id}-title`} className="rec__title">
+            {pending ? 'Recognition to be confirmed' : entry.title}
+          </h2>
+          {entry.subtitle ? <p className="rec__subtitle">{entry.subtitle}</p> : null}
+        </Reveal>
+        <Reveal className="rec__figure">
+          {entry.photo ? (
+            <img src={entry.photo} alt={entry.photoAlt || entry.title} loading="lazy" />
+          ) : (
+            <div className="rec__frame" role="img" aria-label={entry.photoNote}>
+              <span>{entry.photoNote}</span>
+            </div>
+          )}
+        </Reveal>
+        <Reveal as="p" className="rec__narration">
+          {pending
+            ? 'Details for this recognition will be published once they are confirmed by Farmreach.'
+            : entry.narration}
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function Recognition() {
+  return (
+    <>
+      <PageHead
+        eyebrow="Recognition"
+        title={RECOGNITION.hero.title}
+        lede={RECOGNITION.hero.lede}
+        crumb="Recognition"
+      />
+      {/* Pending entries stay in the data as marked placeholders but are not
+          published until their details are confirmed. */}
+      {RECOGNITION.entries.filter((entry) => !entry.pending).map((entry, i) => (
+        <Entry entry={entry} index={i} key={entry.id} />
+      ))}
+    </>
+  );
+}
+
+
+/* ==== src/pages/Gallery.jsx ==== */
+
+
+
+
+
+
+const meta_Gallery = {
+  path: '/gallery',
+  title: 'Gallery — Farmreach Technologies',
+  description: "Photographs from Farmreach Technologies' programmes, field operations, events, partnerships and milestones since 2016."
+};
+
+function Gallery() {
+  return (
+    <>
+      <PageHead
+        eyebrow="Gallery"
+        title={GALLERY.hero.title}
+        lede={GALLERY.hero.lede}
+        crumb="Gallery"
+      />
+
+      <section className="section section--soft-green" aria-labelledby="gallery-title">
+        <div className="container">
+          <SectionHeading
+            id="gallery-title"
+            eyebrow={GALLERY.intro.eyebrow}
+            title={GALLERY.intro.title}
+            body={GALLERY.intro.body}
+          />
+        </div>
+        <div className="container">
+          <GalleryGrid items={GALLERY.items} />
+        </div>
+      </section>
+
+      <CTA
+        title={GALLERY.closing.title}
+        body={GALLERY.closing.body}
         primary={{ href: '/contact', label: 'Talk to us' }}
       />
     </>
@@ -3565,6 +4225,8 @@ function NotFound() {
 
 
 
+
+
 /* Single route table: used by the client router AND by prerender.mjs, so the
    static output and the SPA can never drift apart. */
 const PAGES = [
@@ -3572,6 +4234,8 @@ const PAGES = [
   { path: '/farmreach-os', Component: FarmreachOS, meta: meta_FarmreachOS },
   { path: '/consulting', Component: Consulting, meta: meta_Consulting },
   { path: '/company', Component: Company, meta: meta_Company },
+  { path: '/recognition', Component: Recognition, meta: meta_Recognition },
+  { path: '/gallery', Component: Gallery, meta: meta_Gallery },
   { path: '/contact', Component: Contact, meta: meta_Contact },
   { path: '/terms', Component: Terms, meta: meta_Terms },
   { path: '/privacy', Component: Privacy, meta: meta_Privacy }

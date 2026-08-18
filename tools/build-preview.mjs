@@ -14,12 +14,14 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const FILES = [
   "src/lib/enquiry.js",
+  "src/lib/emailTemplates.js",
   "src/data/site.js",
   "src/data/navigation.js",
-  "src/data/metrics.js",
   "src/data/heroMetrics.js",
   "src/data/services.js",
   "src/data/operatingSystems.js",
+  "src/data/recognition.js",
+  "src/data/gallery.js",
   "src/data/content.js",
   "src/data/legal.js",
   "src/data/geo.js",
@@ -30,7 +32,6 @@ const FILES = [
   "src/components/SectionHeading.jsx",
   "src/components/PageHead.jsx",
   "src/components/CTA.jsx",
-  "src/components/Metrics.jsx",
   "src/components/Ecosystem.jsx",
   "src/components/Architecture.jsx",
   "src/components/TransformationJourney.jsx",
@@ -38,12 +39,11 @@ const FILES = [
   "src/components/CapabilityList.jsx",
   "src/components/JourneyTimeline.jsx",
   "src/components/ConsultingService.jsx",
-  "src/components/Timeline.jsx",
-  "src/components/LogoWall.jsx",
   "src/components/People.jsx",
   "src/components/LegalDocument.jsx",
   "src/components/StoryAside.jsx",
   "src/components/Capabilities.jsx",
+  "src/components/GalleryGrid.jsx",
   "src/components/GeoVisual.jsx",
   "src/components/Hero.jsx",
   "src/components/ContactForm.jsx",
@@ -53,6 +53,8 @@ const FILES = [
   "src/pages/FarmreachOS.jsx",
   "src/pages/Consulting.jsx",
   "src/pages/Company.jsx",
+  "src/pages/Recognition.jsx",
+  "src/pages/Gallery.jsx",
   "src/pages/Contact.jsx",
   "src/pages/Terms.jsx",
   "src/pages/Privacy.jsx",
@@ -65,6 +67,8 @@ const PAGE_META = {
   "src/pages/FarmreachOS.jsx": "meta_FarmreachOS",
   "src/pages/Consulting.jsx": "meta_Consulting",
   "src/pages/Company.jsx": "meta_Company",
+  "src/pages/Recognition.jsx": "meta_Recognition",
+  "src/pages/Gallery.jsx": "meta_Gallery",
   "src/pages/Contact.jsx": "meta_Contact",
   "src/pages/Terms.jsx": "meta_Terms",
   "src/pages/Privacy.jsx": "meta_Privacy",
@@ -97,11 +101,16 @@ swap('if (to === window.location.pathname) return;', "if (to === (window.locatio
 swap("window.history.pushState({}, '', to);", 'window.location.hash = to;');
 swap('href={to} onClick={onClick}', 'href={"#" + to} onClick={onClick}');
 [['homeMeta', 'meta_Home'], ['osMeta', 'meta_FarmreachOS'], ['consultingMeta', 'meta_Consulting'],
- ['companyMeta', 'meta_Company'], ['contactMeta', 'meta_Contact'], ['termsMeta', 'meta_Terms'],
+ ['companyMeta', 'meta_Company'], ['recognitionMeta', 'meta_Recognition'], ['galleryMeta', 'meta_Gallery'], ['contactMeta', 'meta_Contact'], ['termsMeta', 'meta_Terms'],
  ['privacyMeta', 'meta_Privacy'], ['notFoundMeta', 'meta_NotFound']]
   .forEach(([a, b]) => swap(a, b));
 swap('href={\`/consulting#\${s.id}\`}', 'href={\`#/consulting\`}');
 swap('src="/assets/img/', 'src="assets/img/');
+/* Data-driven asset paths (portraits, recognition photos) need the same
+   rewrite: the review preview is served from a subdirectory, so a leading
+   slash resolves to the origin root and 404s. */
+swap("'/assets/img/", "'assets/img/");
+swap('"/assets/img/', '"assets/img/');
 
 out += `
 ReactDOM.createRoot(document.getElementById('root')).render(

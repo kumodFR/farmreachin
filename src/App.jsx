@@ -6,6 +6,8 @@ import Home, { meta as homeMeta } from './pages/Home.jsx';
 import FarmreachOS, { meta as osMeta } from './pages/FarmreachOS.jsx';
 import Consulting, { meta as consultingMeta } from './pages/Consulting.jsx';
 import Company, { meta as companyMeta } from './pages/Company.jsx';
+import Recognition, { meta as recognitionMeta } from './pages/Recognition.jsx';
+import Gallery, { meta as galleryMeta } from './pages/Gallery.jsx';
 import Contact, { meta as contactMeta } from './pages/Contact.jsx';
 import Terms, { meta as termsMeta } from './pages/Terms.jsx';
 import Privacy, { meta as privacyMeta } from './pages/Privacy.jsx';
@@ -18,6 +20,8 @@ export const PAGES = [
   { path: '/farmreach-os', Component: FarmreachOS, meta: osMeta },
   { path: '/consulting', Component: Consulting, meta: consultingMeta },
   { path: '/company', Component: Company, meta: companyMeta },
+  { path: '/recognition', Component: Recognition, meta: recognitionMeta },
+  { path: '/gallery', Component: Gallery, meta: galleryMeta },
   { path: '/contact', Component: Contact, meta: contactMeta },
   { path: '/terms', Component: Terms, meta: termsMeta },
   { path: '/privacy', Component: Privacy, meta: privacyMeta }

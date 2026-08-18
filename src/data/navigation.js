@@ -6,6 +6,7 @@ export const NAV = [
   { href: FARMINSTA_URL, label: 'Farminsta OS', external: true },
   { href: '/consulting', label: 'Consulting' },
   { href: '/company', label: 'Our Story' },
+  { href: '/recognition', label: 'Recognition' },
   { href: '/contact', label: 'Contact' }
 ];
 

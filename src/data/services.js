@@ -1,16 +1,31 @@
-/* Consulting & transformation — four capabilities: WHAT Farmreach can do for an
-   organisation. Approach and principles live in Operating Philosophy; keep that
-   language out of here.
-   `homeSummary` appears on the homepage; `explain` and `outputs` on /consulting. */
+/* Consulting & transformation.
+   CAPABILITY_AREAS — what Farmreach helps transform (compact, /consulting).
+   SERVICES — the engagement types, with scope and outputs (/consulting detail).
+   `homeName`/`homeSummary` are the homepage capability list; keep them stable.
+   AUDIENCES — who the practice works with. Approach and principles live in
+   Operating Philosophy; keep that language out of here. */
+
+export const CAPABILITY_AREAS = [
+  { id: 'operating-model', short: 'Business & Operating Model', summary: 'Designing practical operating models, workflows, roles and governance for agricultural organisations.' },
+  { id: 'digital', short: 'Digital Transformation', summary: 'Assessing existing processes and systems and designing digital workflows, platforms and integrations that support real operations.' },
+  { id: 'process', short: 'Process & Operations Consulting', summary: 'Mapping current operations, identifying opportunities for improvement and building scalable processes across field, farmer, channel and value-chain operations.' },
+  { id: 'growth', short: 'Go-to-Market & Growth', summary: 'Designing market-entry, farmer engagement, channel, digital outreach and execution strategies for agricultural businesses.' }
+];
+
+export const AUDIENCES = [
+  { title: 'Public Enterprise', body: 'State agriculture departments, commissionerates and public institutions seeking to modernise agricultural programmes and operating systems.' },
+  { title: 'Private Enterprise', body: 'Agri-input companies, seed businesses, contract production organisations and other agricultural enterprises seeking operational and digital transformation.' },
+  { title: 'Agricultural Ecosystem', body: 'Research institutions, development organisations, FPOs, technology companies and ecosystem partners working on agricultural transformation.' }
+];
 
 export const SERVICES = [
   {
-    id: 'agricultural-transformation',
+    id: 'transformation-audit',
     homeName: 'Agricultural Transformation',
     homeSummary: 'Transformation strategy and operating-model redesign for organisations working across agriculture.',
-    name: 'Agricultural Transformation',
-    short: 'Agricultural Transformation',
-    summary: 'Transformation strategy, operating-model redesign, roadmaps and programme structuring.',
+    name: 'Transformation Audit',
+    short: 'Transformation Audit',
+    summary: 'A structured assessment of existing agricultural operations, processes, systems and data to identify transformation priorities.',
     explain: [
       'Current-state assessment',
       'Operating-model assessment',
@@ -30,12 +45,12 @@ export const SERVICES = [
     ]
   },
   {
-    id: 'process-operations',
+    id: 'process-consulting',
     homeName: 'Process & Operations',
     homeSummary: 'Business process audits, workflow redesign, operating structures and process improvement across agricultural operations.',
-    name: 'Process & Operations Consulting',
-    short: 'Process & Operations',
-    summary: 'Process audits, workflow redesign, operating structures and SOP design.',
+    name: 'Process Consulting',
+    short: 'Process Consulting',
+    summary: 'Redesigning field, farmer, channel, production and value-chain processes for greater operational clarity and scalability.',
     explain: [
       'Business process mapping',
       'Field process mapping',
@@ -55,12 +70,12 @@ export const SERVICES = [
     ]
   },
   {
-    id: 'technology-digital-systems',
+    id: 'digital-transformation',
     homeName: 'Technology & Digital Systems',
     homeSummary: 'Digital product strategy, solution architecture, platform design, data systems and technology implementation.',
-    name: 'Technology & Digital Systems',
-    short: 'Technology & Digital Systems',
-    summary: 'Digital product strategy, solution architecture, platform and data design, and technology implementation.',
+    name: 'Digital Transformation',
+    short: 'Digital Transformation',
+    summary: 'Designing the digital operating model, workflows and technology roadmap required to move from fragmented processes to connected operations.',
     explain: [
       'Digital maturity assessment',
       'Technology roadmap',
@@ -83,12 +98,12 @@ export const SERVICES = [
     ]
   },
   {
-    id: 'gtm',
+    id: 'gtm-consulting',
     homeName: 'Go-to-market',
     homeSummary: 'GTM strategy, channel models, field-force structures, farmer engagement and commercial execution.',
-    name: 'Go-to-market',
-    short: 'Go-to-market',
-    summary: 'GTM strategy, channel models, field-force structures, farmer engagement and commercial execution.',
+    name: 'GTM Consulting',
+    short: 'GTM Consulting',
+    summary: 'Helping agricultural businesses design market-entry, farmer acquisition, channel and digital engagement strategies aligned to their operating model.',
     explain: [
       'Market segmentation',
       'Territory strategy',
@@ -122,13 +137,13 @@ export const APPROACH = [
   { num: '07', title: 'Measure', body: 'Measure adoption, execution and progress against the transformation objectives.' }
 ];
 
-/* Methodology used by the /consulting page's own method section. */
+/* The seven-step transformation sequence used by /consulting. */
 export const METHOD = [
-  { num: '01', title: 'Understand', body: 'Agriculture, the organisation, the field reality and the constraints that are not written down.' },
-  { num: '02', title: 'Assess', body: 'Operating model, processes, data and digital maturity, measured rather than assumed.' },
-  { num: '03', title: 'Design', body: 'The target operating model, the processes to support it and the systems it needs.' },
-  { num: '04', title: 'Build', body: 'Platforms, integrations and workflows, built on operating systems that already run at state scale.' },
-  { num: '05', title: 'Implement', body: 'Rollout, field onboarding, training and the change management that decides adoption.' },
-  { num: '06', title: 'Operate', body: 'Run the model through a season, with the field as the system of record.' },
-  { num: '07', title: 'Measure', body: 'Attribute outcomes back to the design that produced them, then iterate.' }
+  { num: '01', title: 'Understand', body: 'Understand the organisation, operating environment, objectives and constraints.' },
+  { num: '02', title: 'Diagnose', body: 'Assess current processes, systems, data and field execution.' },
+  { num: '03', title: 'Design', body: 'Define the target operating model, workflows and transformation priorities.' },
+  { num: '04', title: 'Digitise', body: 'Translate approved processes into appropriate digital systems and technology.' },
+  { num: '05', title: 'Pilot', body: 'Test the model in a controlled operating environment and refine it through real use.' },
+  { num: '06', title: 'Scale', body: 'Extend the validated model across teams, territories, programmes or markets.' },
+  { num: '07', title: 'Measure & Evolve', body: 'Track adoption and operating performance and continuously improve the system.' }
 ];

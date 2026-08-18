@@ -99,7 +99,7 @@ export default function Header() {
       <header className="site-header">
         <div className="container site-header__inner">
           <Link to="/" className="logo" aria-label={`${SITE.name} — home`}>
-            <img className="logo-img logo-img--ink" src="/assets/img/farmreach-logo-ink.png" alt={SITE.name} width="151" height="42" fetchPriority="high" />
+            <img className="logo-img logo-img--ink" src="/assets/img/farmreach-logo.png" alt={SITE.name} width="151" height="42" fetchpriority="high" />
             <img className="logo-img logo-img--mono" src="/assets/img/farmreach-logo-mono.png" alt="" aria-hidden="true" width="151" height="42" />
           </Link>
 
@@ -137,7 +137,7 @@ export default function Header() {
       >
         <div className="drawer__top">
           <Link to="/" className="logo" onClick={() => setOpen(false)} aria-label={`${SITE.name} — home`}>
-            <img className="logo-img logo-img--ink" src="/assets/img/farmreach-logo-ink.png" alt={SITE.name} width="115" height="32" />
+            <img className="logo-img logo-img--ink" src="/assets/img/farmreach-logo.png" alt={SITE.name} width="115" height="32" />
             <img className="logo-img logo-img--mono" src="/assets/img/farmreach-logo-mono.png" alt="" aria-hidden="true" width="115" height="32" />
           </Link>
           <button

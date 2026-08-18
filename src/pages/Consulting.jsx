@@ -5,15 +5,19 @@ import ConsultingService, { ServiceIndex } from '../components/ConsultingService
 import TransformationJourney from '../components/TransformationJourney.jsx';
 import Reveal from '../components/Reveal.jsx';
 import CTA from '../components/CTA.jsx';
+import { Link } from '../router.jsx';
 import { CONSULTING } from '../data/content.js';
-import { SERVICES, METHOD } from '../data/services.js';
+import { SERVICES, CAPABILITY_AREAS, AUDIENCES, METHOD } from '../data/services.js';
+import { FARMINSTA_URL } from '../data/site.js';
 
 export const meta = {
   path: '/consulting',
   title: 'Consulting & Transformation — Farmreach Technologies',
-  description: 'Agriculture transformation, process audit, digital transformation, GTM and implementation consulting from a company that has operated agricultural systems at state scale.'
+  description: 'Agricultural transformation and advisory: operating model, digital transformation, process consulting and go-to-market work from a company that has operated agricultural systems at scale.'
 };
 
+/* Three customer groups and the four capability areas are compact by intent:
+   this is an advisory page, so the argument is the sequence, not the cards. */
 export default function Consulting() {
   return (
     <>
@@ -22,23 +26,33 @@ export default function Consulting() {
         title={CONSULTING.hero.title}
         lede={CONSULTING.hero.lede}
         crumb="Consulting"
+        actions={
+          <>
+            <Link to="/contact" className="btn btn--primary">
+              Talk to us <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+            </Link>
+            <a href="#why-title" className="btn btn--secondary">
+              Our experience <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </>
+        }
       />
 
-      <section className="section section--tight section--soft-green">
+      <section className="section section--soft-green" aria-labelledby="layers-title">
         <div className="container">
-          <ServiceIndex services={SERVICES} onNavigateLabel="Read more" />
+          <SectionHeading
+            id="layers-title"
+            eyebrow={CONSULTING.layers.eyebrow}
+            title={CONSULTING.layers.title}
+            body={CONSULTING.layers.body}
+          />
+        </div>
+        <div className="container">
+          <ServiceIndex services={CAPABILITY_AREAS} link={false} />
         </div>
       </section>
 
-      <section className="section section--light">
-        <div className="container">
-          {SERVICES.map((service, i) => (
-            <ConsultingService service={service} index={i} key={service.id} />
-          ))}
-        </div>
-      </section>
-
-      <section className="section section--soft-green" aria-labelledby="method-title">
+      <section className="section section--light" aria-labelledby="method-title">
         <div className="container">
           <SectionHeading
             id="method-title"
@@ -47,28 +61,87 @@ export default function Consulting() {
             body={CONSULTING.method.body}
           />
         </div>
-        <TransformationJourney steps={METHOD.slice(0, 6)} />
+        <div className="container">
+          <TransformationJourney steps={METHOD} />
+        </div>
       </section>
 
-      <section className="section section--tight section--light" aria-labelledby="why-title">
+      <section className="section section--soft-green" aria-labelledby="engage-title">
         <div className="container">
-          <p className="eyebrow" id="why-title">Why Farmreach</p>
-          <div className="split split--even" style={{ marginTop: 'var(--space-lg)' }}>
-            {CONSULTING.why.map((w) => (
-              <Reveal key={w.title} style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--space-md)' }}>
-                <h3>{w.title}</h3>
-                <p style={{ marginTop: 'var(--space-2xs)' }}>{w.body}</p>
+          <SectionHeading
+            id="engage-title"
+            eyebrow={CONSULTING.engagements.eyebrow}
+            title={CONSULTING.engagements.title}
+            body={CONSULTING.engagements.body}
+          />
+          {SERVICES.map((service, i) => (
+            <ConsultingService service={service} index={i} key={service.id} />
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--tight section--light" aria-labelledby="audience-title">
+        <div className="container">
+          <SectionHeading
+            id="audience-title"
+            eyebrow={CONSULTING.audience.eyebrow}
+            title={CONSULTING.audience.title}
+          />
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: 'var(--space-lg)',
+              marginTop: 'var(--space-lg)'
+            }}
+          >
+            {AUDIENCES.map((a) => (
+              <Reveal key={a.title} style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--space-md)' }}>
+                <h3>{a.title}</h3>
+                <p style={{ marginTop: 'var(--space-2xs)' }}>{a.body}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
+      <section className="section section--tight section--soft-green" aria-labelledby="why-title">
+        <div className="container">
+          <p className="eyebrow" id="why-title">{CONSULTING.why.eyebrow}</p>
+          <div className="split" style={{ marginTop: 'var(--space-md)' }}>
+            <Reveal>
+              <h2>{CONSULTING.why.title}</h2>
+            </Reveal>
+            <Reveal className="prose">
+              <p className="lead">{CONSULTING.why.body}</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tight section--light" aria-labelledby="bridge-title">
+        <div className="container">
+          <SectionHeading
+            id="bridge-title"
+            eyebrow={CONSULTING.bridge.eyebrow}
+            title={CONSULTING.bridge.title}
+            body={CONSULTING.bridge.body}
+          />
+          <Reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-lg)', marginTop: 'var(--space-md)' }}>
+            <Link to="/farmreach-os" className="textlink">
+              Explore Farmreach OS <span aria-hidden="true">&rarr;</span>
+            </Link>
+            <Link to={FARMINSTA_URL} external className="textlink">
+              Explore Farminsta OS <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <CTA
-        title="Where is the operating model breaking?"
-        body="Most engagements start with an assessment of the current state. That is usually enough to know whether the answer is process, technology, go-to-market or all three."
-        primary={{ href: '/contact', label: 'Talk to us' }}
-        secondary={{ href: '/farmreach-os', label: 'Explore Farmreach OS' }}
+        title="Have a transformation challenge to solve?"
+        body="Tell us what you are trying to change. We will bring the right agricultural, operating and technology perspective to the conversation."
+        primary={{ href: '/contact', label: 'Start a conversation' }}
       />
     </>
   );

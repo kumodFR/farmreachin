@@ -27,8 +27,8 @@ export const SITE = {
   /* Existing Farminsta profiles. Farmreach-specific profiles do not exist yet —
      do not invent them; leave a value empty to hide that link. */
   social: {
-    linkedin: 'https://www.linkedin.com/company/farminsta10/',
-    facebook: 'https://www.facebook.com/farminsta/'
+    linkedin: 'https://www.linkedin.com/company/farmreach-technologies-private-limited/',
+    facebook: 'https://www.facebook.com/profile.php?id=61593161893649'
   },
   xpeditionUrl: 'https://xpeditionlabs.com',
   contactEndpoint: env.VITE_CONTACT_ENDPOINT || '/api/contact'

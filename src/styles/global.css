@@ -121,7 +121,7 @@ a:hover { color: var(--brand-accent); }
 }
 .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
 .logo { display: inline-flex; align-items: center; }
-.logo img { width: 151px; height: 42px; }
+.logo img { width: 151px; height: 42px; object-fit: contain; object-position: left center; }
 /* the wordmark inverts with the theme; the drawer sits on a dark surface */
 .logo-img--mono { display: none; }
 [data-theme="dark"] .logo-img--ink, .on-ink .logo-img--ink { display: none; }
@@ -273,22 +273,6 @@ a:hover { color: var(--brand-accent); }
 .geo-callout__note { font-size: 11px; color: var(--text-tertiary); }
 .geo-callout--primary .geo-callout__value { font-size: clamp(26px, 1.8vw + 16px, 38px); }
 .geo-callout--secondary .geo-callout__value { font-size: clamp(19px, 0.8vw + 15px, 24px); }
-
-/* ----------------------------------------------------------------- metrics */
-.metrics {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px;
-  background: var(--line); border-block: 1px solid var(--line);
-}
-.metric { background: var(--surface-1); padding: clamp(20px, 2.4vw, 34px) clamp(16px, 2vw, 30px); }
-.section--soft-green .metric { background: var(--card-on-soft); }
-.metric__value {
-  display: block; font-size: var(--step-metric); font-weight: 800; letter-spacing: -0.03em;
-  line-height: 1; color: var(--text-primary); font-variant-numeric: tabular-nums;
-}
-.metric__label {
-  display: block; margin-top: var(--space-xs);
-  font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary);
-}
 
 /* =========================================================================
    ARCHITECTURE — one agricultural core, three operating directions.
@@ -520,18 +504,12 @@ a:hover { color: var(--brand-accent); }
 .chrono__body h3 { font-size: clamp(17px, 0.6vw + 15px, 20px); margin-bottom: 5px; }
 .chrono__body p { font-size: 15px; line-height: 1.6; max-width: 66ch; }
 
-/* -------------------------------------------------------------- timeline */
-.arc { display: grid; gap: 1px; background: var(--line); border-block: 1px solid var(--line); }
-.arc__item { background: var(--surface-1); padding: clamp(20px, 2.2vw, 32px) clamp(16px, 1.8vw, 26px); display: flex; flex-direction: column; gap: 8px; }
-.section--soft-green .arc__item { background: var(--card-on-soft); }
-.arc__stage { font-size: var(--step-micro); font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand-accent); }
-.arc__item h3 { font-size: clamp(16px, 0.5vw + 14.5px, 19px); }
-.arc__item p { font-size: 13.5px; line-height: 1.55; }
-
 /* ---------------------------------------------------------------- people */
-.people { display: grid; gap: var(--space-xl) var(--space-2xl); grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
-.person__head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-sm); row-gap: 10px; align-items: start; }
-.person__title { grid-column: 1 / -1; }
+/* 430px floor: the widest name ("Thangathtamilazhagie V") needs ~190px of text
+   column beside the 180px portrait, so both titles stay on one line two-up. */
+.people { display: grid; gap: var(--space-xl) var(--space-2xl); grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); }
+.person__head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-md); row-gap: var(--space-sm); align-items: center; }
+.person__title { margin-bottom: 4px; }
 .person__portrait {
   flex: 0 0 auto; width: 76px; aspect-ratio: 4 / 5; border: 1px solid var(--line); background: var(--surface-2);
   background-image: repeating-linear-gradient(90deg, var(--line-hair) 0 1px, transparent 1px 12px);
@@ -543,11 +521,18 @@ a:hover { color: var(--brand-accent); }
   background: none; background-image: none; border: 0;
   width: 180px;                       /* 2x+ the placeholder scale — revert to 76px to undo */
 }
-@media (max-width: 520px) { .person__portrait--img { width: 124px; } }
-.person__id { display: flex; flex-direction: column; gap: 2px; }
+@media (max-width: 520px) {
+  .person__portrait--img { width: 124px; }
+  .person__head { grid-template-columns: minmax(0, 1fr); }
+}
+/* Nudged below true centre so the text sits level with the face. */
+.person__id { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
 
 .person__id { min-width: 0; }
-.person__name, .person__aliasLabel, .person__alias { white-space: nowrap; }
+/* The column is sized for the longest name, but the name still wraps rather
+   than spilling out of its card if a future name is longer. */
+.person__alias { white-space: nowrap; }
+.person__title { overflow-wrap: break-word; }
 .person__aliasLabel { font-size: 0.62em; font-weight: 400; letter-spacing: 0.04em; color: var(--text-tertiary); }
 .person__alias { font-size: 0.86em; font-weight: 500; color: var(--text-secondary); }
 .person h3 { font-size: 17px; }
@@ -557,13 +542,138 @@ a:hover { color: var(--brand-accent); }
 .person__bio { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
 .person__bio p { font-size: 14px; line-height: 1.6; color: var(--text-secondary); max-width: 46ch; }
 
-/* ------------------------------------------------------------ logo wall */
-.logo-wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.logo-wall__cell {
-  background: var(--surface-1); min-height: 104px; display: grid; place-items: center; padding: var(--space-sm);
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-tertiary); text-align: center;
+/* ----------------------------------------------------------- recognition */
+/* Source order IS the mobile order: year/title -> photograph -> narration. */
+.rec { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
+.rec__head { display: flex; flex-direction: column; gap: var(--space-sm); }
+.rec__year {
+  font-size: clamp(28px, 2.6vw, 44px); font-weight: 800; letter-spacing: -0.02em; line-height: 1;
+  color: var(--brand-accent); font-variant-numeric: tabular-nums;
 }
-.section--soft-green .logo-wall__cell { background: var(--card-on-soft); }
+.rec__year--pending {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.rec__title { max-width: 22ch; }
+.rec__subtitle {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.rec__narration { max-width: 56ch; }
+/* Photographs sit in the same 4:3 frame as the placeholder and are fitted with
+   contain, so every entry lines up and no face, award or caption is cropped
+   whatever the source aspect ratio. */
+.rec__figure img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; object-position: center;
+  border: 1px solid var(--line); background: var(--surface-2);
+}
+.section--soft-green .rec__figure img { background: var(--card-on-soft); }
+/* The label must never push the frame past 4:3 — the empty frame has to match
+   the photo containers exactly at every width. */
+.rec__frame {
+  display: grid; place-items: center; aspect-ratio: 4 / 3;
+  padding: clamp(10px, 3vw, var(--space-lg)); overflow: hidden;
+  border: 1px dashed var(--brand-hairline); background: var(--surface-2);
+  text-align: center;
+}
+.section--soft-green .rec__frame { background: var(--card-on-soft); }
+.rec__frame span {
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Square arrow buttons — used by the gallery lightbox nav (.lbx__nav). The
+   class name predates the lightbox: it came from the removed testimonials rail. */
+.tst__arrow {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border: 1px solid var(--line); background: var(--surface-1);
+  color: var(--text-primary); font-size: 15px; cursor: pointer;
+}
+.tst__arrow:hover:not(:disabled) { border-color: var(--brand-accent); color: var(--brand-accent); }
+.tst__arrow:disabled { opacity: 0.35; cursor: default; }
+
+/* --------------------------------------------------------------- gallery */
+.gal { display: grid; grid-auto-flow: row dense; grid-template-columns: 1fr; gap: var(--space-md); }
+.gal__cell { min-width: 0; }
+.gal__tile {
+  display: flex; flex-direction: column; gap: 10px; width: 100%; padding: 0;
+  text-align: left; background: none; border: 0;
+}
+.gal__tile img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center;
+  border: 1px solid var(--line); background: var(--surface-2);
+}
+.section--soft-green .gal__tile img { background: var(--card-on-soft); }
+.gal__cell--wide .gal__tile img { aspect-ratio: 16 / 9; }
+/* A photograph whose ratio differs from the container is fitted inside it
+   rather than cropped through people at the frame edges. Its fill is left
+   transparent so the unused area reads as the section, not a white band. */
+.gal__cell--contain .gal__tile img { object-fit: contain; background: transparent; }
+button.gal__tile img { transition: opacity 200ms var(--ease); }
+button.gal__tile:hover img { opacity: 0.9; }
+button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 3px; }
+.gal__caption { font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); }
+.gal__year { font-weight: 700; color: var(--brand-accent); font-variant-numeric: tabular-nums; }
+
+/* lightbox */
+.lbx {
+  /* Above the sticky header (z-index 100) so nothing paints over the photo. */
+  position: fixed; inset: 0; z-index: 120; display: grid; place-items: center;
+  padding: clamp(12px, 3vw, 40px); background: rgba(6, 14, 10, 0.86);
+}
+.lbx__panel { display: flex; flex-direction: column; gap: var(--space-sm); max-width: min(1100px, 100%); }
+.lbx__panel img {
+  display: block; width: auto; max-width: 100%; max-height: 74vh; object-fit: contain;
+  margin-inline: auto; background: #0B0E0C;
+}
+.lbx__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm); }
+.lbx__caption { font-size: 13.5px; color: #E8EFEA; }
+.lbx__desc { max-width: 68ch; margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: #A9B6AE; }
+.lbx__caption .gal__year { color: #7FC79E; }
+.lbx__nav { display: flex; gap: 8px; }
+.lbx__nav .tst__arrow { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.28); color: #fff; }
+.lbx__nav .tst__arrow:hover { border-color: #fff; color: #fff; }
+
+/* ------------------------------------------------- enquiry preview dialog */
+.dlg {
+  /* Above the sticky header (z-index 100) — a modal must cover site chrome. */
+  position: fixed; inset: 0; z-index: 120; display: grid; place-items: center;
+  padding: clamp(12px, 3vw, 32px); background: rgba(6, 14, 10, 0.62);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.dlg__panel {
+  width: 100%; max-width: 720px; max-height: calc(100vh - 24px);
+  display: flex; flex-direction: column; gap: var(--space-md);
+  background: var(--surface-1); border: 1px solid var(--line);
+  padding: clamp(20px, 3vw, 34px); overflow-y: auto;
+}
+.dlg__head { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.dlg__note { font-size: 14px; color: var(--text-secondary); }
+.dlg__routing { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.dlg__routing-row {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px;
+  background: var(--surface-2); padding: 9px 14px;
+}
+.dlg__routing dt {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-tertiary); padding-top: 2px;
+}
+.dlg__routing dd { margin: 0; font-size: 14px; color: var(--text-primary); overflow-wrap: anywhere; }
+.dlg__mail { border: 1px solid var(--line); background: #fff; }
+.dlg__mail iframe { display: block; width: 100%; height: 42vh; min-height: 220px; border: 0; }
+/* Actions stay reachable however short the viewport is. */
+.dlg__actions {
+  position: sticky; bottom: calc(clamp(20px, 3vw, 34px) * -1);
+  display: flex; flex-wrap: wrap; gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  background: var(--surface-1); border-top: 1px solid var(--line);
+}
+
+@media (max-width: 599px) {
+  .dlg__routing-row { grid-template-columns: 1fr; gap: 2px; }
+  .dlg__mail iframe { height: 46vh; }
+  .dlg__actions .btn { flex: 1 1 100%; justify-content: center; }
+}
 
 /* ------------------------------------------------------------- page head */
 .page-head {
@@ -721,8 +831,8 @@ a:hover { color: var(--brand-accent); }
 /* Theme change is a short, contained cross-fade of surfaces — not a page
    animation. Reduced-motion zeroes it below. */
 body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer,
-.metric, .eco__cell, .journey__step, .arch__dir, .arch__core, .arch__foundation,
-.cap, .arc__item, .svc-index__item, .svc__outputs, .logo-wall__cell,
+.eco__cell, .journey__step, .arch__dir, .arch__core, .arch__foundation,
+.cap, .svc-index__item, .svc__outputs,
 .person__portrait, .field input, .field select, .field textarea {
   transition: background-color 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease);
 }

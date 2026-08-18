@@ -227,14 +227,6 @@ export const COMPANY = {
     { title: 'Technology capability', body: 'Two production operating systems, built for offline-first field capture, government integration and state-scale geography.' },
     { title: 'Consulting capability', body: 'Transformation, process, digital, GTM and implementation consulting delivered by people who have operated what they design.' }
   ],
-  partners: [
-    'State agriculture department',
-    'State horticulture mission',
-    'Agri-input enterprise',
-    'Seed enterprise',
-    'Contract production organisation',
-    'Development programme'
-  ],
   careers: {
     title: 'Careers',
     body: 'Farmreach hires people who want the operating problem, not only the software problem: agronomists, field operators, engineers, data people and consultants. Roles are open across Hyderabad and the field geographies we operate in.'
@@ -260,17 +252,36 @@ export const CONTACT = {
 
 export const CONSULTING = {
   hero: {
-    title: 'Transform agriculture from strategy to execution.',
-    lede: 'Farmreach helps agricultural organisations understand their current operating model, identify transformation priorities, design the right processes and systems, and support implementation through execution.'
+    title: 'Transforming how agriculture operates.',
+    lede: 'Farmreach combines a decade of agricultural operating experience with technology, process and market expertise to help organisations design, digitise and scale better ways of working.'
+  },
+  layers: {
+    eyebrow: 'What we help transform',
+    title: 'Transformation across the operating system',
+    body: 'Agricultural transformation happens when strategy, people, processes, technology and market execution work together. Farmreach works across these layers to identify what needs to change, design the operating model and help move it into execution.'
   },
   method: {
-    eyebrow: 'How we work',
-    title: 'Seven stages, one line from strategy to operation.',
-    body: 'The same method underpins a state programme and an enterprise transformation. Where an engagement starts differs; the sequence does not.'
+    eyebrow: 'Transformation approach',
+    title: 'From understanding to transformation',
+    body: 'Where an engagement starts differs by organisation. The sequence does not: understand the operating environment first, then change it in steps that can be tested in the field.'
   },
-  why: [
-    { title: 'We have operated it', body: 'Every recommendation has been run somewhere, under a season and a field force.' },
-    { title: 'We can build it', body: 'The design does not stop at a deck. Farmreach builds and rolls out what it specifies.' },
-    { title: 'We stay through adoption', body: 'Transformation is decided in the months after go-live, so that is where the engagement holds.' }
-  ]
+  engagements: {
+    eyebrow: 'Consulting engagements',
+    title: 'Where we engage',
+    body: 'Four engagement types, each with a defined scope and a defined set of outputs.'
+  },
+  audience: {
+    eyebrow: 'Who we work with',
+    title: 'Public, private and the wider agricultural ecosystem'
+  },
+  why: {
+    eyebrow: 'Why Farmreach',
+    title: 'Consulting grounded in operating experience',
+    body: "Farmreach's consulting approach comes from operating agricultural systems, not only studying them. Since 2016, the team has worked across field operations, farmer systems, production, value chains, government programmes, channel management and digital outreach \u2014 experience that informs how transformation programmes are designed and implemented."
+  },
+  bridge: {
+    eyebrow: 'Consulting and the operating systems',
+    title: 'From transformation strategy to operating capability',
+    body: 'Consulting can stand alone or lead into technology implementation. Where appropriate, Farmreach can translate the transformation roadmap into Farmreach OS for public enterprise or Farminsta OS for private enterprise.'
+  }
 };

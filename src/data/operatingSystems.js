@@ -62,25 +62,27 @@ export const FARMREACH_OS_CAPABILITIES = [
 ];
 
 export const FARMREACH_OS_ARCHITECTURE = [
-  { num: '01', title: 'Data', body: 'Farmer, land, crop, activity and departmental records, resolved into one operating record.' },
-  { num: '02', title: 'Analysis', body: 'Coverage, gaps, stage and performance computed at the geography that matters.' },
-  { num: '03', title: 'Insights', body: 'What is happening, where it is happening, and what is not happening at all.' },
-  { num: '04', title: 'Action', body: 'Advisory, tasks and interventions routed to the officer or farmer who can act.' },
-  { num: '05', title: 'Measure Impact', body: 'Outcomes attributed to the programme design that produced them.' }
+  { num: '01', title: 'Data', body: 'Satellite intelligence, ground surveys, field officer capture and integration with existing state systems.' },
+  { num: '02', title: 'Analysis', body: 'Crop mapping, land intelligence and agricultural analytics resolved against ground-level records.' },
+  { num: '03', title: 'Insights', body: 'Exception flags, advisory triggers and situational intelligence at village, block, district and state levels.' },
+  { num: '04', title: 'Action', body: 'Advisory dissemination, field task allocation and workflows that carry decisions back to the field.' },
+  { num: '05', title: 'Measure Impact', body: 'Coverage, compliance, programme progress and outcomes recorded through ongoing operations.' }
 ];
 
 export const FARMREACH_OS_PRINCIPLES = [
-  { title: 'Extension-first', body: 'The extension officer is the operating unit of state agriculture. Anything that adds work without giving them something back does not survive a season.' },
+  { title: 'The cadre comes first', body: 'Farmreach OS strengthens the state\u2019s existing agricultural extension capability, giving the cadre already working with farmers intelligence, task support and operational visibility rather than replacing their role.' },
   { title: 'Work with what exists', body: 'Departments already run systems, registries and processes. The operating system orchestrates them rather than asking a state to start again.' },
   { title: 'Field as system of record', body: 'A record created where the activity happened outranks a record assembled afterwards.' },
   { title: 'Auditable by design', body: 'Every record carries its geography, time and author, so verification and audit read the same data.' }
 ];
 
+/* The public extension cadre is listed first: the field officer is the primary
+   operational connection between the state and the farmer. */
 export const FARMREACH_OS_STAKEHOLDERS = [
+  'Extension officers — Krishi Paryavekshak and equivalent field cadre',
+  'District and block officers',
   'State agriculture departments',
   'Commissionerates and directorates',
-  'District and block officers',
-  'Extension officers',
   'Farmers and farmer groups',
   'Programme and scheme owners'
 ];

@@ -37,14 +37,15 @@ function shell(inner, preheader) {
 <tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#FFFFFF;border:1px solid ${LINE};">
 <tr><td style="background:${BRAND};padding:22px 28px;">
-  <div style="font:700 18px/1.2 ${FONT};letter-spacing:0.16em;color:#FFFFFF;text-transform:uppercase;">FARMREACH</div>
+  <div style="font:700 18px/1.2 ${FONT};letter-spacing:0.10em;color:#FFFFFF;">Farmreach Technologies</div>
   <div style="font:400 13px/1.5 ${FONT};color:#D7EBE0;padding-top:6px;">${escapeHtml(POSITIONING)}</div>
 </td></tr>
 ${inner}
 <tr><td style="padding:20px 28px 26px;border-top:1px solid ${LINE};background:#FFFFFF;">
   <div style="font:700 13px/1.6 ${FONT};color:${INK};">${escapeHtml(LEGAL)}</div>
+  <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(POSITIONING)}</div>
   <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(CITY)}</div>
-  <div style="font:400 12px/1.6 ${FONT};color:${MUTED};padding-top:10px;">This enquiry was submitted through the Farmreach website.</div>
+  <div style="font:400 13px/1.6 ${FONT};padding-top:8px;"><a href="https://farmreach.in" style="color:${BRAND};text-decoration:none;">farmreach.in</a></div>
 </td></tr>
 </table>
 </td></tr></table>
@@ -59,71 +60,83 @@ function row(label, value, multiline) {
 }
 
 export function internalEmail(d) {
+  const route = d.route || 'Website';
   const inner = `<tr><td style="padding:26px 28px 18px;">
-  <div style="font:700 22px/1.3 ${FONT};color:${INK};">New Enquiry</div>
+  <div style="font:700 22px/1.3 ${FONT};color:${INK};">${escapeHtml(route)} Enquiry</div>
 </td></tr>
-${row('Full Name', d.name)}
-${row('Work Email', d.email)}
-${row('Organisation', d.organisation)}
-${row('Enquiry Route', d.route)}
-${row('State / Region', d.region)}
-<tr><td style="padding:0 28px 22px;">
-  <div style="font:700 11px/1.4 ${FONT};letter-spacing:0.16em;text-transform:uppercase;color:${MUTED};padding-bottom:6px;">What are you trying to change?</div>
-  <div style="font:400 15px/1.7 ${FONT};color:${INK};background:${TINT};border-left:3px solid ${BRAND};padding:14px 16px;">${nl2br(d.message)}</div>
+<tr><td style="padding:0 28px 16px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Hi Pradeep Raj,</div>
+</td></tr>
+<tr><td style="padding:0 28px 16px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I am ${escapeHtml(d.name)} from ${escapeHtml(d.organisation)}, based in ${escapeHtml(d.region)}.</div>
+</td></tr>
+<tr><td style="padding:0 28px 18px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I came across the Farmreach website and wanted to connect with you regarding the following:</div>
+</td></tr>
+<tr><td style="padding:0 28px 20px;">
+  <div style="font:400 17px/1.65 ${FONT};color:${INK};background:${TINT};border-left:4px solid ${BRAND};padding:18px 20px;">&ldquo;${nl2br(d.message)}&rdquo;</div>
+</td></tr>
+<tr><td style="padding:0 28px 20px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">I would be interested in discussing this with your team and understanding how Farmreach could support this requirement.</div>
+</td></tr>
+<tr><td style="padding:0 28px 24px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Regards,</div>
+  <div style="font:700 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.name)}</div>
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.organisation)}</div>
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">${escapeHtml(d.region)}</div>
+  <div style="font:400 15px/1.7 ${FONT};"><a href="mailto:${escapeHtml(d.email)}" style="color:${BRAND};text-decoration:none;">${escapeHtml(d.email)}</a></div>
 </td></tr>`;
   const text = [
-    'New Enquiry',
-    `Full Name: ${d.name}`,
-    `Work Email: ${d.email}`,
-    `Organisation: ${d.organisation}`,
-    `Enquiry Route: ${d.route}`,
-    `State / Region: ${d.region}`,
+    `${route} Enquiry`,
     '',
-    'What are you trying to change?',
-    d.message,
+    'Hi Pradeep Raj,',
     '',
-    `${LEGAL}, ${CITY}`,
-    'This enquiry was submitted through the Farmreach website.'
+    `I am ${d.name} from ${d.organisation}, based in ${d.region}.`,
+    '',
+    'I came across the Farmreach website and wanted to connect with you regarding the following:',
+    '',
+    `"${d.message}"`,
+    '',
+    'I would be interested in discussing this with your team and understanding how Farmreach could support this requirement.',
+    '',
+    'Regards,',
+    d.name,
+    d.organisation,
+    d.region,
+    d.email,
+    '',
+    LEGAL,
+    POSITIONING,
+    CITY,
+    'farmreach.in'
   ].join('\n');
-  return { html: shell(inner, `New enquiry from ${d.organisation}`), text };
+  return { html: shell(inner, `${route} enquiry from ${d.organisation}`), text };
 }
 
 export function visitorEmail(d) {
   const inner = `<tr><td style="padding:26px 28px 6px;">
   <div style="font:400 16px/1.6 ${FONT};color:${INK};">Hello ${escapeHtml(d.name)},</div>
 </td></tr>
-<tr><td style="padding:12px 28px 6px;">
-  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Thank you for reaching out to Farmreach.</div>
+<tr><td style="padding:14px 28px 6px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">Thank you for contacting Farmreach Technologies.</div>
 </td></tr>
-<tr><td style="padding:8px 28px 20px;">
-  <div style="font:400 15px/1.7 ${FONT};color:${INK};">We have received your enquiry regarding ${escapeHtml(d.route)} and our team will review it and get back to you shortly.</div>
+<tr><td style="padding:10px 28px 24px;">
+  <div style="font:400 15px/1.7 ${FONT};color:${INK};">We have received your enquiry and our team will review it and get back to you.</div>
 </td></tr>
-<tr><td style="padding:0 28px 14px;">
-  <div style="font:700 11px/1.4 ${FONT};letter-spacing:0.16em;text-transform:uppercase;color:${BRAND};">Your enquiry</div>
-</td></tr>
-${row('Organisation', d.organisation)}
-${row('State / Region', d.region)}
-${row('What you are trying to change', d.message, true)}
-<tr><td style="padding:6px 28px 24px;">
+<tr><td style="padding:0 28px 24px;">
   <div style="font:400 15px/1.7 ${FONT};color:${INK};">Regards,</div>
   <div style="font:700 15px/1.7 ${FONT};color:${INK};">${escapeHtml(LEGAL)}</div>
   <div style="font:400 13px/1.6 ${FONT};color:${MUTED};">${escapeHtml(POSITIONING)}</div>
-  <div style="font:400 13px/1.6 ${FONT};padding-top:8px;"><a href="https://farmreach.in" style="color:${BRAND};text-decoration:none;">farmreach.in</a></div>
 </td></tr>`;
   const text = [
     `Hello ${d.name},`,
     '',
-    'Thank you for reaching out to Farmreach.',
-    `We have received your enquiry regarding ${d.route} and our team will review it and get back to you shortly.`,
-    '',
-    'Your enquiry:',
-    `Organisation: ${d.organisation}`,
-    `State / Region: ${d.region}`,
-    `What you are trying to change: ${d.message}`,
+    'Thank you for contacting Farmreach Technologies.',
+    'We have received your enquiry and our team will review it and get back to you.',
     '',
     'Regards,',
     LEGAL,
-    POSITIONING,
+    CITY,
     'farmreach.in'
   ].join('\n');
   return { html: shell(inner, 'We have received your enquiry.'), text };

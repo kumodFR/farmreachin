@@ -27,7 +27,7 @@ export default function ConsultingService({ service, index }) {
 }
 
 /* Compact index of the capability areas. */
-export function ServiceIndex({ services, onNavigateLabel = 'Learn more' }) {
+export function ServiceIndex({ services, onNavigateLabel = 'Learn more', link = true }) {
   return (
     <div className="svc-index">
       {services.map((s, i) => (
@@ -35,7 +35,9 @@ export function ServiceIndex({ services, onNavigateLabel = 'Learn more' }) {
           <span className="svc-index__num">{String(i + 1).padStart(2, '0')}</span>
           <h3>{s.short}</h3>
           <p>{s.summary}</p>
-          <a className="textlink" href={`/consulting#${s.id}`}>{onNavigateLabel} <span aria-hidden="true">&rarr;</span></a>
+          {link ? (
+            <a className="textlink" href={`/consulting#${s.id}`}>{onNavigateLabel} <span aria-hidden="true">&rarr;</span></a>
+          ) : null}
         </div>
       ))}
     </div>

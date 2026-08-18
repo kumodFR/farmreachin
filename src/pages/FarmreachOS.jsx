@@ -3,11 +3,9 @@ import PageHead from '../components/PageHead.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import Capabilities from '../components/Capabilities.jsx';
 import TransformationJourney from '../components/TransformationJourney.jsx';
-import Metrics from '../components/Metrics.jsx';
 import GeoVisual from '../components/GeoVisual.jsx';
 import Reveal from '../components/Reveal.jsx';
 import CTA from '../components/CTA.jsx';
-import { METRICS } from '../data/metrics.js';
 import {
   FARMREACH_OS_CAPABILITIES,
   FARMREACH_OS_ARCHITECTURE,
@@ -38,12 +36,15 @@ export default function FarmreachOS() {
       <section className="section section--light">
         <div className="container split">
           <Reveal className="prose">
-            <p className="lead">{FARMREACH_OS.blurb}</p>
+            <p className="lead">
+              Farmreach OS gives a state the ability to see its agriculture as it happens, and act on what
+              it sees &mdash; without replacing the systems already in place.
+            </p>
             <p>
-              A state does not need another system to log into. It needs the systems it already runs to
-              agree with the field. Farmreach OS orchestrates existing departmental systems, resolves the
-              farmer and land record underneath them, and gives district and state officers one operating
-              view built from field activity rather than from returns.
+              It is an intelligence and operating layer above the digital systems a department already runs.
+              It connects existing data, field intelligence, geospatial information and agricultural
+              workflows so that decisions at village, block, district and state level read from the same
+              record, and so that action can be coordinated across the people already working with farmers.
             </p>
           </Reveal>
           <Reveal>
@@ -149,17 +150,10 @@ export default function FarmreachOS() {
         </div>
       </section>
 
-      <section className="section section--tight section--light" aria-labelledby="found-title">
-        <div className="container">
-          <p className="eyebrow" id="found-title">Foundation &amp; scale</p>
-          <Metrics items={METRICS} />
-        </div>
-      </section>
-
       <CTA
-        title="Start with one district."
-        body="Tell us the district, the scheme or the department system you need this to work with. We will come back with what the first season would involve."
-        primary={{ href: '/contact', label: 'Talk to us' }}
+        title="For states considering this"
+        body="Tell us the district, the scheme or the department system this needs to work with. We will come back with what the first season would involve."
+        primary={{ href: '/contact', label: 'Request a state briefing' }}
         secondary={{ href: '/consulting', label: 'Explore Consulting' }}
       />
     </>

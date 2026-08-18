@@ -18,11 +18,11 @@ export default function Footer() {
       <div className="container">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <img src="/assets/img/farmreach-logo-mono.png" alt={SITE.name} width="151" height="42" loading="lazy" />
+            <img src="/assets/img/farmreach-logo-mono.png" alt={SITE.name} width="151" height="42" style={{ width: '151px', height: 'auto' }} loading="lazy" />
             <p className="site-footer__brandline">{SITE.positioning}.</p>
             <p className="site-footer__social">
-              <Ext href={SITE.social.linkedin}>Farminsta LinkedIn</Ext>
-              <Ext href={SITE.social.facebook}>Farminsta Facebook</Ext>
+              <Ext href={SITE.social.linkedin}>Farmreach LinkedIn</Ext>
+              <Ext href={SITE.social.facebook}>Farmreach Facebook</Ext>
             </p>
           </div>
 
@@ -33,6 +33,8 @@ export default function Footer() {
               <Ext href={FARMINSTA_URL}>Farminsta OS</Ext>
               <Link to="/consulting">Consulting &amp; Transformation</Link>
               <Link to="/company">Our Story</Link>
+              <Link to="/recognition">Recognition</Link>
+              <Link to="/gallery">Gallery</Link>
               <Link to="/contact">Contact</Link>
             </div>
           </div>

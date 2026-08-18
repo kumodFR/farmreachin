@@ -7,7 +7,7 @@
 /* ------------------------------------------------- small mobile (<480px) */
 @media (max-width: 479px) {
   :root { --header-h: 62px; }
-  .logo img { width: 115px; height: 32px; }
+  .logo img { width: 115px; height: 32px; object-fit: contain; }
   .btn-row { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; }
   .hero { padding-block: 34px 44px; }
@@ -18,7 +18,7 @@
 /* ------------------------------------------------------- mobile (<768px) */
 @media (max-width: 767px) {
   :root { --header-h: 62px; }
-  .logo img { width: 115px; height: 32px; }
+  .logo img { width: 115px; height: 32px; object-fit: contain; }
   .hero { padding-block: clamp(38px, 7vw, 54px) clamp(44px, 8vw, 60px); }
 
   /* the complete map stays visible; only data density is reduced */
@@ -132,8 +132,23 @@
   .track__num { margin-bottom: 6px; }
   .track__body { font-size: 13px; }
   .split { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
+  .tst__track { grid-auto-columns: calc((100% - 20px) / 2); }
+  .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Full-row statements: a wide tile never leaves a short cell beside it. */
+  .gal__cell--wide { grid-column: 1 / -1; }
+  /* year + citation beside the photograph, narration beneath the citation;
+     photograph takes the larger share and spans both rows. */
+  .rec {
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    column-gap: clamp(32px, 4vw, 72px); row-gap: var(--space-lg);
+    /* Every entry occupies the same block, so a longer narration or a taller
+       photograph cannot make one recognition section deeper than another. */
+    min-height: 27rem; align-content: start;
+  }
+  .rec__head { grid-column: 1; grid-row: 1; }
+  .rec__narration { grid-column: 1; grid-row: 2; }
+  .rec__figure { grid-column: 2; grid-row: 1 / span 2; }
   .split--even { grid-template-columns: 1fr 1fr; }
-  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .eco { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .journey__flow { bottom: -7px; left: clamp(16px, 1.8vw, 24px); transform: rotate(90deg); }
@@ -166,6 +181,9 @@
 
 /* --------------------------------------------- tablet portrait/landscape */
 @media (min-width: 768px) and (max-width: 1023px) {
+  /* Narrower text column: reserve a little more so all entries stay level. */
+  .rec { min-height: 29.5rem; }
+
   /* 6 single cells + a 2-wide core = 8 units; 2 columns divide evenly. */
   .eco { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .eco__cell--core { grid-column: span 2; }
@@ -204,7 +222,9 @@
   .svc-index { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .arc { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .logo-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .metrics { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .tst__track { grid-auto-columns: calc((100% - 40px) / 3); }
+  .gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gal__cell--wide { grid-column: 1 / -1; }
 
   /* three equal directions from one core */
   .arch__directions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -217,7 +237,6 @@
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
-  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .nav { gap: 18px; }
 }
 

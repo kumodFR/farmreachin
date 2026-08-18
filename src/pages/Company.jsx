@@ -4,7 +4,6 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import People from '../components/People.jsx';
 import StoryAside from '../components/StoryAside.jsx';
 import { Chronology } from '../components/JourneyTimeline.jsx';
-import LogoWall from '../components/LogoWall.jsx';
 import Reveal from '../components/Reveal.jsx';
 import CTA from '../components/CTA.jsx';
 import { COMPANY, MILESTONES } from '../data/content.js';
@@ -112,16 +111,8 @@ export default function Company() {
         </div>
       </section>
 
-      <section className="section section--soft-green" aria-labelledby="partners-title">
-        <div className="container">
-          <p className="eyebrow" id="partners-title">Partnerships</p>
-          <h2 style={{ maxWidth: '24ch', marginBottom: 'var(--space-lg)' }}>Governments, enterprises and programmes</h2>
-          <LogoWall slots={COMPANY.partners} />
-          <p style={{ marginTop: 'var(--space-md)', fontSize: '13px', color: 'var(--text-secondary)' }}>
-            Partner marks to be supplied by Farmreach. Placeholders shown.
-          </p>
-        </div>
-      </section>
+      {/* Partnerships section removed until real partner marks are supplied —
+          the old placeholder logo wall lives in farmreach-v2/web if needed. */}
 
       <section className="section section--tight section--light" aria-labelledby="careers-title">
         <div className="container split">

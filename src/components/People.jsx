@@ -9,22 +9,24 @@ export default function People({ items }) {
     <Reveal className="people">
       {items.map((p) => (
         <article className="person" key={p.name}>
+          {/* Portrait left, the identity block centred beside it; the bio runs
+             full width below the pair. */}
           <div className="person__head">
-            <h3 className="person__title">
-              <span className="person__name">{p.name}</span>
-              {p.alias ? (
-                <>
-                  <span className="person__aliasLabel"> alias </span>
-                  <span className="person__alias">({p.alias})</span>
-                </>
-              ) : null}
-            </h3>
             {p.photo ? (
               <img className="person__portrait person__portrait--img" src={p.photo} alt={`Portrait of ${p.name}`} loading="lazy" />
             ) : (
               <div className="person__portrait" role="img" aria-label={`Portrait of ${p.name} to be supplied`}>Portrait</div>
             )}
             <div className="person__id">
+              <h3 className="person__title">
+                <span className="person__name">{p.name}</span>
+                {p.alias ? (
+                  <>
+                    <span className="person__aliasLabel"> alias </span>
+                    <span className="person__alias">({p.alias})</span>
+                  </>
+                ) : null}
+              </h3>
               <p className="person__role">{p.role}</p>
               {p.focus ? <p className="person__focus">{p.focus}</p> : null}
               {p.linkedin ? (

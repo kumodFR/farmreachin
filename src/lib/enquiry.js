@@ -78,8 +78,23 @@ export function subjectOrganisation(organisation) {
 }
 
 export const SUBJECTS = {
-  internal: (organisation) => `Farmreach Enquiry - ${subjectOrganisation(organisation)}`,
-  visitor: (organisation) => `Farmreach Enquiry Received - ${subjectOrganisation(organisation)}`
+  internal: (organisation, route) => {
+    const parts = ['Farmreach Enquiry'];
+    const r = subjectOrganisation(route);
+    if (route) parts.push(r);
+    parts.push(subjectOrganisation(organisation));
+    return parts.join(' \u2014 ');
+  },
+  visitor: () => 'Thank you for contacting Farmreach'
+};
+
+/* Display-only routing, mirrored in the preview dialog so a visitor can see
+   exactly where the enquiry goes. The server reads its real values from
+   CONTACT_TO_EMAIL / CONTACT_CC_EMAIL; nothing here is a credential. */
+export const ROUTING = {
+  from: 'no-reply@farmreach.in',
+  to: 'ypr@farmreach.in',
+  cc: 'abila@farmreach.in'
 };
 
 export const CONFIRMATION =

@@ -88,15 +88,6 @@ export const SUBJECTS = {
   visitor: () => 'Thank you for contacting Farmreach'
 };
 
-/* Display-only routing, mirrored in the preview dialog so a visitor can see
-   exactly where the enquiry goes. The server reads its real values from
-   CONTACT_TO_EMAIL / CONTACT_CC_EMAIL; nothing here is a credential. */
-export const ROUTING = {
-  from: 'no-reply@farmreach.in',
-  to: 'ypr@farmreach.in',
-  cc: 'abila@farmreach.in'
-};
-
 export const CONFIRMATION =
   'Thank you. Your enquiry has been received. Our team will get back to you shortly.';
 

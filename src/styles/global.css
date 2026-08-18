@@ -634,47 +634,6 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 .lbx__nav .tst__arrow { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.28); color: #fff; }
 .lbx__nav .tst__arrow:hover { border-color: #fff; color: #fff; }
 
-/* ------------------------------------------------- enquiry preview dialog */
-.dlg {
-  /* Above the sticky header (z-index 100) — a modal must cover site chrome. */
-  position: fixed; inset: 0; z-index: 120; display: grid; place-items: center;
-  padding: clamp(12px, 3vw, 32px); background: rgba(6, 14, 10, 0.62);
-  overflow-y: auto; overscroll-behavior: contain;
-}
-.dlg__panel {
-  width: 100%; max-width: 720px; max-height: calc(100vh - 24px);
-  display: flex; flex-direction: column; gap: var(--space-md);
-  background: var(--surface-1); border: 1px solid var(--line);
-  padding: clamp(20px, 3vw, 34px); overflow-y: auto;
-}
-.dlg__head { display: flex; flex-direction: column; gap: var(--space-2xs); }
-.dlg__note { font-size: 14px; color: var(--text-secondary); }
-.dlg__routing { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-.dlg__routing-row {
-  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px;
-  background: var(--surface-2); padding: 9px 14px;
-}
-.dlg__routing dt {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--text-tertiary); padding-top: 2px;
-}
-.dlg__routing dd { margin: 0; font-size: 14px; color: var(--text-primary); overflow-wrap: anywhere; }
-.dlg__mail { border: 1px solid var(--line); background: #fff; }
-.dlg__mail iframe { display: block; width: 100%; height: 42vh; min-height: 220px; border: 0; }
-/* Actions stay reachable however short the viewport is. */
-.dlg__actions {
-  position: sticky; bottom: calc(clamp(20px, 3vw, 34px) * -1);
-  display: flex; flex-wrap: wrap; gap: var(--space-sm);
-  padding-block: var(--space-sm);
-  background: var(--surface-1); border-top: 1px solid var(--line);
-}
-
-@media (max-width: 599px) {
-  .dlg__routing-row { grid-template-columns: 1fr; gap: 2px; }
-  .dlg__mail iframe { height: 46vh; }
-  .dlg__actions .btn { flex: 1 1 100%; justify-content: center; }
-}
-
 /* ------------------------------------------------------------- page head */
 .page-head {
   position: relative; overflow: hidden; background: var(--surface-1);

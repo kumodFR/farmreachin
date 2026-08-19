@@ -21,7 +21,7 @@ export const AUDIENCES = [
 export const SERVICES = [
   {
     id: 'transformation-audit',
-    homeName: 'Agricultural Transformation',
+    homeName: 'Transformation Strategy',
     homeSummary: 'Transformation strategy and operating-model redesign for organisations working across agriculture.',
     name: 'Transformation Audit',
     short: 'Transformation Audit',

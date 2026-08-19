@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-IN" data-theme="dark">
+<html lang="en-IN" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,12 +16,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@farmreach">
   <script>
-    /* Set the theme before first paint. Default is dark; a stored choice wins. */
+    /* Set the theme before first paint. Default is light; a stored choice wins. */
     (function () {
       try {
         var s = localStorage.getItem('farmreach-theme');
-        document.documentElement.setAttribute('data-theme', (s === 'light' || s === 'dark') ? s : 'dark');
-      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+        document.documentElement.setAttribute('data-theme', (s === 'light' || s === 'dark') ? s : 'light');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
     })();
   </script>
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">

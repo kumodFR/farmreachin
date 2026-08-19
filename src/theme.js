@@ -1,10 +1,10 @@
 /* Theme is stored under one key and applied to <html data-theme>. The initial
    value is set by an inline script in index.html so there is no flash.
-   Default is DARK: the landing experience is dark unless the visitor has
+   Default is LIGHT: the landing experience is light unless the visitor has
    chosen otherwise, and that choice persists across pages and visits. */
 export const THEME_KEY = 'farmreach-theme';
 
-export const DEFAULT_THEME = 'dark';
+export const DEFAULT_THEME = 'light';
 
 export function readTheme() {
   if (typeof window === 'undefined') return DEFAULT_THEME;

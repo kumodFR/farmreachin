@@ -4,7 +4,7 @@ import { FARMINSTA_URL, SITE } from './site.js';
    layout logic. */
 
 export const ARCHITECTURE = {
-  core: { label: 'Parent company', name: 'Farmreach Technologies' },
+  core: { label: 'Products & Services', name: 'Farmreach Technologies' },
   pillars: [
     {
       kind: 'Public Enterprise',
@@ -145,7 +145,7 @@ export const JOURNEY = [
   { year: '2018', title: 'Government Supply Chain', body: 'Digitised operations across 30+ primary processing centres for a government-led agricultural supply chain, connecting aggregation, processing and reporting.', major: true },
   { year: '2019\u20132021', title: 'Farmer & Production Systems', body: 'Production management, farmer knowledge and field-officer capability, farmer CRM, livelihood programmes and QR-based product traceability.', major: false },
   { year: '2022', title: 'Channel Management', body: 'Systems connecting agricultural enterprises with their field and distribution networks.', major: false },
-  { year: '2024\u20132025', title: 'Digital Outreach & Connected Leads', body: 'Farmer reach through SMS, WhatsApp, social and campaign management, with every touchpoint feeding one lead management system.', major: true },
+  { year: '2024\u20132025', title: 'Unified Marketing Engine', body: 'Farmer reach through SMS, WhatsApp, social and campaign management, with every touchpoint feeding one lead management system.', major: true },
   { year: '2026', title: 'Geospatial Intelligence & AI', body: 'Village and plot-level geospatial analytics and AI copilots for farmers, field officers, enterprises and government decision-makers.', major: true }
 ];
 

@@ -239,6 +239,8 @@ export const COMPANY = {
 export const EXECUTIVE_PROFILES = [
   {
     id: 'pradeep',
+    /* Full profile copy not yet supplied; the modal stays closed until it is. */
+    profilePending: true,
     name: 'Pradeep Raj Y',
     role: 'Founder & CEO',
     photo: '/assets/img/people/pradeep-raj-y-cut.png',

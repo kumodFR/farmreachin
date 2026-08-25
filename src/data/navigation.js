@@ -7,6 +7,7 @@ export const NAV = [
   { href: '/consulting', label: 'Consulting' },
   { href: '/company', label: 'Our Story' },
   { href: '/recognition', label: 'Recognition' },
+  { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' }
 ];
 

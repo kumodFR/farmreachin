@@ -39,7 +39,7 @@ const FILES = [
   "src/components/CapabilityList.jsx",
   "src/components/JourneyTimeline.jsx",
   "src/components/ConsultingService.jsx",
-  "src/components/People.jsx",
+  "src/components/ExecutiveProfiles.jsx",
   "src/components/LegalDocument.jsx",
   "src/components/StoryAside.jsx",
   "src/components/Capabilities.jsx",

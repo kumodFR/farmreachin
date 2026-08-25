@@ -233,6 +233,122 @@ export const COMPANY = {
   }
 };
 
+/* Experimental alternative to the compact Leadership section, evaluated
+   alongside it on Our Story. Every fact here is drawn from the same approved
+   leadership bios above \u2014 nothing has been added that isn't already sourced. */
+export const EXECUTIVE_PROFILES = [
+  {
+    id: 'pradeep',
+    name: 'Pradeep Raj Y',
+    role: 'Founder & CEO',
+    photo: '/assets/img/people/pradeep-raj-y-cut.png',
+    headline: 'Agriculture & business transformation \u00b7 Policy \u00b7 Value chains \u00b7 Digital operations',
+    linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
+    email: 'ypr@farmreach.in',
+    story: [
+      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
+      'In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it \u2014 leading to the creation of Farmreach Technologies.'
+    ],
+    profile: [
+      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
+      'Across these experiences, he saw a recurring challenge: agriculture was generating enormous amounts of field activity and knowledge, but the systems connecting people, operations and decisions were fragmented. In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it. That led to the creation of Farmreach Technologies.'
+    ],
+    leadership: [
+      'Founder & CEO, Farmreach Technologies, since 2016.',
+      'Leadership experience spans agriculture, food systems, policy, value chains and digital operations.'
+    ],
+    expertise: ['Agriculture', 'Business Transformation', 'Policy', 'Value Chains', 'Food Systems', 'Digital Operations'],
+    selected: ['Founded Farmreach Technologies (2016), evolving it through field operations, farmer and production systems, value chains, government programmes and digital outreach.'],
+    focus: 'Building practical operating systems and transformation capabilities for Indian agriculture.'
+  },
+  {
+    id: 'abila',
+    name: 'Thangathtamilazhagie V',
+    alias: 'Abila',
+    role: 'Director & COO',
+    photo: '/assets/img/people/abila-cut.png',
+    headline: 'Agriculture \u00b7 Business operations \u00b7 Product \u00b7 Digital transformation \u00b7 Growth \u00b7 Marketing',
+    linkedin: 'https://www.linkedin.com/in/thangathtamilazhagie/',
+    email: 'abila@farmreach.in',
+    story: [
+      'Thangathtamilazhagie (Abila) V is an agriculture-domain business and digital transformation leader with 12+ years of professional and entrepreneurial experience across agriculture, business operations, product management, digital transformation, technology, growth and marketing.',
+      'She joined Farmreach Technologies in February 2016, initially in client relationships, progressively expanding into product management, strategy and planning, digital transformation, operations and organisational leadership.'
+    ],
+    modalRole: 'Co-Founder & Director, Farmreach Technologies Pvt. Ltd.',
+    positioningLine: 'Digital Transformation & Product Strategy | Agriculture & Rural Technology | Business & Growth',
+    summary: 'Agriculture-domain leader translating business and field realities into practical, scalable digital products and driving technology adoption across agricultural organisations and rural operating environments.',
+    profile: [
+      'Thangathtamilazhagie (Abila) V is an agriculture-domain business and digital transformation leader with 12+ years of professional and entrepreneurial experience across agriculture, business operations, product management, digital transformation, technology, growth and marketing.',
+      'Her work sits at the intersection of agriculture, business, operations, product and technology, with a particular focus on translating complex agricultural and field-level requirements into practical digital systems. Her experience combines an academic foundation in agriculture with extensive exposure to agricultural value chains, farmer-facing programmes, distributed field operations and technology-led business transformation.',
+      'She joined Farmreach Technologies in February 2016, initially working in client relationships and progressively expanding into product management, strategy and planning, digital transformation, operations and organisational leadership. Over this journey, she has been closely involved in understanding business requirements, shaping product strategy, designing digital workflows, coordinating technology implementation and taking solutions into real-world operational use.',
+      'Her core strength lies in connecting business understanding, agricultural domain knowledge, user needs, product strategy and technology. Rather than approaching transformation as technology deployment alone, she focuses on simplifying processes, creating useful digital workflows, improving visibility and ensuring that solutions are actually adopted by the people and organisations they are designed to serve.'
+    ],
+    credentials: [
+      '12+ years across agriculture, business operations, product management, digital transformation and growth',
+      'Co-Founder & Director, Farmreach Technologies, shaping Farminsta\u2019s product strategy since 2016',
+      'Cross-functional leadership spanning product, technology, operations and business growth',
+      'Extensive exposure to agricultural value chains, farmer programmes and distributed field operations',
+      'Adoption-led approach translating field and business realities into practical digital systems'
+    ],
+    expertise: ['Agricultural value chains', 'Farmer engagement', 'Product strategy', 'Solution design', 'Digital transformation', 'Technology adoption', 'Data & analytics', 'Decision-support systems', 'Business growth', 'Digital marketing'],
+    sections: [
+      {
+        heading: 'Agriculture Communication, Project Documentation & Rural Programme Exposure',
+        meta: 'Early exposure \u00b7 Media4Agri',
+        body: [
+          'Abila\u2019s experience has developed through direct exposure to agricultural programmes and organisations and through the design and productisation of digital systems used in real operating environments. Her work has covered both the business and domain side of agriculture and the digital product layer that enables organisations to execute, monitor and improve those activities.',
+          'Her early experience with Media4Agri exposed her to a range of agricultural and rural-development initiatives and project teams, spanning themes such as:'
+        ],
+        tags: ['Community irrigation and automated water management', 'Solar-powered agricultural irrigation', 'Honeybee stewardship and sustainable agriculture', 'Agricultural knowledge and digital learning', 'Farmer information and digital kiosk concepts', 'Rural development and farmer communication'],
+        after: ['This experience provided an early understanding of agricultural programmes, field realities, farmer information needs and the relationship between agricultural interventions, technology and communication.']
+      },
+      {
+        heading: 'Product Strategy & Digital Transformation at Farmreach Technologies',
+        meta: 'Core experience \u00b7 Farmreach Technologies',
+        body: ['Since joining Farmreach Technologies in 2016, Abila\u2019s responsibilities have progressively expanded from client and business engagement into product strategy, digital transformation, operations and organisational leadership. Her work has involved understanding agricultural business processes, identifying operational gaps, translating requirements into digital products, shaping product roadmaps, coordinating with technology teams and supporting the transition of solutions from concept to live operational use.'],
+        flow: [],
+        list: [
+          'Product strategy and continuous evolution of Farminsta from a data-collection solution into a broader digital platform supporting workflows, operational visibility, business intelligence and agricultural management.',
+          'Digital solutions for field-extension activities, work allocation, activity monitoring, field visits, performance tracking and management visibility.',
+          'Digital farmer services, field-assist workflows, farmer engagement, digital outreach and technology-enabled communication.',
+          'Digital product strategy for production management, farmer/plot-level information, operational workflows, production monitoring and contract-related processes.',
+          'Digital traceability and technology-enabled workflows connecting agricultural inputs and seed movement through the value chain, including exploration and application of emerging technologies such as blockchain-based traceability.',
+          'Digitisation of distributed agricultural operations, supply-chain processes, field activities and management workflows.',
+          'Product strategy for structured field data capture, operational reporting, management dashboards, analytics and decision-support capabilities.',
+          'Product evolution towards spatially enabled agricultural systems, including field-level mapping, spatial analytics and location-based decision support.',
+          'Digital workflows supporting field visits, farmer interactions, service delivery, information capture and follow-up.'
+        ]
+      },
+      {
+        heading: 'Institutional & Collaborative Programme Exposure',
+        meta: 'Collaborative programmes \u00b7 ICRISAT and institutional partners',
+        body: ['Through Farmreach\u2019s work with agricultural organisations and collaborative programmes, Abila has contributed to the product strategy and digital transformation components of initiatives spanning nutrition, agricultural value chains, farmer organisations, supply chains, field operations, data collection, traceability and programme monitoring.'],
+        cards: [
+          { title: 'Product and digital transformation exposure within agricultural nutrition programmes involving ICRISAT and institutional partners.', meta: 'Programme workflows \u00b7 Data capture \u00b7 Beneficiary information \u00b7 Traceability \u00b7 Monitoring \u00b7 Reporting \u00b7 Analytics \u00b7 Digital visibility' },
+          { title: 'Exposure to digital transformation initiatives supporting farmer producer organisations, agricultural value chains and market-linked operations.', meta: 'Farmer data \u00b7 Production information \u00b7 Supply-chain workflows \u00b7 Traceability \u00b7 Market linkage \u00b7 Operational monitoring \u00b7 Analytics' },
+          { title: 'Exposure to digital components associated with agricultural supply-chain and processing initiatives involving institutional and Government stakeholders.', meta: 'FPO operations \u00b7 Farmer data \u00b7 Processing-centre workflows \u00b7 Supply-chain information \u00b7 Data capture \u00b7 Traceability \u00b7 Management reporting' }
+        ]
+      }
+    ],
+    twoCol: [
+      { heading: 'The Product Strategist Approach', body: [
+        'Her approach begins with understanding agriculture, field operations, stakeholders, workflows and business realities, then identifying the operational gaps, manual processes, information gaps and decision bottlenecks that technology needs to address.',
+        'From there, she translates business requirements into product vision, workflows, modules and user journeys, and works with technology teams to shape the platform, applications, data flows and integrations needed to support them.',
+        'The final step is taking the solution into real operational environments and supporting user adoption, then using operational feedback, data and analytics to continuously improve the product.'
+      ] },
+      { heading: 'From Product Strategy to Real-World Adoption', body: [
+        'A defining feature of Abila\u2019s experience is that her product strategy has not remained at the conceptual level. She has been involved in taking digital solutions from business requirement and product strategy through development, launch and real-world adoption.',
+        'This practical exposure has shaped an adoption-led product philosophy: technology must fit operational realities, simplify work and create visible value for users and management.'
+      ] }
+    ],
+    positioning: {
+      heading: 'Executive Positioning',
+      body: 'Abila\u2019s strength lies in bridging three worlds that are often separated in technology programmes: agriculture & domain understanding, business & operational requirements, and product & technology execution. Her leadership philosophy is simple: understand the business first, build the technology around the user, measure adoption, and continuously improve.'
+    },
+    education: 'B.Sc. Agriculture, Tamil Nadu Agricultural University \u00b7 EPGBM (Executive Programme in Global Business Management), IIM Calcutta \u2014 an academic foundation supporting her long-term work in agriculture and rural technology.'
+  }
+];
+
 export const CONTACT = {
   hero: {
     title: 'Start a conversation.',

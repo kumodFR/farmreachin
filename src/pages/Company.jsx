@@ -1,12 +1,12 @@
 import React from 'react';
 import PageHead from '../components/PageHead.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
-import People from '../components/People.jsx';
+import ExecutiveProfiles from '../components/ExecutiveProfiles.jsx';
 import StoryAside from '../components/StoryAside.jsx';
 import { Chronology } from '../components/JourneyTimeline.jsx';
 import Reveal from '../components/Reveal.jsx';
 import CTA from '../components/CTA.jsx';
-import { COMPANY, MILESTONES } from '../data/content.js';
+import { COMPANY, MILESTONES, EXECUTIVE_PROFILES } from '../data/content.js';
 import { SITE } from '../data/site.js';
 import { ExternalMark } from '../router.jsx';
 
@@ -42,7 +42,7 @@ export default function Company() {
         <div className="container">
           <p className="eyebrow" id="leadership-title">Leadership</p>
           <h2 style={{ marginBottom: 'var(--space-xl)', maxWidth: '24ch' }}>The people behind the journey</h2>
-          <People items={COMPANY.leadership} />
+          <ExecutiveProfiles items={EXECUTIVE_PROFILES} />
         </div>
       </section>
 

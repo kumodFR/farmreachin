@@ -873,7 +873,9 @@ body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer
   font-size: 13.5px; font-weight: 700; letter-spacing: 0.02em;
   color: var(--brand-accent); background: none; border: 0; padding: 0; margin: 0; cursor: pointer; font-family: inherit;
 }
-.exec-cta:hover { color: var(--text-primary); }
+.exec-cta:hover:not(:disabled) { color: var(--text-primary); }
+/* Pending profiles keep the label and lose the interaction. */
+.exec-cta:disabled { color: var(--text-tertiary); cursor: default; }
 .exec-cta svg { width: 9px; height: 9px; }
 
 .exec-lbx {

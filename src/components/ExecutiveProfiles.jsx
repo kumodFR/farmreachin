@@ -49,12 +49,15 @@ export default function ExecutiveProfiles({ items }) {
                       View LinkedIn Profile <ExternalMark />
                     </a>
                   ) : null}
-                  {/* Withheld until the full profile copy is approved. */}
-                  {p.profilePending ? null : (
-                    <button type="button" className="exec-cta" onClick={() => setOpenId(p.id)}>
-                      Read Full Profile <span aria-hidden="true">&rarr;</span>
-                    </button>
-                  )}
+                  {/* Label stays; the action waits on approved copy. */}
+                  <button
+                    type="button"
+                    className="exec-cta"
+                    onClick={() => setOpenId(p.id)}
+                    disabled={Boolean(p.profilePending)}
+                  >
+                    Read Full Profile <span aria-hidden="true">&rarr;</span>
+                  </button>
                 </div>
               </div>
             </div>

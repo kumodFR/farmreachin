@@ -136,6 +136,75 @@ export const GALLERY = {
       src: '/assets/img/gallery/drone-spraying-services-2025.jpg',
       alt: 'A spraying drone on a bund between paddy fields, with farmers and mixing containers behind it',
       focus: 'center 46%'
+    },
+    {
+      id: 'advanta-veg-team-field-force-2017',
+      year: '2017',
+      caption: 'Field Force Automation Launch \u2014 Advanta Veg Team',
+      category: 'Customer',
+      src: '/assets/img/gallery/advanta-veg-team-field-force-2017.jpg',
+      alt: 'The Advanta vegetable team gathered indoors for a group photograph at the field force automation launch'
+    },
+    {
+      id: 'syngenta-corn-seed-production-2017',
+      year: '2017',
+      caption: 'Corn Seed Production Management System \u2014 Syngenta',
+      category: 'Customer',
+      src: '/assets/img/gallery/syngenta-corn-seed-production-2017.jpg',
+      alt: 'Four colleagues reviewing the corn seed production management system on a mobile phone at the roadside in a village'
+    },
+    {
+      id: 'syngenta-philippines-corn-seed-2017',
+      year: '2017',
+      caption: 'Corn Seed Production Management Launch \u2014 Syngenta Philippines',
+      category: 'Customer',
+      src: '/assets/img/gallery/syngenta-philippines-corn-seed-2017.jpg',
+      alt: 'Two field staff checking the corn seed production management app on a phone beside a standing corn crop in the Philippines',
+      wide: true
+    },
+    {
+      id: 'prasad-seeds-philippines-2018',
+      year: '2018',
+      caption: 'Seed Production Management \u2014 Prasad Seeds, Philippines',
+      category: 'Customer',
+      src: '/assets/img/gallery/prasad-seeds-philippines-2018.jpg',
+      alt: 'A field team seated around a table working through the seed production management app on their phones during a training session'
+    },
+    {
+      id: 'anantha-samruddhi-processing-automation-2019',
+      year: '2019',
+      caption: 'Primary Processing Centre Automation \u2014 Anantha Samruddhi',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/anantha-samruddhi-processing-automation-2019.jpg',
+      alt: 'Operators running a grading and cleaning line at a primary processing centre, with produce moving along the conveyor'
+    },
+    {
+      id: 'hysea-innovation-summit-2019',
+      year: '2019',
+      caption: 'HYSEA Innovation Summit \u2014 Pitch',
+      category: 'Recognition',
+      src: '/assets/img/gallery/hysea-innovation-summit-2019.jpg',
+      alt: 'Presenting from the Mentor Lounge stage at the 27th Annual HYSEA Innovation Summit in Hyderabad',
+      wide: true
+    },
+    {
+      id: 'farmer-livelihood-survey-ananthapur-2019',
+      year: '2019',
+      caption: 'Farmer Livelihood Impact Survey \u2014 Ananthapur',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/farmer-livelihood-survey-ananthapur-2019.jpg',
+      alt: 'A field surveyor recording a farmer\u2019s responses on a mobile phone while seated with her outside a home in Ananthapur',
+      wide: true,
+      contain: true
+    },
+    {
+      id: 'extension-worker-training-2020',
+      year: '2020',
+      caption: 'Extension Worker Training \u2014 Field Activity Digitisation',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/extension-worker-training-2020.jpg',
+      alt: 'A full hall of extension workers following a projected demonstration and working through the field activity app on their own phones',
+      wide: true
     }
   ],
   closing: {

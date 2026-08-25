@@ -360,7 +360,7 @@ const AUDIENCES = [
 const SERVICES = [
   {
     id: 'transformation-audit',
-    homeName: 'Agricultural Transformation',
+    homeName: 'Transformation Strategy',
     homeSummary: 'Transformation strategy and operating-model redesign for organisations working across agriculture.',
     name: 'Transformation Audit',
     short: 'Transformation Audit',
@@ -786,7 +786,7 @@ const GALLERY = {
    layout logic. */
 
 const ARCHITECTURE = {
-  core: { label: 'Parent company', name: 'Farmreach Technologies' },
+  core: { label: 'Products & Services', name: 'Farmreach Technologies' },
   pillars: [
     {
       kind: 'Public Enterprise',
@@ -927,7 +927,7 @@ const JOURNEY = [
   { year: '2018', title: 'Government Supply Chain', body: 'Digitised operations across 30+ primary processing centres for a government-led agricultural supply chain, connecting aggregation, processing and reporting.', major: true },
   { year: '2019\u20132021', title: 'Farmer & Production Systems', body: 'Production management, farmer knowledge and field-officer capability, farmer CRM, livelihood programmes and QR-based product traceability.', major: false },
   { year: '2022', title: 'Channel Management', body: 'Systems connecting agricultural enterprises with their field and distribution networks.', major: false },
-  { year: '2024\u20132025', title: 'Digital Outreach & Connected Leads', body: 'Farmer reach through SMS, WhatsApp, social and campaign management, with every touchpoint feeding one lead management system.', major: true },
+  { year: '2024\u20132025', title: 'Unified Marketing Engine', body: 'Farmer reach through SMS, WhatsApp, social and campaign management, with every touchpoint feeding one lead management system.', major: true },
   { year: '2026', title: 'Geospatial Intelligence & AI', body: 'Village and plot-level geospatial analytics and AI copilots for farmers, field officers, enterprises and government decision-makers.', major: true }
 ];
 
@@ -968,35 +968,6 @@ const COMPANY = {
     { title: 'Connect the ecosystem', body: 'Agriculture does not operate in isolated systems. Farmers, government, field teams, enterprises, markets, knowledge and technology need to work as connected parts of the same operating environment.' },
     { title: 'Make intelligence actionable', body: 'Data is valuable when it helps someone make a better decision or take the right action. Our systems are designed to move from field data to insight, action and measurement.' }
   ],
-  /* Compact profiles: they support the story rather than dominating it.
-     `linkedin` stays empty until an official profile URL is approved. */
-  leadership: [
-    {
-      name: 'Pradeep Raj Y',
-      role: 'Founder & CEO',
-      photo: 'assets/img/people/pradeep-raj-y-cut.png',
-      focus: 'Agriculture \u00b7 Business transformation \u00b7 Value chains \u00b7 Digital operations',
-      linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
-      bio: [
-        'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
-        'Across these experiences, he saw a recurring challenge: agriculture was generating enormous amounts of field activity and knowledge, but the systems connecting people, operations and decisions were fragmented. In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it. That led to the creation of Farmreach Technologies.',
-        'Today, his work continues to focus on building practical operating systems and transformation capabilities for Indian agriculture.'
-      ]
-    },
-    {
-      name: 'Thangathtamilazhagie V',
-      alias: 'Abila',
-      role: 'Director & COO',
-      photo: 'assets/img/people/abila-cut.png',
-      focus: 'Digital transformation \u00b7 Product \u00b7 Operations \u00b7 Growth',
-      linkedin: 'https://www.linkedin.com/in/thangathtamilazhagie/',
-      bio: [
-        'Abila V is a digital transformation and business leader with over a decade of experience across agriculture, business operations, product, technology and growth. She began her journey with Farmreach in 2016 through client relationships and field-level exposure, gaining a practical understanding of how agricultural businesses and their teams operate.',
-        'Her role evolved across product management, strategy, planning, digital transformation, operations and growth. Working closely with teams and organisations on the ground shaped her approach to building technology around real business needs rather than technology alone.',
-        'Today, she focuses on translating complex agricultural operations into practical digital products, systems and operating models that teams can actually adopt.'
-      ]
-    }
-  ],
   xpedition: {
     label: 'Founder Advisory',
     title: 'Xpedition Labs',
@@ -1014,6 +985,124 @@ const COMPANY = {
     body: 'Farmreach hires people who want the operating problem, not only the software problem: agronomists, field operators, engineers, data people and consultants. Roles are open across Hyderabad and the field geographies we operate in.'
   }
 };
+
+/* Experimental alternative to the compact Leadership section, evaluated
+   alongside it on Our Story. Every fact here is drawn from the same approved
+   leadership bios above \u2014 nothing has been added that isn't already sourced. */
+const EXECUTIVE_PROFILES = [
+  {
+    id: 'pradeep',
+    /* Full profile copy not yet supplied; the modal stays closed until it is. */
+    profilePending: true,
+    name: 'Pradeep Raj Y',
+    role: 'Founder & CEO',
+    photo: 'assets/img/people/pradeep-raj-y-cut.png',
+    headline: 'Agriculture & business transformation \u00b7 Policy \u00b7 Value chains \u00b7 Digital operations',
+    linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
+    email: 'ypr@farmreach.in',
+    story: [
+      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
+      'In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it \u2014 leading to the creation of Farmreach Technologies.'
+    ],
+    profile: [
+      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
+      'Across these experiences, he saw a recurring challenge: agriculture was generating enormous amounts of field activity and knowledge, but the systems connecting people, operations and decisions were fragmented. In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it. That led to the creation of Farmreach Technologies.'
+    ],
+    leadership: [
+      'Founder & CEO, Farmreach Technologies, since 2016.',
+      'Leadership experience spans agriculture, food systems, policy, value chains and digital operations.'
+    ],
+    expertise: ['Agriculture', 'Business Transformation', 'Policy', 'Value Chains', 'Food Systems', 'Digital Operations'],
+    selected: ['Founded Farmreach Technologies (2016), evolving it through field operations, farmer and production systems, value chains, government programmes and digital outreach.'],
+    focus: 'Building practical operating systems and transformation capabilities for Indian agriculture.'
+  },
+  {
+    id: 'abila',
+    name: 'Thangathtamilazhagie V',
+    alias: 'Abila',
+    role: 'Director & COO',
+    photo: 'assets/img/people/abila-cut.png',
+    headline: 'Agriculture \u00b7 Business operations \u00b7 Product \u00b7 Digital transformation \u00b7 Growth \u00b7 Marketing',
+    linkedin: 'https://www.linkedin.com/in/thangathtamilazhagie/',
+    email: 'abila@farmreach.in',
+    story: [
+      'Thangathtamilazhagie (Abila) V is an agriculture-domain business and digital transformation leader with 12+ years of professional and entrepreneurial experience across agriculture, business operations, product management, digital transformation, technology, growth and marketing.',
+      'She joined Farmreach Technologies in February 2016, initially in client relationships, progressively expanding into product management, strategy and planning, digital transformation, operations and organisational leadership.'
+    ],
+    modalRole: 'Co-Founder & Director, Farmreach Technologies Pvt. Ltd.',
+    positioningLine: 'Digital Transformation & Product Strategy | Agriculture & Rural Technology | Business & Growth',
+    summary: 'Agriculture-domain leader translating business and field realities into practical, scalable digital products and driving technology adoption across agricultural organisations and rural operating environments.',
+    profile: [
+      'Thangathtamilazhagie (Abila) V is an agriculture-domain business and digital transformation leader with 12+ years of professional and entrepreneurial experience across agriculture, business operations, product management, digital transformation, technology, growth and marketing.',
+      'Her work sits at the intersection of agriculture, business, operations, product and technology, with a particular focus on translating complex agricultural and field-level requirements into practical digital systems. Her experience combines an academic foundation in agriculture with extensive exposure to agricultural value chains, farmer-facing programmes, distributed field operations and technology-led business transformation.',
+      'She joined Farmreach Technologies in February 2016, initially working in client relationships and progressively expanding into product management, strategy and planning, digital transformation, operations and organisational leadership. Over this journey, she has been closely involved in understanding business requirements, shaping product strategy, designing digital workflows, coordinating technology implementation and taking solutions into real-world operational use.',
+      'Her core strength lies in connecting business understanding, agricultural domain knowledge, user needs, product strategy and technology. Rather than approaching transformation as technology deployment alone, she focuses on simplifying processes, creating useful digital workflows, improving visibility and ensuring that solutions are actually adopted by the people and organisations they are designed to serve.'
+    ],
+    credentials: [
+      '12+ years across agriculture, business operations, product management, digital transformation and growth',
+      'Co-Founder & Director, Farmreach Technologies, shaping Farminsta\u2019s product strategy since 2016',
+      'Cross-functional leadership spanning product, technology, operations and business growth',
+      'Extensive exposure to agricultural value chains, farmer programmes and distributed field operations',
+      'Adoption-led approach translating field and business realities into practical digital systems'
+    ],
+    expertise: ['Agricultural value chains', 'Farmer engagement', 'Product strategy', 'Solution design', 'Digital transformation', 'Technology adoption', 'Data & analytics', 'Decision-support systems', 'Business growth', 'Digital marketing'],
+    sections: [
+      {
+        heading: 'Agriculture Communication, Project Documentation & Rural Programme Exposure',
+        meta: 'Early exposure \u00b7 Media4Agri',
+        body: [
+          'Abila\u2019s experience has developed through direct exposure to agricultural programmes and organisations and through the design and productisation of digital systems used in real operating environments. Her work has covered both the business and domain side of agriculture and the digital product layer that enables organisations to execute, monitor and improve those activities.',
+          'Her early experience with Media4Agri exposed her to a range of agricultural and rural-development initiatives and project teams, spanning themes such as:'
+        ],
+        tags: ['Community irrigation and automated water management', 'Solar-powered agricultural irrigation', 'Honeybee stewardship and sustainable agriculture', 'Agricultural knowledge and digital learning', 'Farmer information and digital kiosk concepts', 'Rural development and farmer communication'],
+        after: ['This experience provided an early understanding of agricultural programmes, field realities, farmer information needs and the relationship between agricultural interventions, technology and communication.']
+      },
+      {
+        heading: 'Product Strategy & Digital Transformation at Farmreach Technologies',
+        meta: 'Core experience \u00b7 Farmreach Technologies',
+        body: ['Since joining Farmreach Technologies in 2016, Abila\u2019s responsibilities have progressively expanded from client and business engagement into product strategy, digital transformation, operations and organisational leadership. Her work has involved understanding agricultural business processes, identifying operational gaps, translating requirements into digital products, shaping product roadmaps, coordinating with technology teams and supporting the transition of solutions from concept to live operational use.'],
+        flow: [],
+        list: [
+          'Product strategy and continuous evolution of Farminsta from a data-collection solution into a broader digital platform supporting workflows, operational visibility, business intelligence and agricultural management.',
+          'Digital solutions for field-extension activities, work allocation, activity monitoring, field visits, performance tracking and management visibility.',
+          'Digital farmer services, field-assist workflows, farmer engagement, digital outreach and technology-enabled communication.',
+          'Digital product strategy for production management, farmer/plot-level information, operational workflows, production monitoring and contract-related processes.',
+          'Digital traceability and technology-enabled workflows connecting agricultural inputs and seed movement through the value chain, including exploration and application of emerging technologies such as blockchain-based traceability.',
+          'Digitisation of distributed agricultural operations, supply-chain processes, field activities and management workflows.',
+          'Product strategy for structured field data capture, operational reporting, management dashboards, analytics and decision-support capabilities.',
+          'Product evolution towards spatially enabled agricultural systems, including field-level mapping, spatial analytics and location-based decision support.',
+          'Digital workflows supporting field visits, farmer interactions, service delivery, information capture and follow-up.'
+        ]
+      },
+      {
+        heading: 'Institutional & Collaborative Programme Exposure',
+        meta: 'Collaborative programmes \u00b7 ICRISAT and institutional partners',
+        body: ['Through Farmreach\u2019s work with agricultural organisations and collaborative programmes, Abila has contributed to the product strategy and digital transformation components of initiatives spanning nutrition, agricultural value chains, farmer organisations, supply chains, field operations, data collection, traceability and programme monitoring.'],
+        cards: [
+          { title: 'Product and digital transformation exposure within agricultural nutrition programmes involving ICRISAT and institutional partners.', meta: 'Programme workflows \u00b7 Data capture \u00b7 Beneficiary information \u00b7 Traceability \u00b7 Monitoring \u00b7 Reporting \u00b7 Analytics \u00b7 Digital visibility' },
+          { title: 'Exposure to digital transformation initiatives supporting farmer producer organisations, agricultural value chains and market-linked operations.', meta: 'Farmer data \u00b7 Production information \u00b7 Supply-chain workflows \u00b7 Traceability \u00b7 Market linkage \u00b7 Operational monitoring \u00b7 Analytics' },
+          { title: 'Exposure to digital components associated with agricultural supply-chain and processing initiatives involving institutional and Government stakeholders.', meta: 'FPO operations \u00b7 Farmer data \u00b7 Processing-centre workflows \u00b7 Supply-chain information \u00b7 Data capture \u00b7 Traceability \u00b7 Management reporting' }
+        ]
+      }
+    ],
+    twoCol: [
+      { heading: 'The Product Strategist Approach', body: [
+        'Her approach begins with understanding agriculture, field operations, stakeholders, workflows and business realities, then identifying the operational gaps, manual processes, information gaps and decision bottlenecks that technology needs to address.',
+        'From there, she translates business requirements into product vision, workflows, modules and user journeys, and works with technology teams to shape the platform, applications, data flows and integrations needed to support them.',
+        'The final step is taking the solution into real operational environments and supporting user adoption, then using operational feedback, data and analytics to continuously improve the product.'
+      ] },
+      { heading: 'From Product Strategy to Real-World Adoption', body: [
+        'A defining feature of Abila\u2019s experience is that her product strategy has not remained at the conceptual level. She has been involved in taking digital solutions from business requirement and product strategy through development, launch and real-world adoption.',
+        'This practical exposure has shaped an adoption-led product philosophy: technology must fit operational realities, simplify work and create visible value for users and management.'
+      ] }
+    ],
+    positioning: {
+      heading: 'Executive Positioning',
+      body: 'Abila\u2019s strength lies in bridging three worlds that are often separated in technology programmes: agriculture & domain understanding, business & operational requirements, and product & technology execution. Her leadership philosophy is simple: understand the business first, build the technology around the user, measure adoption, and continuously improve.'
+    },
+    education: 'B.Sc. Agriculture, Tamil Nadu Agricultural University \u00b7 EPGBM (Executive Programme in Global Business Management), IIM Calcutta \u2014 an academic foundation supporting her long-term work in agriculture and rural technology.'
+  }
+];
 
 const CONTACT = {
   hero: {
@@ -1846,11 +1935,11 @@ const LINK_PATHS = LINKS.map(([a, b]) => {
 /* ==== src/theme.js ==== */
 /* Theme is stored under one key and applied to <html data-theme>. The initial
    value is set by an inline script in index.html so there is no flash.
-   Default is DARK: the landing experience is dark unless the visitor has
+   Default is LIGHT: the landing experience is light unless the visitor has
    chosen otherwise, and that choice persists across pages and visits. */
 const THEME_KEY = 'farmreach-theme';
 
-const DEFAULT_THEME = 'dark';
+const DEFAULT_THEME = 'light';
 
 function readTheme() {
   if (typeof window === 'undefined') return DEFAULT_THEME;
@@ -1984,7 +2073,7 @@ function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
 
 
 function ThemeToggle() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => { setTheme(readTheme()); }, []);
 
@@ -2342,52 +2431,251 @@ function ServiceIndex({ services, onNavigateLabel = 'Learn more', link = true })
 }
 
 
-/* ==== src/components/People.jsx ==== */
+/* ==== src/components/ExecutiveProfiles.jsx ==== */
 
 
 
-/* Compact leadership profile: small portrait, designation, short narration.
-   The LinkedIn link renders only when an official URL is configured. */
-function People({ items }) {
+/* Alternative to the compact Leadership section: same visual language
+   (.people / .person, soft-green section), both profiles shown together,
+   no carousel. Each "Read Full Profile" opens a detailed modal. */
+function ExecutiveProfiles({ items }) {
+  const [openId, setOpenId] = useState(null);
+  const dialogRef = useRef(null);
+  const openPerson = openId ? items.find((p) => p.id === openId) : null;
+
+  useEffect(() => {
+    if (!openPerson) return undefined;
+    const onKey = (ev) => { if (ev.key === 'Escape') setOpenId(null); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    if (dialogRef.current) dialogRef.current.focus();
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prevOverflow; };
+  }, [openPerson]);
+
   return (
-    <Reveal className="people">
-      {items.map((p) => (
-        <article className="person" key={p.name}>
-          {/* Portrait left, the identity block centred beside it; the bio runs
-             full width below the pair. */}
-          <div className="person__head">
-            {p.photo ? (
-              <img className="person__portrait person__portrait--img" src={p.photo} alt={`Portrait of ${p.name}`} loading="lazy" />
-            ) : (
-              <div className="person__portrait" role="img" aria-label={`Portrait of ${p.name} to be supplied`}>Portrait</div>
-            )}
-            <div className="person__id">
-              <h3 className="person__title">
-                <span className="person__name">{p.name}</span>
-                {p.alias ? (
-                  <>
-                    <span className="person__aliasLabel"> alias </span>
-                    <span className="person__alias">({p.alias})</span>
-                  </>
-                ) : null}
-              </h3>
-              <p className="person__role">{p.role}</p>
-              {p.focus ? <p className="person__focus">{p.focus}</p> : null}
-              {p.linkedin ? (
-                <a className="person__link" href={p.linkedin} target="_blank" rel="noopener noreferrer">
-                  <span className="nav__ext">View LinkedIn Profile <ExternalMark /></span>
-                </a>
-              ) : null}
+    <>
+      <div className="people">
+        {items.map((p) => (
+          <article className="person" key={p.id}>
+            <div className="person__head">
+              {p.photo ? (
+                <img className="person__portrait person__portrait--img" src={p.photo} alt={`Portrait of ${p.name}`} loading="lazy" />
+              ) : (
+                <div className="person__portrait" role="img" aria-label={`Portrait of ${p.name} to be supplied`}>Portrait</div>
+              )}
+              <div className="person__id">
+                <h3 className="person__title">
+                  <span className="person__name">{p.name}</span>
+                  {p.alias ? (
+                    <>
+                      <span className="person__aliasLabel"> alias </span>
+                      <span className="person__alias">({p.alias})</span>
+                    </>
+                  ) : null}
+                </h3>
+                <p className="person__role">{p.role}</p>
+                {p.headline ? <p className="person__focus">{p.headline}</p> : null}
+                <div className="person__actions">
+                  {p.linkedin ? (
+                    <a className="exec-cta" href={p.linkedin} target="_blank" rel="noopener noreferrer">
+                      View LinkedIn Profile <ExternalMark />
+                    </a>
+                  ) : null}
+                  {/* Label stays; the action waits on approved copy. */}
+                  <button
+                    type="button"
+                    className="exec-cta"
+                    onClick={() => setOpenId(p.id)}
+                    disabled={Boolean(p.profilePending)}
+                  >
+                    Read Full Profile <span aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          {p.bio ? (
             <div className="person__bio">
-              {p.bio.map((t) => <p key={t}>{t}</p>)}
+              {p.story.map((t) => <p key={t}>{t}</p>)}
             </div>
-          ) : null}
-        </article>
-      ))}
-    </Reveal>
+          </article>
+        ))}
+      </div>
+
+      {openPerson
+        ? ReactDOM.createPortal(
+            <div className="exec-lbx" role="presentation" onMouseDown={(ev) => { if (ev.target === ev.currentTarget) setOpenId(null); }}>
+              <div className="exec-lbx__panel" role="dialog" aria-modal="true" aria-labelledby="exec-modal-title" tabIndex={-1} ref={dialogRef}>
+                <button type="button" className="tst__arrow exec-lbx__close" onClick={() => setOpenId(null)} aria-label="Close profile">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div className="exec-lbx__header">
+                  {openPerson.photo ? (
+                    <img src={openPerson.photo} alt={`Portrait of ${openPerson.name}`} className="exec-lbx__portrait" />
+                  ) : null}
+                  <div>
+                    <h3 id="exec-modal-title" className="exec-lbx__name">
+                      {openPerson.modalName || openPerson.name}
+                      {openPerson.alias && !openPerson.modalName ? <span className="person__alias"> ({openPerson.alias})</span> : null}
+                    </h3>
+                    <p className="person__role">{openPerson.modalRole || openPerson.role}</p>
+                    {openPerson.positioningLine ? <p className="exec-lbx__positioning">{openPerson.positioningLine}</p> : null}
+                    {openPerson.headline && !openPerson.positioningLine ? <p className="exec-lbx__headline">{openPerson.headline}</p> : null}
+                    {openPerson.linkedin ? (
+                      <a className="person__link" href={openPerson.linkedin} target="_blank" rel="noopener noreferrer">
+                        <span className="nav__ext">View LinkedIn Profile <ExternalMark /></span>
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+
+                {openPerson.summary ? (
+                  <p className="exec-lbx__summary">{openPerson.summary}</p>
+                ) : null}
+
+                {openPerson.sections ? (
+                  <>
+                    <div className="exec-lbx__section">
+                      <p className="eyebrow">Leadership Profile</p>
+                      {openPerson.profile.map((t) => <p key={t}>{t}</p>)}
+                    </div>
+
+                    {openPerson.credentials?.length ? (
+                      <div className="exec-lbx__callout">
+                        <p className="exec-lbx__calloutTitle">Key Credentials</p>
+                        <ul className="exec-lbx__credentials">
+                          {openPerson.credentials.map((c) => <li key={c}>{c}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {openPerson.expertise?.length ? (
+                      <div className="exec-lbx__section">
+                        <p className="eyebrow">Capability Areas</p>
+                        <ul className="exec-lbx__tags">
+                          {openPerson.expertise.map((t) => <li key={t}>{t}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {openPerson.sections.map((s) => (
+                      <div className="exec-lbx__section" key={s.heading}>
+                        <h4 className="exec-lbx__sectionTitle">{s.heading}</h4>
+                        {s.meta ? <p className="exec-lbx__sectionMeta">{s.meta}</p> : null}
+                        {s.body.map((t) => <p key={t}>{t}</p>)}
+                        {s.tags?.length ? (
+                          <div className="exec-lbx__chipRow">
+                            {s.tags.map((t) => <span className="exec-lbx__chip" key={t}>{t}</span>)}
+                          </div>
+                        ) : null}
+                        {s.flow?.length ? (
+                          <div className="exec-lbx__flow">
+                            {s.flow.map((f, i) => (
+                              <React.Fragment key={f}>
+                                <span className="exec-lbx__flowStep">{f}</span>
+                                {i < s.flow.length - 1 ? <span aria-hidden="true" className="exec-lbx__flowArrow">&rarr;</span> : null}
+                              </React.Fragment>
+                            ))}
+                          </div>
+                        ) : null}
+                        {s.list?.length ? (
+                          <ul className="exec-lbx__list">
+                            {s.list.map((l) => <li key={l}>{l}</li>)}
+                          </ul>
+                        ) : null}
+                        {s.cards?.length ? (
+                          <div className="exec-lbx__cards">
+                            {s.cards.map((c) => (
+                              <div className="exec-lbx__card" key={c.title}>
+                                <p>{c.title}</p>
+                                <p className="exec-lbx__cardMeta">{c.meta}</p>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                        {s.after?.length ? s.after.map((t) => <p key={t}>{t}</p>) : null}
+                      </div>
+                    ))}
+
+                    {openPerson.twoCol?.length ? (
+                      <div className="exec-lbx__section exec-lbx__twocol">
+                        {openPerson.twoCol.map((col) => (
+                          <div key={col.heading}>
+                            <h4 className="exec-lbx__sectionTitle">{col.heading}</h4>
+                            {col.body.map((t) => <p key={t}>{t}</p>)}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    {openPerson.positioning ? (
+                      <div className="exec-lbx__callout">
+                        <p className="exec-lbx__calloutTitle">{openPerson.positioning.heading}</p>
+                        <p>{openPerson.positioning.body}</p>
+                      </div>
+                    ) : null}
+
+                    {openPerson.education ? (
+                      <p className="exec-lbx__education">{openPerson.education}</p>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <div className="exec-lbx__section">
+                      <p className="eyebrow">Executive Profile</p>
+                      {openPerson.profile.map((t) => <p key={t}>{t}</p>)}
+                    </div>
+
+                    {openPerson.leadership?.length ? (
+                      <div className="exec-lbx__section">
+                        <p className="eyebrow">Leadership &amp; Experience</p>
+                        {openPerson.leadership.map((t) => <p key={t}>{t}</p>)}
+                      </div>
+                    ) : null}
+
+                    {openPerson.expertise?.length ? (
+                      <div className="exec-lbx__section">
+                        <p className="eyebrow">Areas of Expertise</p>
+                        <ul className="exec-lbx__tags">
+                          {openPerson.expertise.map((t) => <li key={t}>{t}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {openPerson.selected?.length ? (
+                      <div className="exec-lbx__section">
+                        <p className="eyebrow">Selected Experience</p>
+                        {openPerson.selected.map((t) => <p key={t}>{t}</p>)}
+                      </div>
+                    ) : null}
+
+                    {openPerson.focus ? (
+                      <div className="exec-lbx__section">
+                        <p className="eyebrow">Current Focus</p>
+                        <p>{openPerson.focus}</p>
+                      </div>
+                    ) : null}
+                  </>
+                )}
+
+                {openPerson.email ? (
+                  <div className="exec-lbx__contact">
+                    {openPerson.linkedin ? (
+                      <a className="person__link" href={openPerson.linkedin} target="_blank" rel="noopener noreferrer">
+                        <span className="nav__ext">Connect with {openPerson.alias || openPerson.name.split(' ')[0]} on LinkedIn <ExternalMark /></span>
+                      </a>
+                    ) : null}
+                    <a className="person__link" href={`mailto:${openPerson.email}`}>
+                      Email {openPerson.alias || openPerson.name.split(' ')[0]} <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+                ) : null}
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
+    </>
   );
 }
 
@@ -3252,7 +3540,7 @@ function Footer() {
               <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`}>{SITE.phone}</a>
             </address>
             <p className="site-footer__group">
-              <span className="site-footer__grouplabel">Group / advisory</span>
+              <span className="site-footer__grouplabel">Startup Advisory</span>
               <Ext href={SITE.xpeditionUrl}>Xpedition Labs</Ext>
             </p>
           </div>
@@ -3758,7 +4046,7 @@ function Company() {
         <div className="container">
           <p className="eyebrow" id="leadership-title">Leadership</p>
           <h2 style={{ marginBottom: 'var(--space-xl)', maxWidth: '24ch' }}>The people behind the journey</h2>
-          <People items={COMPANY.leadership} />
+          <ExecutiveProfiles items={EXECUTIVE_PROFILES} />
         </div>
       </section>
 

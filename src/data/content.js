@@ -186,35 +186,6 @@ export const COMPANY = {
     { title: 'Connect the ecosystem', body: 'Agriculture does not operate in isolated systems. Farmers, government, field teams, enterprises, markets, knowledge and technology need to work as connected parts of the same operating environment.' },
     { title: 'Make intelligence actionable', body: 'Data is valuable when it helps someone make a better decision or take the right action. Our systems are designed to move from field data to insight, action and measurement.' }
   ],
-  /* Compact profiles: they support the story rather than dominating it.
-     `linkedin` stays empty until an official profile URL is approved. */
-  leadership: [
-    {
-      name: 'Pradeep Raj Y',
-      role: 'Founder & CEO',
-      photo: '/assets/img/people/pradeep-raj-y-cut.png',
-      focus: 'Agriculture \u00b7 Business transformation \u00b7 Value chains \u00b7 Digital operations',
-      linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
-      bio: [
-        'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
-        'Across these experiences, he saw a recurring challenge: agriculture was generating enormous amounts of field activity and knowledge, but the systems connecting people, operations and decisions were fragmented. In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it. That led to the creation of Farmreach Technologies.',
-        'Today, his work continues to focus on building practical operating systems and transformation capabilities for Indian agriculture.'
-      ]
-    },
-    {
-      name: 'Thangathtamilazhagie V',
-      alias: 'Abila',
-      role: 'Director & COO',
-      photo: '/assets/img/people/abila-cut.png',
-      focus: 'Digital transformation \u00b7 Product \u00b7 Operations \u00b7 Growth',
-      linkedin: 'https://www.linkedin.com/in/thangathtamilazhagie/',
-      bio: [
-        'Abila V is a digital transformation and business leader with over a decade of experience across agriculture, business operations, product, technology and growth. She began her journey with Farmreach in 2016 through client relationships and field-level exposure, gaining a practical understanding of how agricultural businesses and their teams operate.',
-        'Her role evolved across product management, strategy, planning, digital transformation, operations and growth. Working closely with teams and organisations on the ground shaped her approach to building technology around real business needs rather than technology alone.',
-        'Today, she focuses on translating complex agricultural operations into practical digital products, systems and operating models that teams can actually adopt.'
-      ]
-    }
-  ],
   xpedition: {
     label: 'Founder Advisory',
     title: 'Xpedition Labs',

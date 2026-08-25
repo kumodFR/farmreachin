@@ -13,8 +13,11 @@ const tree = (
   </RouterProvider>
 );
 
-/* Prerendered markup is hydrated; a bare container is rendered fresh. */
-if (container.hasChildNodes()) {
+/* Prerendered markup is hydrated; a bare container is rendered fresh.
+   firstElementChild, not hasChildNodes: in dev the container still holds the
+   <!--app-html--> placeholder, and a comment node counts as a child. That made
+   dev hydrate against markup that was never rendered, failing on every page. */
+if (container.firstElementChild) {
   hydrateRoot(container, tree);
 } else {
   createRoot(container).render(tree);

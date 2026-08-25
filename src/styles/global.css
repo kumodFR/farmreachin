@@ -901,7 +901,10 @@ body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer
   margin-top: var(--space-lg); font-size: var(--step-lead); line-height: 1.5; font-style: italic;
   color: var(--text-primary); border-top: 1px solid var(--line); padding-top: var(--space-lg);
 }
-.exec-lbx__sectionTitle { font-size: var(--step-h3); font-weight: 700; color: var(--brand-accent); letter-spacing: -0.005em; }
+/* text-wrap: pretty overrides the balance inherited from the global h1-h4
+   rule: these headings are long enough to wrap, and balance was breaking
+   the first line short of the panel width. */
+.exec-lbx__sectionTitle { font-size: var(--step-h3); font-weight: 700; color: var(--brand-accent); letter-spacing: -0.005em; text-wrap: pretty; }
 .exec-lbx__sectionMeta { font-size: 12.5px; color: var(--text-tertiary); margin-top: 2px; }
 .exec-lbx__section > p:not(.exec-lbx__sectionMeta) { margin-top: var(--space-sm); }
 .exec-lbx__callout {

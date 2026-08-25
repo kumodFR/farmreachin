@@ -154,11 +154,11 @@ export const GALLERY = {
       alt: 'Four colleagues reviewing the corn seed production management system on a mobile phone at the roadside in a village'
     },
     {
-      id: 'syngenta-philippines-corn-seed-2017',
-      year: '2017',
+      id: 'syngenta-philippines-corn-seed-2018',
+      year: '2018',
       caption: 'Corn Seed Production Management Launch \u2014 Syngenta Philippines',
       category: 'Customer',
-      src: '/assets/img/gallery/syngenta-philippines-corn-seed-2017.jpg',
+      src: '/assets/img/gallery/syngenta-philippines-corn-seed-2018.jpg',
       alt: 'Two field staff checking the corn seed production management app on a phone beside a standing corn crop in the Philippines',
       wide: true
     },
@@ -204,6 +204,15 @@ export const GALLERY = {
       category: 'Partnerships',
       src: '/assets/img/gallery/extension-worker-training-2020.jpg',
       alt: 'A full hall of extension workers following a projected demonstration and working through the field activity app on their own phones',
+      wide: true
+    },
+    {
+      id: 'anantha-samruddhi-market-linkage-2020',
+      year: '2020',
+      caption: 'Primary Processing & Market Linkage \u2014 Anantha Samruddhi',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/anantha-samruddhi-market-linkage-2020.jpg',
+      alt: 'A grading and cleaning line at the primary processing centre, with sacks of graded produce ready for market linkage',
       wide: true
     }
   ],

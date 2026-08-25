@@ -79,7 +79,7 @@ export const GALLERY = {
     },
     {
       id: 'nrsc-geospatial',
-      year: '2013',
+      year: '2023',
       caption: 'Geospatial Technology in Agriculture \u2014 NRSC, Hyderabad',
       description: 'Early exposure to the application of geospatial analysis and remote sensing technologies in agriculture, at NRSC, Hyderabad.',
       category: 'Technology & Products',

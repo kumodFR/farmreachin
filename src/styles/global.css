@@ -618,7 +618,10 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 .gal__caption { font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); }
 .gal__year { font-weight: 700; color: var(--brand-accent); font-variant-numeric: tabular-nums; }
 /* Location sits under the caption on its own line; inherits the caption type. */
-.gal__location { display: block; color: var(--text-tertiary); }
+.gal__location { display: flex; align-items: center; gap: 5px; color: var(--text-tertiary); }
+/* max-width:none overrides the global `img, svg { max-width: 100% }`, which
+   otherwise resolves to 0 inside the caption and collapses the icon. */
+.gal__location svg { width: 9px; height: 9px; max-width: none; flex: none; }
 
 /* lightbox */
 .lbx {
@@ -633,7 +636,8 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 }
 .lbx__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm); }
 .lbx__caption { font-size: 13.5px; color: #E8EFEA; }
-.lbx__location { margin-top: 2px; font-size: 12.5px; color: #A9B6AE; }
+.lbx__location { display: flex; align-items: center; gap: 5px; margin-top: 2px; font-size: 12.5px; color: #A9B6AE; }
+.lbx__location svg { width: 9px; height: 9px; max-width: none; flex: none; }
 .lbx__desc { max-width: 68ch; margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: #A9B6AE; }
 .lbx__caption .gal__year { color: #7FC79E; }
 .lbx__nav { display: flex; gap: 8px; }

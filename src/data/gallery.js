@@ -128,8 +128,9 @@ export const GALLERY = {
     {
       id: 'farmer-app-launch-2023',
       year: '2023',
-      caption: 'Farmer App Launch \u2014 On-Demand Field Advisory',
-      description: 'Launching a farmer-facing platform for on-demand Field Officer visits and personalised agricultural advisory.',
+      caption: 'Farminsta Farmer App Launch \u2014 On-Demand Field Advisory',
+      location: 'Pune, Maharashtra',
+      description: 'A farmer-facing service that enables farmers to request field visits for crop advisory and on-farm problem resolution. Farmers can raise a service request through the app and connect with Field Officers for timely farm-level support.',
       category: 'Technology & Products',
       src: '/assets/img/gallery/farmer-app-launch-2023.jpg',
       alt: 'A Farminsta team member being interviewed at the farmer app launch stand, with two colleagues and the Farminsta banner behind'

@@ -118,10 +118,12 @@ export const GALLERY = {
     {
       id: 'upl-farminsta-2022',
       year: '2022',
-      caption: 'UPL \u2014 Farminsta Launch',
+      caption: 'UPL SAS \u2014 Field Operations Automation',
+      location: 'Rajkot, Gujarat',
+      description: 'Implementation of Farminsta to automate field operations for UPL SAS, bringing field team activity, work allocation and on-ground reporting into a single digital workflow with visibility for management.',
       category: 'Partnerships',
       src: '/assets/img/gallery/upl-farminsta-launch-2022.jpg',
-      alt: 'The UPL field team at the Farminsta launch session, seated as a colleague presents',
+      alt: 'The UPL SAS field team at the Farminsta launch session, seated as a colleague presents',
       wide: true,
       contain: true
     },

@@ -108,7 +108,6 @@
   .jrn__marker { flex-direction: row; align-items: center; height: 20px; margin: 0 calc(var(--space-md) / -2) var(--space-sm); }
   .jrn__rail { width: auto; height: 1px; min-height: 0; }
   .jrn__dot { margin-block: 0; margin-inline: 6px; }
-  .jrn__year { margin-bottom: 6px; }
   .jrn__body { font-size: 13.5px; }
   .cap-list__item { grid-template-columns: 40px minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: baseline; }
   .cap-list__foot { padding-left: 40px; }
@@ -128,7 +127,6 @@
   .track__marker { flex-direction: row; align-items: center; height: 20px; margin-bottom: var(--space-sm); }
   .track__line { width: auto; height: 1px; min-height: 0; }
   .track__dot { margin-block: 0; margin-inline: 6px; }
-  .track__num { margin-bottom: 6px; }
   .track__body { font-size: 13px; }
   .split { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); }
   .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }

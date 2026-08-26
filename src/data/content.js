@@ -31,7 +31,7 @@ export const ARCHITECTURE = {
       name: 'Consulting & Transformation',
       subtitle: 'Strategy to field execution',
       body: 'Operating model, process, digital, go-to-market and implementation work, delivered across both the public and private sides of agriculture.',
-      cta: 'Explore Consulting',
+      cta: 'Explore Advisory',
       href: '/consulting',
       external: false,
       tone: 'advisory'
@@ -47,7 +47,7 @@ export const HOME = {
   hero: {
     kicker: "India's Agricultural Operating Systems & Transformation Company",
     headline: 'We build the systems that make agriculture work.',
-    paragraph: 'Farmreach Technologies combines agricultural operating expertise, technology, data and transformation consulting to help governments and enterprises design, build and operate agricultural systems at scale.'
+    paragraph: 'Farmreach Technologies combines agricultural operating expertise, technology and transformation advisory to help governments and enterprises design, build and operate agricultural systems at scale.'
   },
   system: {
     eyebrow: 'How we see agriculture',
@@ -196,7 +196,7 @@ export const COMPANY = {
   },
   capability: [
     { title: 'Technology capability', body: 'Two production operating systems, built for offline-first field capture, government integration and state-scale geography.' },
-    { title: 'Consulting capability', body: 'Transformation, process, digital, GTM and implementation consulting delivered by people who have operated what they design.' }
+    { title: 'Advisory capability', body: 'Transformation, process, digital, GTM and implementation advisory delivered by people who have operated what they design.' }
   ],
   careers: {
     title: 'Careers',
@@ -355,7 +355,7 @@ export const CONSULTING = {
     body: 'Where an engagement starts differs by organisation. The sequence does not: understand the operating environment first, then change it in steps that can be tested in the field.'
   },
   engagements: {
-    eyebrow: 'Consulting engagements',
+    eyebrow: 'Advisory engagements',
     title: 'Where we engage',
     body: 'Four engagement types, each with a defined scope and a defined set of outputs.'
   },
@@ -365,12 +365,12 @@ export const CONSULTING = {
   },
   why: {
     eyebrow: 'Why Farmreach',
-    title: 'Consulting grounded in operating experience',
-    body: "Farmreach's consulting approach comes from operating agricultural systems, not only studying them. Since 2016, the team has worked across field operations, farmer systems, production, value chains, government programmes, channel management and digital outreach \u2014 experience that informs how transformation programmes are designed and implemented."
+    title: 'Advisory grounded in operating experience',
+    body: "Farmreach's advisory approach comes from operating agricultural systems, not only studying them. Since 2016, the team has worked across field operations, farmer systems, production, value chains, government programmes, channel management and digital outreach \u2014 experience that informs how transformation programmes are designed and implemented."
   },
   bridge: {
-    eyebrow: 'Consulting and the operating systems',
+    eyebrow: 'Advisory and the operating systems',
     title: 'From transformation strategy to operating capability',
-    body: 'Consulting can stand alone or lead into technology implementation. Where appropriate, Farmreach can translate the transformation roadmap into Farmreach OS for public enterprise or Farminsta OS for private enterprise.'
+    body: 'Advisory can stand alone or lead into technology implementation. Where appropriate, Farmreach can translate the transformation roadmap into Farmreach OS for public enterprise or Farminsta OS for private enterprise.'
   }
 };

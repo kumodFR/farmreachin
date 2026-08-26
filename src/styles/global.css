@@ -398,7 +398,7 @@ a:hover { color: var(--brand-accent); }
   position: relative; display: grid; min-width: 0;
   grid-template-columns: 28px minmax(0, 1fr);
   grid-template-areas: "marker num" "marker title" "marker body";
-  gap: 2px var(--space-sm); padding-bottom: var(--space-lg);
+  gap: 0 var(--space-sm); padding-bottom: var(--space-lg);
   align-content: start;
 }
 .track__stage > * { min-width: 0; }
@@ -413,8 +413,8 @@ a:hover { color: var(--brand-accent); }
 .track__line--out { background: var(--brand-hairline); }
 .track__stage:first-child .track__line--in,
 .track__stage:last-child .track__line--out { background: transparent; }
-.track__num { grid-area: num; font-size: var(--step-micro); font-weight: 700; letter-spacing: 0.22em; color: var(--brand-accent); }
-.track__title { grid-area: title; font-size: clamp(17px, 0.6vw + 15px, 20px); font-weight: 700; }
+.track__num { grid-area: num; font-size: var(--step-micro); font-weight: 700; letter-spacing: 0.22em; color: var(--brand-accent); margin-bottom: var(--space-2xs); }
+.track__title { grid-area: title; font-size: clamp(17px, 0.6vw + 15px, 20px); font-weight: 700; margin-bottom: var(--space-2xs); }
 .track__body { grid-area: body; font-size: 14px; line-height: 1.6; max-width: 46ch; }
 
 /* ----------------------------------------------------------------- journey */
@@ -472,7 +472,7 @@ a:hover { color: var(--brand-accent); }
   display: grid; min-width: 0; align-content: start;
   grid-template-columns: 28px minmax(0, 1fr);
   grid-template-areas: "marker year" "marker title" "marker body";
-  gap: 2px var(--space-sm); padding-bottom: var(--space-lg);
+  gap: 0 var(--space-sm); padding-bottom: var(--space-lg);
 }
 .jrn__step > * { min-width: 0; }
 .jrn__marker { grid-area: marker; display: flex; flex-direction: column; align-items: center; }
@@ -488,8 +488,9 @@ a:hover { color: var(--brand-accent); }
 .jrn__year {
   grid-area: year; font-size: var(--step-micro); font-weight: 700;
   letter-spacing: 0.22em; color: var(--brand-accent); font-variant-numeric: tabular-nums;
+  margin-bottom: var(--space-2xs);
 }
-.jrn__title { grid-area: title; font-size: clamp(17px, 0.6vw + 15px, 20px); font-weight: 700; }
+.jrn__title { grid-area: title; font-size: clamp(17px, 0.6vw + 15px, 20px); font-weight: 700; margin-bottom: var(--space-2xs); }
 .jrn__body { grid-area: body; font-size: 14px; line-height: 1.6; max-width: 52ch; }
 .jrn__more { margin-top: var(--space-md); }
 
@@ -616,6 +617,8 @@ button.gal__tile:hover img { opacity: 0.9; }
 button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 3px; }
 .gal__caption { font-size: 12.5px; line-height: 1.5; color: var(--text-secondary); }
 .gal__year { font-weight: 700; color: var(--brand-accent); font-variant-numeric: tabular-nums; }
+/* Location sits under the caption on its own line; inherits the caption type. */
+.gal__location { display: block; color: var(--text-tertiary); }
 
 /* lightbox */
 .lbx {
@@ -630,6 +633,7 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 }
 .lbx__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm); }
 .lbx__caption { font-size: 13.5px; color: #E8EFEA; }
+.lbx__location { margin-top: 2px; font-size: 12.5px; color: #A9B6AE; }
 .lbx__desc { max-width: 68ch; margin-top: 4px; font-size: 12.5px; line-height: 1.55; color: #A9B6AE; }
 .lbx__caption .gal__year { color: #7FC79E; }
 .lbx__nav { display: flex; gap: 8px; }

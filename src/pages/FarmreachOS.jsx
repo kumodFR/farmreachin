@@ -154,7 +154,7 @@ export default function FarmreachOS() {
         title="For states considering this"
         body="Tell us the district, the scheme or the department system this needs to work with. We will come back with what the first season would involve."
         primary={{ href: '/contact', label: 'Request a state briefing' }}
-        secondary={{ href: '/consulting', label: 'Explore Consulting' }}
+        secondary={{ href: '/consulting', label: 'Explore Advisory' }}
       />
     </>
   );

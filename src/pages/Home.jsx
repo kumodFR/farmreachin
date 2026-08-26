@@ -15,7 +15,7 @@ import { SERVICES, APPROACH } from '../data/services.js';
 export const meta = {
   path: '/',
   title: "Farmreach Technologies — India's Agricultural Operating Systems & Transformation Company",
-  description: 'Farmreach Technologies combines agricultural operating expertise, technology, data and transformation consulting to help governments and enterprises design, build and operate agricultural systems at scale.'
+  description: 'Farmreach Technologies combines agricultural operating expertise, technology, data and transformation advisory to help governments and enterprises design, build and operate agricultural systems at scale.'
 };
 
 export default function Home() {

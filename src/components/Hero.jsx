@@ -19,7 +19,7 @@ export default function Hero() {
               Explore Farmreach OS <span className="btn__arrow" aria-hidden="true">&rarr;</span>
             </Link>
             <Link to="/consulting" className="btn btn--secondary">
-              Explore Consulting <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+              Explore Advisory <span className="btn__arrow" aria-hidden="true">&rarr;</span>
             </Link>
           </div>
         </div>

@@ -49,6 +49,7 @@ export default function GalleryGrid({ items }) {
                 <span className="gal__year">{item.year}</span>
                 <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
                 {item.caption}
+                {item.location ? <span className="gal__location">{item.location}</span> : null}
               </span>
             </button>
           </li>
@@ -67,6 +68,7 @@ export default function GalleryGrid({ items }) {
                       <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
                       {current.caption}
                     </p>
+                    {current.location ? <p className="lbx__location">{current.location}</p> : null}
                     {current.description ? <p className="lbx__desc">{current.description}</p> : null}
                   </div>
                   <div className="lbx__nav">

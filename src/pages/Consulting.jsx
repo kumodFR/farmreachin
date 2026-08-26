@@ -13,7 +13,7 @@ import { FARMINSTA_URL } from '../data/site.js';
 export const meta = {
   path: '/consulting',
   title: 'Consulting & Transformation — Farmreach Technologies',
-  description: 'Agricultural transformation and advisory: operating model, digital transformation, process consulting and go-to-market work from a company that has operated agricultural systems at scale.'
+  description: 'Agricultural transformation and advisory: operating model, digital transformation, process advisory and go-to-market work from a company that has operated agricultural systems at scale.'
 };
 
 /* Three customer groups and the four capability areas are compact by intent:
@@ -25,7 +25,7 @@ export default function Consulting() {
         eyebrow="Consulting & Transformation"
         title={CONSULTING.hero.title}
         lede={CONSULTING.hero.lede}
-        crumb="Consulting"
+        crumb="Advisory"
         actions={
           <>
             <Link to="/contact" className="btn btn--primary">

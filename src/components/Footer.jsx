@@ -44,7 +44,7 @@ export default function Footer() {
             <div className="site-footer__links">
               <Link to="/farmreach-os">Public Enterprise</Link>
               <Ext href={FARMINSTA_URL}>Private Enterprise</Ext>
-              <Link to="/consulting">Consulting</Link>
+              <Link to="/consulting">Advisory</Link>
               <Link to="/company">Careers</Link>
             </div>
           </div>

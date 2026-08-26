@@ -79,7 +79,7 @@ export const FARMREACH_OS_PRINCIPLES = [
 /* The public extension cadre is listed first: the field officer is the primary
    operational connection between the state and the farmer. */
 export const FARMREACH_OS_STAKEHOLDERS = [
-  'Extension officers — Krishi Paryavekshak and equivalent field cadre',
+  'Extension Officers and equivalent field cadres',
   'District and block officers',
   'State agriculture departments',
   'Commissionerates and directorates',

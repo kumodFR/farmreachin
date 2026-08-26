@@ -47,7 +47,7 @@ export const HOME = {
   hero: {
     kicker: "India's Agricultural Operating Systems & Transformation Company",
     headline: 'We build the systems that make agriculture work.',
-    paragraph: 'Farmreach Technologies combines agricultural operating expertise, technology, data and transformation consulting to help governments and enterprises design, build and operate agricultural systems at scale.'
+    paragraph: 'Farmreach Technologies combines agricultural operating expertise, technology and transformation advisory to help governments and enterprises design, build and operate agricultural systems at scale.'
   },
   system: {
     eyebrow: 'How we see agriculture',

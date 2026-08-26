@@ -222,7 +222,7 @@ export const GALLERY = {
       id: 'tnscm-vegetable-processing-2016',
       year: '2016',
       caption: 'TNSCM \u2014 Vegetable Primary Processing & Market Linkage',
-      location: 'Krishnagiri, Tamil Nadu',
+      location: 'Dindigul PPC',
       description: 'Enabled farmers to access Primary Processing Centres (PPCs) for cleaning, sorting and grading vegetables before connecting the produce to markets. Implemented in collaboration with TNSCM, Government of Tamil Nadu, and ICRISAT.',
       category: 'Partnerships',
       src: '/assets/img/gallery/tnscm-vegetable-processing-2016.jpg',

@@ -19,7 +19,7 @@ export default function NotFound() {
         <div className="btn-row" style={{ marginTop: 'var(--space-lg)' }}>
           <Link to="/" className="btn btn--primary">Home <span className="btn__arrow" aria-hidden="true">&rarr;</span></Link>
           <Link to="/farmreach-os" className="btn btn--secondary">Farmreach OS <span className="btn__arrow" aria-hidden="true">&rarr;</span></Link>
-          <Link to="/consulting" className="btn btn--secondary">Consulting <span className="btn__arrow" aria-hidden="true">&rarr;</span></Link>
+          <Link to="/consulting" className="btn btn--secondary">Advisory <span className="btn__arrow" aria-hidden="true">&rarr;</span></Link>
           <Link to="/contact" className="btn btn--secondary">Contact <span className="btn__arrow" aria-hidden="true">&rarr;</span></Link>
         </div>
       </div>

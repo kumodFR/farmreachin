@@ -8,7 +8,7 @@
 export const CAPABILITY_AREAS = [
   { id: 'operating-model', short: 'Business & Operating Model', summary: 'Designing practical operating models, workflows, roles and governance for agricultural organisations.' },
   { id: 'digital', short: 'Digital Transformation', summary: 'Assessing existing processes and systems and designing digital workflows, platforms and integrations that support real operations.' },
-  { id: 'process', short: 'Process & Operations Consulting', summary: 'Mapping current operations, identifying opportunities for improvement and building scalable processes across field, farmer, channel and value-chain operations.' },
+  { id: 'process', short: 'Process & Operations Advisory', summary: 'Mapping current operations, identifying opportunities for improvement and building scalable processes across field, farmer, channel and value-chain operations.' },
   { id: 'growth', short: 'Go-to-Market & Growth', summary: 'Designing market-entry, farmer engagement, channel, digital outreach and execution strategies for agricultural businesses.' }
 ];
 
@@ -48,8 +48,8 @@ export const SERVICES = [
     id: 'process-consulting',
     homeName: 'Process & Operations',
     homeSummary: 'Business process audits, workflow redesign, operating structures and process improvement across agricultural operations.',
-    name: 'Process Consulting',
-    short: 'Process Consulting',
+    name: 'Process Advisory',
+    short: 'Process Advisory',
     summary: 'Redesigning field, farmer, channel, production and value-chain processes for greater operational clarity and scalability.',
     explain: [
       'Business process mapping',
@@ -101,8 +101,8 @@ export const SERVICES = [
     id: 'gtm-consulting',
     homeName: 'Go-to-market',
     homeSummary: 'GTM strategy, channel models, field-force structures, farmer engagement and commercial execution.',
-    name: 'GTM Consulting',
-    short: 'GTM Consulting',
+    name: 'GTM Advisory',
+    short: 'GTM Advisory',
     summary: 'Helping agricultural businesses design market-entry, farmer acquisition, channel and digital engagement strategies aligned to their operating model.',
     explain: [
       'Market segmentation',

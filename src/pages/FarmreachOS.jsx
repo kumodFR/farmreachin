@@ -17,8 +17,8 @@ import {
 
 export const meta = {
   path: '/farmreach-os',
-  title: 'Farmreach OS — Government Agriculture Operating System | Farmreach Technologies',
-  description: 'Farmreach OS is the government agriculture operating system: intelligence, orchestration, field operations and decision infrastructure for state agriculture, working with existing government systems.'
+  title: 'Farmreach OS — Government Agriculture Operating System',
+  description: 'Intelligence, orchestration, field operations and decision infrastructure for state agriculture, working with the systems a department already runs.'
 };
 
 const [FARMREACH_OS] = OPERATING_SYSTEMS;

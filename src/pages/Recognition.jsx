@@ -6,7 +6,7 @@ import { RECOGNITION } from '../data/recognition.js';
 export const meta = {
   path: '/recognition',
   title: 'Recognition — Farmreach Technologies',
-  description: 'Recognition for Farmreach Technologies across agricultural technology, rural markets and digital transformation, including the HYSEA 10X Product Awards and The Economic Times Champions of Rural Markets.'
+  description: 'Recognition for Farmreach across agricultural technology and rural markets, including the HYSEA 10X Product Awards and ET Champions of Rural Markets.'
 };
 
 /* A curated timeline: year and citation on one side, the event photograph on

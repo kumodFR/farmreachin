@@ -171,14 +171,6 @@ export const GALLERY = {
       alt: 'A field team seated around a table working through the seed production management app on their phones during a training session'
     },
     {
-      id: 'anantha-samruddhi-processing-automation-2019',
-      year: '2019',
-      caption: 'Primary Processing Centre Automation \u2014 Anantha Samruddhi',
-      category: 'Partnerships',
-      src: '/assets/img/gallery/anantha-samruddhi-processing-automation-2019.jpg',
-      alt: 'Operators running a grading and cleaning line at a primary processing centre, with produce moving along the conveyor'
-    },
-    {
       id: 'hysea-innovation-summit-2019',
       year: '2019',
       caption: 'HYSEA Innovation Summit \u2014 Pitch',
@@ -212,8 +204,7 @@ export const GALLERY = {
       caption: 'Primary Processing & Market Linkage \u2014 Anantha Samruddhi',
       category: 'Partnerships',
       src: '/assets/img/gallery/anantha-samruddhi-market-linkage-2020.jpg',
-      alt: 'A grading and cleaning line at the primary processing centre, with sacks of graded produce ready for market linkage',
-      wide: true
+      alt: 'Workers running the grading and cleaning line at the primary processing centre, with graded produce collecting below the conveyor'
     }
   ],
   closing: {

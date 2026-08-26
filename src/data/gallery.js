@@ -33,6 +33,8 @@ export const GALLERY = {
       id: 'hysea-2020',
       year: '2020',
       caption: 'HYSEA \u2014 10X Product Awards',
+      location: 'Hyderabad, Telangana',
+      description: 'Recognition at the HYSEA 10X Product Awards for innovation and product development in the technology ecosystem.',
       category: 'Recognition',
       src: '/assets/img/recognition/hysea-10x-2020.jpg',
       alt: 'Farmreach Technologies receiving the HYSEA 10X Product Awards recognition on stage',

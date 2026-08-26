@@ -217,6 +217,16 @@ export const GALLERY = {
       category: 'Partnerships',
       src: '/assets/img/gallery/anantha-samruddhi-market-linkage-2020.jpg',
       alt: 'Workers running the grading and cleaning line at the primary processing centre, with graded produce collecting below the conveyor'
+    },
+    {
+      id: 'tnscm-vegetable-processing-2016',
+      year: '2016',
+      caption: 'TNSCM \u2014 Vegetable Primary Processing & Market Linkage',
+      location: 'Krishnagiri, Tamil Nadu',
+      description: 'Enabled farmers to access Primary Processing Centres (PPCs) for cleaning, sorting and grading vegetables before connecting the produce to markets. Implemented in collaboration with TNSCM, Government of Tamil Nadu, and ICRISAT.',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/tnscm-vegetable-processing-2016.jpg',
+      alt: 'Officials and farmers sorting and grading leafy vegetables into steel trays on the handling tables of a primary processing centre'
     }
   ],
   closing: {

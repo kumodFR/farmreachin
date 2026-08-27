@@ -1,6 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
+/* Map pin for the location line. Same 10x10 grid and 1.4 stroke as
+   ExternalMark in router.jsx, so the icon set stays consistent. */
+function PinMark() {
+  return (
+    <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+      <path d="M8 4a3 3 0 1 0-6 0c0 2 3 4.9 3 4.9S8 6 8 4Z" />
+      <circle cx="5" cy="4" r="1.05" />
+    </svg>
+  );
+}
+
 /* Editorial photo grid with a lightbox, newest year first. */
 export default function GalleryGrid({ items }) {
   const [openId, setOpenId] = useState(null);
@@ -49,7 +60,7 @@ export default function GalleryGrid({ items }) {
                 <span className="gal__year">{item.year}</span>
                 <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
                 {item.caption}
-                {item.location ? <span className="gal__location">{item.location}</span> : null}
+                {item.location ? <span className="gal__location"><PinMark />{item.location}</span> : null}
               </span>
             </button>
           </li>
@@ -68,7 +79,7 @@ export default function GalleryGrid({ items }) {
                       <span aria-hidden="true">{'\u00a0\u00b7\u00a0'}</span>
                       {current.caption}
                     </p>
-                    {current.location ? <p className="lbx__location">{current.location}</p> : null}
+                    {current.location ? <p className="lbx__location"><PinMark />{current.location}</p> : null}
                     {current.description ? <p className="lbx__desc">{current.description}</p> : null}
                   </div>
                   <div className="lbx__nav">

@@ -13,10 +13,18 @@ const { render, PAGES, NOT_FOUND } = await import(pathToFileURL(join(process.cwd
 
 const template = await readFile(join(DIST, 'index.html'), 'utf8');
 
-const withMeta = (html, meta, url) => html
+/* The not-found page must not be indexed, and must not claim a canonical of
+   its own: a self-canonical invites a crawler to treat it as a real page. It
+   gets a robots noindex in place of the canonical link. */
+const withMeta = (html, meta, url, indexable = true) => html
   .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
   .replace(/(<meta name="description" content=")[\s\S]*?(">)/, `$1${meta.description}$2`)
-  .replace(/(<link rel="canonical" href=")[^"]*(">)/, `$1${url}$2`)
+  .replace(
+    /<link rel="canonical" href="[^"]*">/,
+    indexable
+      ? `<link rel="canonical" href="${url}">`
+      : '<meta name="robots" content="noindex, follow">'
+  )
   .replace(/(<meta property="og:title" content=")[\s\S]*?(">)/, `$1${meta.title}$2`)
   .replace(/(<meta property="og:description" content=")[\s\S]*?(">)/, `$1${meta.description}$2`)
   .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${url}$2`);
@@ -30,7 +38,7 @@ const emit = async (route) => {
       ? join(DIST, '404.html')
       : join(DIST, route.path.slice(1), 'index.html');
 
-  const page = withMeta(template, meta, url).replace('<!--app-html-->', html);
+  const page = withMeta(template, meta, url, route.path !== '/404').replace('<!--app-html-->', html);
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, page, 'utf8');
   console.log('prerendered', file);

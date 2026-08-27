@@ -4,7 +4,7 @@ import { Link } from '../router.jsx';
 export const meta = {
   path: '/404',
   title: 'Page not found — Farmreach Technologies',
-  description: 'The page you were looking for is not here.'
+  description: 'This page could not be found. Use the navigation to reach Farmreach OS, Advisory, Our Story, Recognition, Gallery or Contact.'
 };
 
 export default function NotFound() {

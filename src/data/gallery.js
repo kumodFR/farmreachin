@@ -33,6 +33,8 @@ export const GALLERY = {
       id: 'hysea-2020',
       year: '2020',
       caption: 'HYSEA \u2014 10X Product Awards',
+      location: 'Hyderabad, Telangana',
+      description: 'Recognition at the HYSEA 10X Product Awards for innovation and product development in the technology ecosystem.',
       category: 'Recognition',
       src: '/assets/img/recognition/hysea-10x-2020.jpg',
       alt: 'Farmreach Technologies receiving the HYSEA 10X Product Awards recognition on stage',
@@ -118,18 +120,21 @@ export const GALLERY = {
     {
       id: 'upl-farminsta-2022',
       year: '2022',
-      caption: 'UPL \u2014 Farminsta Launch',
+      caption: 'UPL SAS \u2014 Field Operations Automation',
+      location: 'Rajkot, Gujarat',
+      description: 'Implementation of Farminsta to automate field operations for UPL SAS, bringing field team activity, work allocation and on-ground reporting into a single digital workflow with visibility for management.',
       category: 'Partnerships',
       src: '/assets/img/gallery/upl-farminsta-launch-2022.jpg',
-      alt: 'The UPL field team at the Farminsta launch session, seated as a colleague presents',
+      alt: 'The UPL SAS field team at the Farminsta launch session, seated as a colleague presents',
       wide: true,
       contain: true
     },
     {
       id: 'farmer-app-launch-2023',
       year: '2023',
-      caption: 'Farmer App Launch \u2014 On-Demand Field Advisory',
-      description: 'Launching a farmer-facing platform for on-demand Field Officer visits and personalised agricultural advisory.',
+      caption: 'Farminsta Farmer App Launch \u2014 On-Demand Field Advisory',
+      location: 'Pune, Maharashtra',
+      description: 'A farmer-facing service that enables farmers to request field visits for crop advisory and on-farm problem resolution. Farmers can raise a service request through the app and connect with Field Officers for timely farm-level support.',
       category: 'Technology & Products',
       src: '/assets/img/gallery/farmer-app-launch-2023.jpg',
       alt: 'A Farminsta team member being interviewed at the farmer app launch stand, with two colleagues and the Farminsta banner behind'
@@ -216,6 +221,16 @@ export const GALLERY = {
       category: 'Partnerships',
       src: '/assets/img/gallery/anantha-samruddhi-market-linkage-2020.jpg',
       alt: 'Workers running the grading and cleaning line at the primary processing centre, with graded produce collecting below the conveyor'
+    },
+    {
+      id: 'tnscm-vegetable-processing-2016',
+      year: '2016',
+      caption: 'TNSCM \u2014 Vegetable Primary Processing & Market Linkage',
+      location: 'Dindigul PPC, Tamil Nadu',
+      description: 'Enabled farmers to access Primary Processing Centres (PPCs) for cleaning, sorting and grading vegetables before connecting the produce to markets. Implemented in collaboration with TNSCM, Government of Tamil Nadu, and ICRISAT.',
+      category: 'Partnerships',
+      src: '/assets/img/gallery/tnscm-vegetable-processing-2016.jpg',
+      alt: 'Officials and farmers sorting and grading leafy vegetables into steel trays on the handling tables of a primary processing centre'
     }
   ],
   closing: {

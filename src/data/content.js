@@ -357,7 +357,10 @@ export const CONSULTING = {
   engagements: {
     eyebrow: 'Advisory engagements',
     title: 'Where we engage',
-    body: 'Four engagement types, each with a defined scope and a defined set of outputs.'
+    body: [
+      'Farmreach works with agricultural organisations at different stages of transformation \u2014 from understanding current operations and identifying priorities to designing practical operating models and supporting implementation.',
+      'Four engagement types, each with a defined scope, clear priorities and practical outputs.'
+    ]
   },
   audience: {
     eyebrow: 'Who we work with',

@@ -27,6 +27,10 @@ export const CLIENTS = {
     { name: 'Aditya Agri Tech Private Limited' },
     { name: 'Genomix Agri Genetics Private Limited', logo: '/assets/img/clients/genomix-agri.png' },
     { name: 'Kaveri Seeds Company Limited', logo: '/assets/img/clients/kaveri-seeds.png' },
-    { name: 'Mahindra Summit Agriscience Limited', logo: '/assets/img/clients/mahindra-summit.png' }
+    { name: 'Mahindra Summit Agriscience Limited', logo: '/assets/img/clients/mahindra-summit.png' },
+    { name: 'Syngenta', logo: '/assets/img/clients/syngenta.png' },
+    { name: 'ICRISAT', logo: '/assets/img/clients/icrisat.png' },
+    { name: 'Anantha Samruddhi', logo: '/assets/img/clients/anantha-samruddhi.png' },
+    { name: 'TNSCM, Government of Tamil Nadu', logo: '/assets/img/clients/tnscm.png' }
   ]
 };

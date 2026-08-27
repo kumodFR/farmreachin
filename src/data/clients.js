@@ -23,7 +23,7 @@ export const CLIENTS = {
     { name: 'Paryan Alliance Pvt. Limited', logo: '/assets/img/clients/paryan-alliance.png' },
     { name: 'PT Albaugh Agro Indonesia', logo: '/assets/img/clients/albaugh.svg' },
     { name: 'Savannah Seeds Private Limited', logo: '/assets/img/clients/savannah-seeds.png' },
-    { name: 'Star Agrifarm Solutions Private Limited' },
+    { name: 'Star Agrifarm Solutions Private Limited', logo: '/assets/img/clients/star-agrifarm.png' },
     { name: 'Aditya Agri Tech Private Limited' },
     { name: 'Genomix Agri Genetics Private Limited', logo: '/assets/img/clients/genomix-agri.png' },
     { name: 'Kaveri Seeds Company Limited', logo: '/assets/img/clients/kaveri-seeds.png' },
@@ -31,6 +31,15 @@ export const CLIENTS = {
     { name: 'Syngenta', logo: '/assets/img/clients/syngenta.png' },
     { name: 'ICRISAT', logo: '/assets/img/clients/icrisat.png' },
     { name: 'Anantha Samruddhi', logo: '/assets/img/clients/anantha-samruddhi.png' },
-    { name: 'TNSCM, Government of Tamil Nadu', logo: '/assets/img/clients/tnscm.png' }
+    { name: 'TNSCM, Government of Tamil Nadu', logo: '/assets/img/clients/tnscm.png' },
+    { name: 'ICRISAT AIP', logo: '/assets/img/clients/icrisat-aip.png' },
+    { name: 'UPL', logo: '/assets/img/clients/upl.svg' },
+    { name: 'Prasad Seeds', logo: '/assets/img/clients/prasad-seeds.png' },
+    { name: 'SeedWorks International', logo: '/assets/img/clients/seedworks.png' },
+    { name: 'SWAL Corporation', logo: '/assets/img/clients/swal.png' },
+    { name: 'Nath Seeds', logo: '/assets/img/clients/nath-seeds.png' },
+    { name: 'Basant Agro Tech (I) Ltd.', logo: '/assets/img/clients/basant-agro.png' },
+    { name: 'CultivaTec', logo: '/assets/img/clients/cultivatec.png' },
+    { name: 'United Genetics', logo: '/assets/img/clients/united-genetics.png' }
   ]
 };

@@ -33,8 +33,13 @@ export default function ClientLogos({ items }) {
        and the section never traps the reader. */
     const onWheel = (ev) => {
       if (ev.ctrlKey) return;
-      const dy = Math.abs(ev.deltaY) > Math.abs(ev.deltaX) ? ev.deltaY : ev.deltaX;
+      let dy = Math.abs(ev.deltaY) > Math.abs(ev.deltaX) ? ev.deltaY : ev.deltaX;
       if (!dy) return;
+      /* deltaY is only in pixels when deltaMode is 0. Plenty of mice report
+         lines instead, where a notch is about 3, and a rail nudged 3px reads
+         as broken. Normalise before using it. */
+      if (ev.deltaMode === 1) dy *= 16;
+      else if (ev.deltaMode === 2) dy *= el.clientWidth;
       const max = el.scrollWidth - el.clientWidth;
       const next = el.scrollLeft + dy;
       if ((dy < 0 && el.scrollLeft > 0) || (dy > 0 && el.scrollLeft < max)) {

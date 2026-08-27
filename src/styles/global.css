@@ -470,14 +470,13 @@ a:hover { color: var(--brand-accent); }
   grid-auto-columns: clamp(132px, 15vw, 176px);
   background: var(--line); border: 1px solid var(--line);
   overflow-x: auto; overscroll-behavior-x: contain;
-  scroll-snap-type: x proximity;
   /* the rail owns its horizontal scrolling; the page never gains any */
   max-width: 100%;
   /* thin, quiet scrollbar rather than a carousel's chrome */
   scrollbar-width: thin; scrollbar-color: var(--line) transparent;
   cursor: grab;
 }
-.clients.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.clients.is-dragging { cursor: grabbing; }
 .clients::-webkit-scrollbar { height: 6px; }
 .clients::-webkit-scrollbar-track { background: transparent; }
 .clients::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
@@ -492,7 +491,6 @@ a:hover { color: var(--brand-accent); }
   display: grid; place-items: center; min-width: 0;
   padding: clamp(9px, 1vw, 13px) clamp(10px, 1.4vw, 18px);
   background: var(--surface-1); aspect-ratio: 12 / 7;
-  scroll-snap-align: start;
 }
 .section--soft-green .clients__cell { background: var(--card-on-soft); }
 /* Two caps, not one. A single max-height suits landscape marks but shrinks a

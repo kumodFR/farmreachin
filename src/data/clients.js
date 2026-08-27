@@ -40,6 +40,11 @@ export const CLIENTS = {
     { name: 'Nath Seeds', logo: '/assets/img/clients/nath-seeds.png' },
     { name: 'Basant Agro Tech (I) Ltd.', logo: '/assets/img/clients/basant-agro.png' },
     { name: 'CultivaTec', logo: '/assets/img/clients/cultivatec.png' },
-    { name: 'United Genetics', logo: '/assets/img/clients/united-genetics.png' }
+    { name: 'United Genetics', logo: '/assets/img/clients/united-genetics.png' },
+    { name: 'Arysta LifeScience', logo: '/assets/img/clients/arysta-lifescience.png' },
+    { name: 'Delta Seeds', logo: '/assets/img/clients/delta-seeds.png' },
+    { name: 'Prism', logo: '/assets/img/clients/prism.png' },
+    { name: 'Growero Technologies', logo: '/assets/img/clients/growero.png' },
+    { name: 'EF Polymer', logo: '/assets/img/clients/ef-polymer.png' }
   ]
 };

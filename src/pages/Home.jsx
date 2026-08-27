@@ -7,9 +7,11 @@ import ApproachTrack from '../components/ApproachTrack.jsx';
 import CapabilityList from '../components/CapabilityList.jsx';
 import JourneyTimeline from '../components/JourneyTimeline.jsx';
 import CTA from '../components/CTA.jsx';
+import ClientLogos from '../components/ClientLogos.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { Link } from '../router.jsx';
 import { HOME, ARCHITECTURE, JOURNEY } from '../data/content.js';
+import { CLIENTS } from '../data/clients.js';
 import { SERVICES, APPROACH } from '../data/services.js';
 
 export const meta = {
@@ -122,6 +124,19 @@ export default function Home() {
             moreHref="/company"
             moreLabel="Explore our full journey"
           />
+        </div>
+      </section>
+
+      {/* Clients & partners */}
+      <section className="section section--tight section--light" aria-labelledby="clients-title">
+        <div className="container">
+          <SectionHeading
+            id="clients-title"
+            eyebrow={CLIENTS.eyebrow}
+            title={CLIENTS.title}
+            body={CLIENTS.body}
+          />
+          <ClientLogos items={CLIENTS.items} />
         </div>
       </section>
 

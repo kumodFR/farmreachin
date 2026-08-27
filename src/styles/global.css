@@ -457,6 +457,33 @@ a:hover { color: var(--brand-accent); }
 .svc__outputs li { padding-block: 9px; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--text-primary); }
 .svc__outputs li:last-child { border-bottom: 0; }
 
+/* -------------------------------------------------------- clients grid
+   A hairline grid of equal cells. Marks are fitted inside each cell rather
+   than sized individually, so logos of different proportions read at a
+   common optical size and none is stretched or cropped. */
+.clients {
+  display: grid; gap: 1px; grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--line); border: 1px solid var(--line);
+}
+.clients__cell {
+  display: grid; place-items: center; min-width: 0;
+  padding: clamp(18px, 2.2vw, 26px) clamp(12px, 1.6vw, 20px);
+  background: var(--surface-1); aspect-ratio: 5 / 2;
+}
+.section--soft-green .clients__cell { background: var(--card-on-soft); }
+/* max-height keeps a tall mark from towering over a wide one; contain and the
+   auto height together preserve every mark's own ratio. */
+.clients__mark {
+  max-width: 100%; max-height: 46px; width: auto; height: auto;
+  object-fit: contain; opacity: 0.85;
+  transition: opacity var(--dur) var(--ease);
+}
+.clients__cell:hover .clients__mark { opacity: 1; }
+.clients__name {
+  font-size: 13px; font-weight: 600; line-height: 1.4; text-align: center;
+  color: var(--text-tertiary); text-wrap: balance;
+}
+
 /* ------------------------------------------------------------ capabilities */
 .caps { display: grid; gap: 1px; grid-template-columns: 1fr; background: var(--line); border-block: 1px solid var(--line); }
 .cap { background: var(--surface-1); padding: clamp(22px, 2.6vw, 38px); display: flex; flex-direction: column; gap: var(--space-xs); }

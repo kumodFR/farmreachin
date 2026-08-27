@@ -76,6 +76,7 @@
 /* --------------------------------------------------- mobile 480px - 767px */
 @media (min-width: 480px) and (max-width: 767px) {
   .caps, .svc-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clients { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pillar-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pillar-strip__item { padding-inline: var(--space-md); }
   .pillar-strip__item:first-child { padding-left: 0; }
@@ -151,6 +152,7 @@
   .os-panels { grid-template-columns: 1fr 1fr; }
   .caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .svc-index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .clients { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .svc__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
   .svc__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); }

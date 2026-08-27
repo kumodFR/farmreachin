@@ -23,7 +23,7 @@ export const CLIENTS = {
     { name: 'Paryan Alliance Pvt. Limited' },
     { name: 'PT Albaugh Agro Indonesia', logo: '/assets/img/clients/albaugh.svg' },
     { name: 'Savannah Seeds Private Limited' },
-    { name: 'Star Agrifarm Solutions Private Limited', logo: '/assets/img/clients/staragri.png' },
+    { name: 'Star Agrifarm Solutions Private Limited' },
     { name: 'Aditya Agri Tech Private Limited' },
     { name: 'Genomix Agri Genetics Private Limited' },
     { name: 'Kaveri Seeds Company Limited' },

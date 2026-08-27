@@ -45,6 +45,12 @@ export const CLIENTS = {
     { name: 'Delta Seeds', logo: '/assets/img/clients/delta-seeds.png' },
     { name: 'Prism', logo: '/assets/img/clients/prism.png' },
     { name: 'Growero Technologies', logo: '/assets/img/clients/growero.png' },
-    { name: 'EF Polymer', logo: '/assets/img/clients/ef-polymer.png' }
+    { name: 'EF Polymer', logo: '/assets/img/clients/ef-polymer.png' },
+    { name: 'Nova Agri Tech', logo: '/assets/img/clients/nova-agritech.png' },
+    { name: 'Super Seeds', logo: '/assets/img/clients/super-seeds.png' },
+    { name: 'Namdeo Umaji Agritech (India) Pvt. Ltd.', logo: '/assets/img/clients/namdeo-umaji.png' },
+    { name: 'Sea6 Energy', logo: '/assets/img/clients/sea6-energy.svg' },
+    { name: 'Sunrise Seeds', logo: '/assets/img/clients/sunrise-seeds.png' },
+    { name: 'Fertibase', logo: '/assets/img/clients/fertibase.png' }
   ]
 };

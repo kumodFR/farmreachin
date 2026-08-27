@@ -14,19 +14,19 @@ export const CLIENTS = {
   title: 'Organisations we have worked with',
   body: 'Farmreach has worked with agricultural, seed, crop protection, food and rural-sector organisations across India and international markets.',
   items: [
-    { name: 'Advanta Enterprises Limited' },
+    { name: 'Advanta Enterprises Limited', logo: '/assets/img/clients/advanta.png' },
     { name: 'Crystal Crop Protection Limited', logo: '/assets/img/clients/crystal-crop.png' },
-    { name: 'DCM Shriram Limited' },
-    { name: 'H.M.Clause India Pvt. Ltd.' },
+    { name: 'DCM Shriram Limited', logo: '/assets/img/clients/dcm-shriram.png' },
+    { name: 'H.M.Clause India Pvt. Ltd.', logo: '/assets/img/clients/hm-clause.png' },
     { name: 'Mahindra Agri Solutions', logo: '/assets/img/clients/mahindra-agri.png' },
     { name: 'Mahindra HZPC Private Limited', logo: '/assets/img/clients/mahindra-hzpc.png' },
-    { name: 'Paryan Alliance Pvt. Limited' },
+    { name: 'Paryan Alliance Pvt. Limited', logo: '/assets/img/clients/paryan-alliance.png' },
     { name: 'PT Albaugh Agro Indonesia', logo: '/assets/img/clients/albaugh.svg' },
-    { name: 'Savannah Seeds Private Limited' },
+    { name: 'Savannah Seeds Private Limited', logo: '/assets/img/clients/savannah-seeds.png' },
     { name: 'Star Agrifarm Solutions Private Limited' },
     { name: 'Aditya Agri Tech Private Limited' },
-    { name: 'Genomix Agri Genetics Private Limited' },
-    { name: 'Kaveri Seeds Company Limited' },
-    { name: 'Mahindra Summit Agriscience Limited' }
+    { name: 'Genomix Agri Genetics Private Limited', logo: '/assets/img/clients/genomix-agri.png' },
+    { name: 'Kaveri Seeds Company Limited', logo: '/assets/img/clients/kaveri-seeds.png' },
+    { name: 'Mahindra Summit Agriscience Limited', logo: '/assets/img/clients/mahindra-summit.png' }
   ]
 };

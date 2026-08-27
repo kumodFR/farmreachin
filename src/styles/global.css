@@ -490,15 +490,18 @@ a:hover { color: var(--brand-accent); }
 }
 .clients__cell {
   display: grid; place-items: center; min-width: 0;
-  padding: clamp(14px, 1.6vw, 20px) clamp(10px, 1.4vw, 18px);
-  background: var(--surface-1); aspect-ratio: 5 / 2;
+  padding: clamp(9px, 1vw, 13px) clamp(10px, 1.4vw, 18px);
+  background: var(--surface-1); aspect-ratio: 12 / 7;
   scroll-snap-align: start;
 }
 .section--soft-green .clients__cell { background: var(--card-on-soft); }
-/* max-height keeps a tall mark from towering over a wide one; contain and the
-   auto height together preserve every mark's own ratio. */
+/* Two caps, not one. A single max-height suits landscape marks but shrinks a
+   portrait one - a shield over a tagline, a circular seal - to a speck beside
+   them. Capping width as well lets a tall mark spend the full cell height
+   while a wide one is held by its width, so the two carry similar optical
+   weight. contain and the auto dimensions keep every ratio intact. */
 .clients__mark {
-  max-width: 100%; max-height: 40px; width: auto; height: auto;
+  max-width: 88%; max-height: 66px; width: auto; height: auto;
   object-fit: contain; opacity: 0.85;
   transition: opacity var(--dur) var(--ease);
   -webkit-user-drag: none; user-select: none;

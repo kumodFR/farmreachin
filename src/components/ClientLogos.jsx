@@ -71,11 +71,18 @@ export default function ClientLogos({ items }) {
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
 
-    /* A window resize event is too narrow: the rail also changes size when a
-       breakpoint swaps the column width, when the font loads, or when a mark
-       decodes. ResizeObserver catches every one of those. */
+    /* Re-measure from every signal that can change the rail's overflow, and do
+       not rely on any single one. A window resize misses a container-only
+       change; a ResizeObserver has proven unreliable under viewport emulation;
+       and a mark finishing decode can shift things after both. Cheap to run,
+       and the cue is wrong the moment one of them is missed. */
+    window.addEventListener('resize', measure);
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
-    if (ro) ro.observe(el); else window.addEventListener('resize', measure);
+    if (ro) ro.observe(el);
+    el.querySelectorAll('img').forEach((img) => {
+      if (!img.complete) img.addEventListener('load', measure, { once: true });
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure).catch(() => {});
 
     return () => {
       el.removeEventListener('wheel', onWheel);
@@ -84,7 +91,8 @@ export default function ClientLogos({ items }) {
       el.removeEventListener('click', onClick, true);
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
-      if (ro) ro.disconnect(); else window.removeEventListener('resize', measure);
+      window.removeEventListener('resize', measure);
+      if (ro) ro.disconnect();
     };
   }, [measure]);
 

@@ -24,7 +24,7 @@ export const CLIENTS = {
     { name: 'PT Albaugh Agro Indonesia', logo: '/assets/img/clients/albaugh.svg' },
     { name: 'Savannah Seeds Private Limited', logo: '/assets/img/clients/savannah-seeds.png' },
     { name: 'Star Agrifarm Solutions Private Limited', logo: '/assets/img/clients/star-agrifarm.png' },
-    { name: 'Aditya Agri Tech Private Limited' },
+    { name: 'Aditya Agri Tech Private Limited', logo: '/assets/img/clients/aditya-agritech.png' },
     { name: 'Genomix Agri Genetics Private Limited', logo: '/assets/img/clients/genomix-agri.png' },
     { name: 'Kaveri Seeds Company Limited', logo: '/assets/img/clients/kaveri-seeds.png' },
     { name: 'Mahindra Summit Agriscience Limited', logo: '/assets/img/clients/mahindra-summit.png' },

@@ -783,6 +783,19 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 .field--trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .form__status--error { border-color: #C24A34; color: var(--text-primary); }
 
+/* Login skeleton (client portal). Reuses .form/.field/.btn as-is so the
+   eventual auth wiring drops in without new markup or styles. */
+.auth { min-height: 64vh; display: flex; align-items: center; }
+.auth__wrap { display: flex; justify-content: center; }
+.auth__card {
+  width: 100%; max-width: 420px; padding: clamp(28px, 3.4vw, 44px);
+  border: 1px solid var(--line); background: var(--surface-2); border-radius: var(--radius-md);
+}
+.auth__title { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-top: var(--space-2xs); }
+.auth__lede { color: var(--text-secondary); margin-top: var(--space-2xs); margin-bottom: var(--space-lg); }
+.auth__form { max-width: none; }
+.auth__foot { margin-top: var(--space-lg); font-size: 14px; color: var(--text-tertiary); text-align: center; }
+
 .office { display: grid; gap: var(--space-xl) var(--space-2xl); grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; }
 .office__title { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-primary); margin-top: var(--space-xs); }
 .office__address { font-style: normal; font-size: 16px; line-height: 1.9; color: var(--text-secondary); margin-top: var(--space-sm); }

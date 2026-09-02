@@ -11,10 +11,14 @@ import Gallery, { meta as galleryMeta } from './pages/Gallery.jsx';
 import Contact, { meta as contactMeta } from './pages/Contact.jsx';
 import Terms, { meta as termsMeta } from './pages/Terms.jsx';
 import Privacy, { meta as privacyMeta } from './pages/Privacy.jsx';
+import Login, { meta as loginMeta } from './pages/Login.jsx';
 import NotFound, { meta as notFoundMeta } from './pages/NotFound.jsx';
 
 /* Single route table: used by the client router AND by prerender.mjs, so the
-   static output and the SPA can never drift apart. */
+   static output and the SPA can never drift apart.
+   `indexable: false` keeps a route out of the sitemap and gives it a robots
+   noindex instead of a canonical — used for the 404 page and for /login,
+   which is a placeholder until the client-portal auth backend is chosen. */
 export const PAGES = [
   { path: '/', Component: Home, meta: homeMeta },
   { path: '/farmreach-os', Component: FarmreachOS, meta: osMeta },
@@ -24,10 +28,11 @@ export const PAGES = [
   { path: '/gallery', Component: Gallery, meta: galleryMeta },
   { path: '/contact', Component: Contact, meta: contactMeta },
   { path: '/terms', Component: Terms, meta: termsMeta },
-  { path: '/privacy', Component: Privacy, meta: privacyMeta }
+  { path: '/privacy', Component: Privacy, meta: privacyMeta },
+  { path: '/login', Component: Login, meta: loginMeta, indexable: false }
 ];
 
-export const NOT_FOUND = { path: '/404', Component: NotFound, meta: notFoundMeta };
+export const NOT_FOUND = { path: '/404', Component: NotFound, meta: notFoundMeta, indexable: false };
 
 export function resolve(path) {
   const clean = (path || '/').replace(/\/+$/, '') || '/';

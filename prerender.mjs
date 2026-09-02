@@ -38,7 +38,7 @@ const emit = async (route) => {
       ? join(DIST, '404.html')
       : join(DIST, route.path.slice(1), 'index.html');
 
-  const page = withMeta(template, meta, url, route.path !== '/404').replace('<!--app-html-->', html);
+  const page = withMeta(template, meta, url, route.indexable !== false).replace('<!--app-html-->', html);
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, page, 'utf8');
   console.log('prerendered', file);
@@ -49,7 +49,7 @@ await emit(NOT_FOUND);
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${PAGES.map((p) => `  <url><loc>${ORIGIN}${p.path}</loc><changefreq>monthly</changefreq><priority>${p.path === '/' ? '1.0' : '0.8'}</priority></url>`).join('\n')}
+${PAGES.filter((p) => p.indexable !== false).map((p) => `  <url><loc>${ORIGIN}${p.path}</loc><changefreq>monthly</changefreq><priority>${p.path === '/' ? '1.0' : '0.8'}</priority></url>`).join('\n')}
 </urlset>
 `;
 await writeFile(join(DIST, 'sitemap.xml'), sitemap, 'utf8');

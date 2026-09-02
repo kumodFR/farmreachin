@@ -24,7 +24,7 @@ function readCollapsed() {
 /* The persistent application shell: sidebar + header stay mounted across
    BIRD navigation, only the page content underneath changes. `title`/`tabs`
    let each page describe its own header without owning the header markup. */
-export default function AppShell({ title, tabs, activeTabKey, onSelectTab, actions, children }) {
+export default function AppShell({ title, tabs, activeTabKey, onSelectTab, actions, fullBleed, children }) {
   const { path } = useRouter();
   const activeKey = activeNavKey(path);
   const pageTitle = title || BIRD_NAV.find((n) => n.key === activeKey)?.label || 'BIRD';
@@ -61,7 +61,10 @@ export default function AppShell({ title, tabs, activeTabKey, onSelectTab, actio
           actions={actions}
           onOpenMenu={() => setMobileOpen(true)}
         />
-        <main className="bird-shell__content" id="bird-main">
+        <main
+          className={`bird-shell__content${fullBleed ? ' bird-shell__content--full' : ''}`}
+          id="bird-main"
+        >
           {children}
         </main>
       </div>

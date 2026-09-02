@@ -22,7 +22,7 @@ export default function Login() {
   /* Already signed in (e.g. opened /login again in the same browser) —
      skip straight to BIRD instead of asking to log in twice. */
   useEffect(() => {
-    if (isAuthenticated()) navigate('/bird');
+    if (isAuthenticated()) navigate('/bird/map');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -40,7 +40,7 @@ export default function Login() {
       setError(result.error);
       return;
     }
-    navigate('/bird');
+    navigate('/bird/map');
   };
 
   return (

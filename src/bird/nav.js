@@ -5,7 +5,7 @@
 
 export const BIRD_NAV = [
   { key: 'home', label: 'Home', route: '/bird', icon: 'home', status: 'available' },
-  { key: 'map', label: 'Map', route: '/bird/map', icon: 'map', status: 'coming-soon' },
+  { key: 'map', label: 'Map', route: '/bird/map', icon: 'map', status: 'available' },
   { key: 'analytics', label: 'Analytics', route: '/bird/analytics', icon: 'analytics', status: 'coming-soon' },
   { key: 'reports', label: 'Reports', route: '/bird/reports', icon: 'reports', status: 'coming-soon' },
   { key: 'settings', label: 'Settings', route: '/bird/settings', icon: 'settings', status: 'coming-soon' }

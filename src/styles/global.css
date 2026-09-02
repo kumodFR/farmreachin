@@ -64,9 +64,7 @@ a:hover { color: var(--brand-accent); }
    In dark mode they resolve to the dark surface ladder. */
 .section { position: relative; padding-block: var(--section-y); background: var(--surface-1); }
 .section--light { background: var(--surface-1); }
-.section--soft-green,
-.section--alt { background: var(--surface-2); }
-.section--elevated { background: var(--surface-3); }
+.section--soft-green { background: var(--surface-2); }
 .section--tight { padding-block: clamp(52px, 6vw, 84px); }
 
 .rule { height: 1px; border: 0; margin: 0; background: var(--line); }
@@ -244,7 +242,6 @@ a:hover { color: var(--brand-accent); }
 .geo__grid-inner line { stroke: var(--geo-grid-inner); stroke-width: 0.7; }
 .geo__dust { fill: var(--geo-dust); opacity: var(--geo-dust-opacity); }
 .geo__link { fill: none; stroke: var(--brand-accent); stroke-width: 0.7; opacity: 0.34; }
-.geo__label { font-size: 9.5px; font-weight: 600; letter-spacing: 1.4px; fill: var(--geo-label); }
 .geo__node-core { fill: var(--geo-node); }
 .geo__node-core--hot { fill: var(--geo-node-hot); }
 
@@ -883,7 +880,6 @@ body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer
 .geo__node > circle, .geo__node > text { transform-box: fill-box; transform-origin: center; }
 .geo__halo { opacity: 0.5; animation: geoFade 1.6s ease calc(1.45s + var(--i) * 0.045s) both; }
 .geo__node-core { animation: geoPop 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) calc(1.45s + var(--i) * 0.045s) both; }
-.geo__label { animation: geoFade 1.4s ease calc(3.6s + var(--i) * 0.05s) both; }
 .geo__pulse { animation: geoPulse 4.6s ease-out calc(4.2s + var(--i) * 0.5s) infinite; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -950,7 +946,11 @@ body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer
 .exec-cta:disabled { color: var(--text-tertiary); cursor: default; }
 .exec-cta svg { width: 9px; height: 9px; }
 
-.exec-lbx {
+/* Both profile dialogs are always in the DOM (see ExecutiveProfiles.jsx) so
+   their full content is crawlable; display:none is what actually hides the
+   closed one — the same toggle mechanism as an accordion or tab panel. */
+.exec-lbx { display: none; }
+.exec-lbx[data-open="true"] {
   position: fixed; inset: 0; z-index: 160; display: grid; place-items: center;
   padding: clamp(16px, 4vw, 48px); background: rgba(8, 12, 10, 0.72);
 }

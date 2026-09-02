@@ -49,12 +49,10 @@ export default function ExecutiveProfiles({ items }) {
                       View LinkedIn Profile <ExternalMark />
                     </a>
                   ) : null}
-                  {/* Label stays; the action waits on approved copy. */}
                   <button
                     type="button"
                     className="exec-cta"
                     onClick={() => setOpenId(p.id)}
-                    disabled={Boolean(p.profilePending)}
                   >
                     Read Full Profile <span aria-hidden="true">&rarr;</span>
                   </button>
@@ -178,7 +176,10 @@ export default function ExecutiveProfiles({ items }) {
                     {openPerson.positioning ? (
                       <div className="exec-lbx__callout">
                         <p className="exec-lbx__calloutTitle">{openPerson.positioning.heading}</p>
-                        <p>{openPerson.positioning.body}</p>
+                        {(Array.isArray(openPerson.positioning.body)
+                          ? openPerson.positioning.body
+                          : [openPerson.positioning.body]
+                        ).map((t) => <p key={t}>{t}</p>)}
                       </div>
                     ) : null}
 

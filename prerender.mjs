@@ -15,8 +15,19 @@ const template = await readFile(join(DIST, 'index.html'), 'utf8');
 
 /* The not-found page must not be indexed, and must not claim a canonical of
    its own: a self-canonical invites a crawler to treat it as a real page. It
-   gets a robots noindex in place of the canonical link. */
-const withMeta = (html, meta, url, indexable = true) => html
+   gets a robots noindex in place of the canonical link.
+
+   `pwa` swaps the manifest link, the iOS home-screen title and the iOS
+   home-screen icon so a BIRD page is installable as "BIRD" with its own
+   icon, not "Farmreach" — set per route in App.jsx; routes without one keep
+   the site defaults already in the template. */
+const DEFAULT_PWA = {
+  manifest: '/site.webmanifest',
+  appleTitle: 'Farmreach',
+  appleIcon: '/assets/img/apple-touch-icon.png'
+};
+
+const withMeta = (html, meta, url, indexable = true, pwa = DEFAULT_PWA) => html
   .replace(/<title>[\s\S]*?<\/title>/, `<title>${meta.title}</title>`)
   .replace(/(<meta name="description" content=")[\s\S]*?(">)/, `$1${meta.description}$2`)
   .replace(
@@ -27,7 +38,11 @@ const withMeta = (html, meta, url, indexable = true) => html
   )
   .replace(/(<meta property="og:title" content=")[\s\S]*?(">)/, `$1${meta.title}$2`)
   .replace(/(<meta property="og:description" content=")[\s\S]*?(">)/, `$1${meta.description}$2`)
-  .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${url}$2`);
+  .replace(/(<meta property="og:url" content=")[^"]*(">)/, `$1${url}$2`)
+  .replace(/<link rel="manifest" href="[^"]*">/, `<link rel="manifest" href="${pwa.manifest}">`)
+  .replace(/(<meta name="apple-mobile-web-app-title" content=")[^"]*(">)/, `$1${pwa.appleTitle}$2`)
+  .replace(/(<meta name="application-name" content=")[^"]*(">)/, `$1${pwa.appleTitle}$2`)
+  .replace(/<link rel="apple-touch-icon" href="[^"]*"([^>]*)>/, `<link rel="apple-touch-icon" href="${pwa.appleIcon}"$1>`);
 
 const emit = async (route) => {
   const { html, meta } = render(route.path);
@@ -38,7 +53,7 @@ const emit = async (route) => {
       ? join(DIST, '404.html')
       : join(DIST, route.path.slice(1), 'index.html');
 
-  const page = withMeta(template, meta, url, route.indexable !== false).replace('<!--app-html-->', html);
+  const page = withMeta(template, meta, url, route.indexable !== false, route.pwa).replace('<!--app-html-->', html);
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, page, 'utf8');
   console.log('prerendered', file);

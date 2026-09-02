@@ -1,0 +1,31 @@
+{
+  "name": "BIRD — Farminsta Map BI",
+  "short_name": "BIRD",
+  "description": "Agricultural Map BI from Farminsta and Farmreach.",
+  "lang": "en-IN",
+  "start_url": "/bird",
+  "scope": "/bird",
+  "display": "standalone",
+  "background_color": "#0B0E0C",
+  "theme_color": "#016F3B",
+  "icons": [
+    {
+      "src": "/assets/img/bird-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/bird-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/bird-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

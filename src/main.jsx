@@ -5,6 +5,7 @@ import { RouterProvider } from './router.jsx';
 import './styles/tokens.css';
 import './styles/global.css';
 import './styles/responsive.css';
+import './styles/bird.css';
 
 const container = document.getElementById('root');
 const tree = (

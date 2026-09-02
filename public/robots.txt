@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /login
+Disallow: /bird
 
 Sitemap: https://farmreach.in/sitemap.xml

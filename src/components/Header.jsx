@@ -109,6 +109,7 @@ export default function Header() {
 
           <div className="header-actions">
             <Link to="/contact" className="nav__cta">Talk to us</Link>
+            <Link to="/login" className="nav__cta">BIRD</Link>
             <ThemeToggle />
               <button
               ref={toggleRef}
@@ -161,6 +162,9 @@ export default function Header() {
         <div className="drawer__actions">
           <Link to="/contact" className="btn btn--primary drawer__cta" onClick={() => setOpen(false)}>
             Talk to us <span className="btn__arrow" aria-hidden="true">&rarr;</span>
+          </Link>
+          <Link to="/login" className="btn btn--primary drawer__cta" onClick={() => setOpen(false)}>
+            BIRD <span className="btn__arrow" aria-hidden="true">&rarr;</span>
           </Link>
           <ThemeToggle />
         </div>

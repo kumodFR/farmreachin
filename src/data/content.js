@@ -210,29 +210,146 @@ export const COMPANY = {
 export const EXECUTIVE_PROFILES = [
   {
     id: 'pradeep',
-    /* Full profile copy not yet supplied; the modal stays closed until it is. */
-    profilePending: true,
     name: 'Pradeep Raj Y',
     role: 'Founder & CEO',
     photo: '/assets/img/people/pradeep-raj-y-cut.png',
-    headline: 'Agriculture & business transformation \u00b7 Policy \u00b7 Value chains \u00b7 Digital operations',
+    headline: 'Agricultural value chains \u00b7 Agribusiness \u00b7 Go-to-market \u00b7 Integrated cropping solutions',
     linkedin: 'https://www.linkedin.com/in/pradeeprajy/',
     email: 'ypr@farmreach.in',
     story: [
-      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
-      'In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it \u2014 leading to the creation of Farmreach Technologies.'
+      'Pradeep Raj Y is an agriculture and business transformation professional with experience across agricultural value chains, agribusiness, go-to-market strategy, integrated cropping solutions, technology-enabled operations and strategic advisory.',
+      'His experience spans commercial agriculture, agricultural research and development, institutional programmes and technology-led business transformation, and consistently moves from strategy into execution.'
     ],
+    modalRole: 'Founder & CEO, Farmreach Technologies Pvt. Ltd.',
+    positioningLine: 'Agricultural Value Chains & Agribusiness | Go-to-Market & Business Transformation | Strategy to Execution',
+    summary: 'Connects three areas usually treated separately: agricultural domain understanding, business and commercial strategy, and execution through people, processes and technology.',
     profile: [
-      'Pradeep Raj Y is an agriculture and business transformation leader with over two decades of experience across agriculture, food systems, policy, value chains and digital operations. His career has included leadership roles across industry, consulting and agricultural development, giving him exposure to both the institutional and commercial sides of the sector.',
-      'Across these experiences, he saw a recurring challenge: agriculture was generating enormous amounts of field activity and knowledge, but the systems connecting people, operations and decisions were fragmented. In 2016, he decided to move from advising and operating within the sector to building the digital systems needed to transform it. That led to the creation of Farmreach Technologies.'
+      'Pradeep Raj Y is an agriculture and business transformation professional with extensive experience across agricultural value chains, agribusiness, go-to-market strategy, integrated cropping solutions, technology-enabled operations and strategic advisory.',
+      'His experience spans commercial agriculture, agricultural research and development, institutional programmes and technology-led business transformation. He has worked across the intersection of agriculture, business strategy, field operations and technology, translating complex sector requirements into practical operating models, programmes and solutions.',
+      'His work has involved domestic agribusinesses, agricultural research institutions, government bodies, international development organisations and global funding institutions, giving him exposure to both the commercial and development dimensions of agriculture.',
+      'A defining aspect of his experience is the ability to move from strategy to execution \u2014 understanding the agricultural and business context, designing the operating model, coordinating stakeholders and resources, and taking programmes from concept and pilot through implementation and scale.'
     ],
-    leadership: [
-      'Founder & CEO, Farmreach Technologies, since 2016.',
-      'Leadership experience spans agriculture, food systems, policy, value chains and digital operations.'
+    credentials: [
+      'Extensive experience across agriculture, agribusiness, value chains, go-to-market strategy and business transformation',
+      'Instrumental in scaling TEGRA Integrated Cropping Solutions from approximately 500 to 50,000 acres',
+      'Experience across 35+ value-chain research and livelihood projects',
+      'Engagement involving 600+ public and private partners',
+      'Experience across India and international assignments spanning Asia, Africa, Europe and the Middle East',
+      'Worked with organisations and programmes involving ICRISAT, IFPRI, ICAR, USAID, Cornell, CIAT, HarvestPlus and other institutional partners'
     ],
-    expertise: ['Agriculture', 'Business Transformation', 'Policy', 'Value Chains', 'Food Systems', 'Digital Operations'],
-    selected: ['Founded Farmreach Technologies (2016), evolving it through field operations, farmer and production systems, value chains, government programmes and digital outreach.'],
-    focus: 'Building practical operating systems and transformation capabilities for Indian agriculture.'
+    expertise: ['Agricultural value chains', 'Agribusiness', 'Go-to-market strategy', 'Integrated cropping solutions', 'New business development', 'Channel strategy', 'Business transformation', 'Technology-enabled operations', 'Research programmes', 'Strategic advisory', 'Field operations', 'Stakeholder management'],
+    sections: [
+      {
+        heading: 'Agricultural Value Chains & Agribusiness',
+        meta: 'Production and market-facing sides of the value chain',
+        body: [
+          'Pradeep\u2019s experience covers agricultural value chains from both the production and market-facing sides, including agro-inputs, seeds, crop protection, food systems and integrated agricultural solutions.',
+          'His work has involved understanding how products, services, information, supply chains, distribution networks and farmer engagement come together to create commercially viable agricultural models. Through his work with agribusiness organisations, he has worked on:'
+        ],
+        list: [
+          'Agricultural input and seed businesses',
+          'Crop protection and integrated cropping solutions',
+          'Forward and backward agricultural value chains',
+          'Farmer-facing products and services',
+          'Agricultural supply and distribution models',
+          'Channel strategy and stakeholder management',
+          'New business development and commercial scale-up'
+        ],
+        after: ['This combination of domain knowledge and commercial experience allows him to approach agricultural businesses not simply as product businesses, but as interconnected operating systems involving farmers, channels, service providers, technology and value-chain partners.']
+      },
+      {
+        heading: 'Integrated Cropping Solutions & New Business Development',
+        meta: 'TEGRA \u00b7 Syngenta',
+        body: [
+          'One of the significant areas of Pradeep\u2019s experience has been the development and commercialisation of integrated agricultural solutions.',
+          'At Syngenta, he was involved in TEGRA, an Integrated Cropping Solution for rice in South Asia that brought together seed, crop protection, mechanisation and agronomic services into an end-to-end proposition for farmers. He was instrumental in taking the initiative from pilot to commercial scale, expanding from approximately 500 acres to 50,000 acres across three states.',
+          'The model brought together product, service and information while requiring coordination across production, supply, franchisee management, field operations and farmer engagement. His responsibilities included strategic alignment, resource planning, activity scheduling, quality and risk management, supply-chain processes, customer strategy, ICT automation, go-to-market strategy and development of the overall operating model.'
+        ]
+      },
+      {
+        heading: 'Go-to-Market Strategy & Commercial Transformation',
+        meta: 'Channel models, demand generation and commercial execution',
+        body: [
+          'Pradeep has extensive experience in designing and implementing go-to-market models for agricultural businesses. His work has included developing new channel operating models, enabling business automation, demand-generation programmes, crop and asset campaigns and new processes required to transition organisations towards revised commercial models.',
+          'The focus has been on making commercial operations more effective \u2014 improving operational efficiency, reducing cost-to-serve, strengthening channel experience and improving grower satisfaction.',
+          'This experience combines strategic planning with practical commercial execution, including stakeholder management, resource planning, channel activation and cross-functional coordination.'
+        ]
+      },
+      {
+        heading: 'Agricultural Technology & Digital Enablement',
+        meta: 'CRM, planning and supply-chain automation',
+        body: [
+          'Pradeep\u2019s experience also extends into the use of technology to strengthen agricultural business and operating models. His work on integrated agricultural solutions included supporting ICT automation streams covering CRM, planning and supply-chain processes.',
+          'Rather than treating technology as a standalone intervention, his approach has been to connect technology with the underlying business process \u2014 identifying operational requirements, designing appropriate systems and using digital tools to improve visibility, coordination and execution.',
+          'His broader competency includes ICT platforms for agribusiness, technology-supported research and commercialisation, business process improvement and technology-enabled operating models.'
+        ]
+      },
+      {
+        heading: 'Agricultural Research, Development & Institutional Programmes',
+        meta: 'Sathguru \u00b7 ICAR, ICRISAT, IFPRI, CIAT, USAID and the Bill & Melinda Gates Foundation',
+        body: [
+          'Pradeep has worked extensively with agricultural research and development programmes involving national and international institutions. Through Sathguru Management Consultants, he supported programmes involving organisations including ICAR, ICRISAT, IFPRI, CIAT, USAID and the Bill & Melinda Gates Foundation.',
+          'His work included supporting agricultural biotechnology programmes, seed delivery strategies, agricultural value-chain research, sustainable rural livelihood programmes and delivery systems for biofortified crops.',
+          'For the National Agricultural Innovation Project, he was involved in conceptualising public-private partnership programmes around value-chain research and sustainable rural livelihoods. The work contributed to the creation of more than 35 value-chain research and livelihood projects involving more than 600 public and private partners, with a reported overall programme outlay of \u20b9650 crore.'
+        ]
+      },
+      {
+        heading: 'Strategic Advisory & Market Development',
+        meta: 'Agricultural businesses, government bodies and research-led programmes',
+        body: [
+          'Pradeep\u2019s advisory experience covers agricultural businesses, government bodies and research-led programmes. His work has included market research, strategic recommendations, technology sourcing, partnership development, competency development and research commercialisation for companies in the seed, agrochemical and farm-management sectors.'
+        ],
+        cards: [
+          { title: 'APEDA \u2014 assessment of the export potential of Indian ready-to-eat meals in the US and European markets.', meta: 'Market research \u00b7 Industry engagement in India, France and Germany' },
+          { title: 'NIFTEM \u2014 contribution to enterprise-development strategy for the proposed National Institute of Food Technology and Entrepreneurship Management.', meta: 'Enterprise development \u00b7 Institutional programme design' },
+          { title: 'FSSAI \u2014 involvement in developing regulatory approaches for licensing and registration of domestic food businesses.', meta: 'Regulation \u00b7 Licensing \u00b7 Registration' }
+        ],
+        after: ['These assignments provided exposure to policy, market development, regulation, industry strategy and institutional programme design.']
+      },
+      {
+        heading: 'Agricultural Extension, Field Operations & Technology Dissemination',
+        meta: 'Professional foundation \u00b7 ICAR-sponsored organisation',
+        body: [
+          'Pradeep\u2019s professional foundation was built through direct exposure to agriculture and field-level operations. His early work included farm management, agricultural extension programmes, preparation of learning materials and technology dissemination through an ICAR-sponsored organisation.',
+          'He subsequently worked directly with agricultural businesses and farmers, including commercial crop programmes, varietal evaluation, technology promotion and field-level implementation.',
+          'This field exposure has remained an important part of his approach to business and technology \u2014 understanding how strategies and solutions work in actual agricultural environments rather than only at a conceptual level.'
+        ]
+      },
+      {
+        heading: 'Cross-functional Programme Leadership',
+        meta: 'Coordinating functions and stakeholder groups around a common objective',
+        body: [
+          'A recurring theme across Pradeep\u2019s work is the ability to coordinate different functions and stakeholder groups around a common programme objective. His experience includes strategy and business planning, resource planning, project governance, supply chains, commercial operations, research, technology, field execution and stakeholder management. He has worked with:'
+        ],
+        list: [
+          'Agricultural enterprises and input companies',
+          'Government and regulatory bodies',
+          'ICAR and State Agricultural Universities',
+          'CGIAR institutions including ICRISAT and IFPRI',
+          'US land-grant universities including Cornell',
+          'International development organisations',
+          'Global funding organisations including USAID and the Bill & Melinda Gates Foundation',
+          'Public and private research and implementation partners'
+        ]
+      },
+      {
+        heading: 'From Strategy to Execution',
+        meta: 'How the work moves from idea to scale',
+        body: ['Pradeep\u2019s experience has consistently involved taking agricultural and business ideas beyond strategy into implementation. His working approach can be represented as:'],
+        flow: ['Understand the sector', 'Define the opportunity', 'Design the business model', 'Align stakeholders', 'Build the operating system', 'Execute in the field', 'Scale what works'],
+        after: ['This has shaped his experience across integrated agricultural solutions, go-to-market transformation, research programmes, technology-enabled operations and agricultural value-chain initiatives.']
+      }
+    ],
+    positioning: {
+      heading: 'Executive Positioning',
+      body: [
+        'Pradeep\u2019s strength lies in connecting three areas that are often treated separately: agricultural domain understanding, business and commercial strategy, and execution through people, processes and technology.',
+        'He brings experience from both sides of the agricultural ecosystem, working with commercial agribusinesses as well as research, government and development institutions.',
+        'His perspective is therefore grounded in the practical realities of agriculture: how markets work, how channels operate, how farmers engage with products and services, how institutions collaborate, and how technology can be applied to make these systems more effective.',
+        'At Farmreach, this experience informs the company\u2019s approach to agricultural operating systems, business transformation and advisory engagements, combining sector understanding with practical execution.'
+      ]
+    },
+    education: 'M.Sc. Agriculture (Genetics & Plant Breeding) \u00b7 B.Sc. Agriculture \u00b7 Executive International Business Programme, IIM Calcutta \u00b7 Middle Management Programme, IIM Ahmedabad \u2014 with further training in intellectual property, project management and seed-industry development.'
   },
   {
     id: 'abila',

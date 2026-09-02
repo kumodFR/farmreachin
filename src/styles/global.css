@@ -562,8 +562,12 @@ a:hover { color: var(--brand-accent); }
 
 /* ---------------------------------------------------------------- people */
 /* 430px floor: the widest name ("Thangathtamilazhagie V") needs ~190px of text
-   column beside the 180px portrait, so both titles stay on one line two-up. */
-.people { display: grid; gap: var(--space-xl) var(--space-2xl); grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); }
+   column beside the 180px portrait, so both titles stay on one line two-up.
+   min(430px, 100%) caps that floor at the container's own width, so a track
+   never exceeds what's available — identical two-up behaviour from ~860px up,
+   and a full-width single column below it instead of forcing horizontal
+   overflow (the fixed 430px floor was wider than the page on any phone). */
+.people { display: grid; gap: var(--space-xl) var(--space-2xl); grid-template-columns: repeat(auto-fit, minmax(min(430px, 100%), 1fr)); }
 .person__head { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-md); row-gap: var(--space-sm); align-items: center; }
 .person__title { margin-bottom: 4px; }
 .person__portrait {

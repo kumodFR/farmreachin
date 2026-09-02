@@ -174,6 +174,9 @@ a:hover { color: var(--brand-accent); }
   padding: 0 var(--gutter) var(--space-xl); background: var(--surface-2);
   opacity: 0; pointer-events: none;
   transition: opacity var(--dur) var(--ease);
+  /* Short phones + all eight nav items + the CTA row can exceed the
+     viewport; without this the overflow was simply unreachable. */
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
 }
 /* No visibility toggle: the closed drawer is hidden by opacity and made inert
    from the component, so it is focusable the moment it opens. */
@@ -183,6 +186,8 @@ a:hover { color: var(--brand-accent); }
   height: var(--header-h); display: flex; align-items: center; justify-content: space-between;
   margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
   border-bottom: 1px solid var(--line);
+  /* Stays reachable while the list beneath it scrolls, same as .exec-lbx__close. */
+  position: sticky; top: 0; z-index: 1; background: var(--surface-2); flex: none;
 }
 .drawer__list { display: flex; flex-direction: column; margin-top: var(--space-lg); }
 .drawer__list a {

@@ -56,13 +56,37 @@ async function tryFile(pathname) {
   return null;
 }
 
+/* Same policy as vercel.json (production host) — keep the two in sync. */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'sha256-A6/WMaWqSX47ULf3sa0E6E/WLZZt9sFt+u8iG5Pc4tM='",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data:",
+  "connect-src 'self'",
+  "frame-src https://www.google.com",
+  "frame-ancestors 'none'",
+  "base-uri 'none'",
+  "form-action 'self'",
+  "object-src 'none'",
+  'upgrade-insecure-requests'
+].join('; ');
+
+function setSecurityHeaders(res) {
+  res.setHeader('Content-Security-Policy', CSP);
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=(), payment=(), usb=()');
+}
+
 async function send(res, file, status = 200) {
   const ext = extname(file);
   const body = await readFile(file);
   res.statusCode = status;
   res.setHeader('Content-Type', TYPES[ext] || 'application/octet-stream');
   res.setHeader('Cache-Control', cacheFor(file.slice(ROOT.length - 1), ext));
-  res.setHeader('X-Content-Type-Options', 'nosniff');
+  setSecurityHeaders(res);
   res.end(body);
 }
 

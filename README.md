@@ -15,7 +15,7 @@ the HTML the server returns. The client then hydrates the same tree.
 - Two runtime dependencies: `react`, `react-dom`.
 - CSS in three files: `tokens.css` (design tokens + both themes), `global.css`
   (components), `responsive.css` (breakpoint layouts). No CSS framework.
-- Light and dark themes, both designed. **Dark is the default landing
+- Light and dark themes, both designed. **Light is the default landing
   experience**; a stored choice always wins. The theme is set before first paint
   by an inline script in `index.html` (single key, `farmreach-theme`) and toggled
   from the header and the mobile drawer.

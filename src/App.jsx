@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { useRouter } from './router.jsx';
+import { trackPageView } from './lib/analytics.js';
 import Home, { meta as homeMeta } from './pages/Home.jsx';
 import FarmreachOS, { meta as osMeta } from './pages/FarmreachOS.jsx';
 import Consulting, { meta as consultingMeta } from './pages/Consulting.jsx';
@@ -47,6 +48,9 @@ export default function App() {
     if (desc) desc.setAttribute('content', route.meta.description);
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute('href', window.location.origin + route.path);
+    /* document.title is already correct above, so the page_view this sends
+       carries the right title even on the very first (prerendered) route. */
+    trackPageView(route.path);
   }, [route]);
 
   return (

@@ -1,0 +1,26 @@
+# Line endings — one policy for everyone, regardless of OS or local git config.
+#
+# Why this file exists: vercel.json and server.mjs pin a SHA-256 hash of the
+# inline theme-init script in index.html for the Content-Security-Policy. A
+# hash is over raw BYTES, so an LF (\n) file and a CRLF (\r\n) file with
+# identical text produce different hashes. If index.html is ever committed
+# with CRLF, the browser refuses to run the theme script and dark mode
+# silently stops restoring on reload. Pinning eol=lf makes that impossible.
+#
+# eol=lf checks files out as LF on every platform, so a Windows clone gets
+# the same bytes as macOS, Linux and the Vercel build. It overrides each
+# developer's core.autocrlf setting — nobody has to configure anything.
+
+* text=auto eol=lf
+
+# Explicit, because these carry the CSP hash and the sync'd copy of it.
+index.html text eol=lf
+vercel.json text eol=lf
+server.mjs  text eol=lf
+
+# Binaries: never touch the bytes, never diff as text.
+*.png  binary
+*.jpg  binary
+*.webp binary
+*.ico  binary
+*.woff2 binary

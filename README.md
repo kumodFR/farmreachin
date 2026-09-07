@@ -242,8 +242,17 @@ holds placeholders only.
 footer, hero and the Farminsta OS panel. Changing it in one place changes it
 everywhere.
 
-Analytics: no vendor is hardcoded. Add a deferred snippet in `index.html` and
-call it from wherever you need it; nothing in the app blocks on it.
+Analytics: Google Analytics 4, loaded once from `src/lib/analytics.js` via the
+client entry point (`src/main.jsx`) — never inline in `index.html`. The
+Measurement ID comes from `VITE_GA_MEASUREMENT_ID`; unset, the tag simply does
+not load. Vite inlines that variable at BUILD time, so changing it requires a
+rebuild/redeploy, not just an environment edit. `page_view` is sent explicitly
+by `trackPageView()` from the route-sync effect in `App.jsx` (GA4 auto page
+views are off via `send_page_view: false`, because its history-event detection
+did not pick up this router). Everything else — scroll, outbound clicks, file
+downloads, site search — is left to GA4 Enhanced Measurement; there is no
+custom event code. Loading GA requires the googletagmanager/google-analytics
+entries already present in the CSP in `vercel.json` and `server.mjs`.
 
 ## Business architecture
 

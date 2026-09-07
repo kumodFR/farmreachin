@@ -59,11 +59,11 @@ async function tryFile(pathname) {
 /* Same policy as vercel.json (production host) — keep the two in sync. */
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'sha256-A6/WMaWqSX47ULf3sa0E6E/WLZZt9sFt+u8iG5Pc4tM='",
+  "script-src 'self' 'sha256-bCVs5vnBEuBO9LQLRfj8mHldO9jF2dmdILkZnp2yN6s=' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
   "frame-src https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'none'",

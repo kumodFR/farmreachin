@@ -47,7 +47,13 @@ export function initAnalytics() {
   window.__gaInitialized = true;
 
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args) { window.dataLayer.push(args); }
+  /* Must push the `arguments` object itself, never a rest-param array.
+     gtag.js recognises a command by checking for [object Arguments] and
+     silently ignores a plain Array: the tag still loads and registers the
+     container (so window.google_tag_manager looks healthy) but never
+     executes config, never sets _ga cookies and never sends a single hit.
+     Verified against the live site vs Google's canonical snippet. */
+  function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
 
   gtag('js', new Date());

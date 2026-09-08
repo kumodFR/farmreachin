@@ -29,18 +29,24 @@ export function RouterProvider({ initialPath = '/', children }) {
   return <RouterContext.Provider value={{ path, navigate }}>{children}</RouterContext.Provider>;
 }
 
-export function Link({ to, external, children, className, ...rest }) {
+export function Link({ to, external, children, className, onClick: onClickProp, ...rest }) {
   const { navigate } = useRouter();
 
   if (external) {
     return (
-      <a className={className} href={to} target="_blank" rel="noopener noreferrer" {...rest}>
+      <a className={className} href={to} target="_blank" rel="noopener noreferrer" onClick={onClickProp} {...rest}>
         {children}
       </a>
     );
   }
 
+  /* The caller's onClick (the header uses it to close the drawer) is pulled
+     out of ...rest and composed here. It used to ride along in the spread
+     and overwrite this handler, which silently turned every header and
+     drawer link into a full page reload instead of a client-side route. */
   const onClick = (e) => {
+    if (onClickProp) onClickProp(e);
+    if (e.defaultPrevented) return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     navigate(to);

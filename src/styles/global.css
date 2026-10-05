@@ -82,6 +82,10 @@ a:hover { color: var(--brand-accent); }
 .prose > * + * { margin-top: var(--space-md); }
 
 .split { display: grid; gap: clamp(28px, 4.5vw, 80px); grid-template-columns: 1fr; align-items: start; }
+/* A split inside a split column (a SectionHeading beside a visual) has half the
+   width to work with, so it always stacks — otherwise the title breaks one word
+   per line and the eyebrow runs into the narrative column. */
+.split .split { grid-template-columns: 1fr; gap: var(--space-md); }
 .stack { display: flex; flex-direction: column; gap: var(--space-md); }
 
 /* ----------------------------------------------------------------- buttons */

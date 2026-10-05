@@ -16,12 +16,16 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@farmreach">
   <script>
-    /* Set the theme before first paint. Default is light; a stored choice wins. */
+    /* Set the theme before first paint. A stored choice wins; otherwise follow
+       the browser/system theme; light when there is no preference. */
     (function () {
+      var t = null;
       try {
         var s = localStorage.getItem('farmreach-theme');
-        document.documentElement.setAttribute('data-theme', (s === 'light' || s === 'dark') ? s : 'light');
-      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+        if (s === 'light' || s === 'dark') t = s;
+      } catch (e) { /* storage unavailable */ }
+      if (!t) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">

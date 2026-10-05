@@ -227,3 +227,25 @@
   --btn-2-text: var(--text-primary);
   --btn-2-hover-bg: transparent;
 }
+
+/* In the light theme the footer closes the page in deep brand green; the dark
+   theme keeps the ink surface above. Text uses green-tinted brand tones, which
+   hold AA contrast on #014A28 where the neutral greys and --brand-light don't. */
+[data-theme="light"] .on-ink {
+  --surface-1: var(--brand-deep);
+  --surface-2: var(--brand-deep);
+  --surface-3: var(--brand);
+  --surface-tint: rgba(255, 255, 255, 0.06);
+
+  --text-secondary: var(--brand-mist);
+  --text-tertiary: var(--brand-soft);
+
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.28);
+  --line-hair: rgba(255, 255, 255, 0.08);
+
+  --brand-accent: var(--white);
+  --brand-hairline: rgba(255, 255, 255, 0.3);
+
+  --card-on-soft: var(--brand);
+}

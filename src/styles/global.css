@@ -920,7 +920,7 @@ body, .site-header, .drawer, .section, .hero, .page-head, .closing, .site-footer
 .story-aside__step:last-child { color: var(--text-secondary); border-bottom: 0; }
 .story-aside__step:first-child::before { content: none; }
 
-/* ------------------------------------ founder advisory (associated practice) */
+/* ------------------------------- founder venture (Xpedition Labs, separate co.) */
 .advisory {
   margin-top: var(--space-2xl); padding: clamp(22px, 2.4vw, 34px);
   border: 1px dashed var(--line); background: var(--surface-2);

@@ -57,8 +57,8 @@
   /* ------------------------------------------------------------------ type */
   --font: 'Overpass', ui-sans-serif, system-ui, sans-serif;
 
-  --step-micro: 10px;
-  --step-eyebrow: 10.5px;
+  --step-micro: 11px;
+  --step-eyebrow: 11px;
   --step-small: 13px;
   --step-body: clamp(15px, 0.5vw + 13.7px, 16.5px);
   --step-lead: clamp(17px, 0.8vw + 15px, 21px);

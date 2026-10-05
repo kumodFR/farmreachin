@@ -30,7 +30,6 @@ export default function FarmreachOS() {
         eyebrow="Public Enterprise"
         title="Government Agriculture Operating System"
         lede="Intelligence infrastructure for state agriculture."
-        crumb="Farmreach OS"
       />
 
       <section className="section section--light">

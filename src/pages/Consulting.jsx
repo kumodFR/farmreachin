@@ -25,7 +25,6 @@ export default function Consulting() {
         eyebrow="Consulting & Transformation"
         title={CONSULTING.hero.title}
         lede={CONSULTING.hero.lede}
-        crumb="Advisory"
         actions={
           <>
             <Link to="/contact" className="btn btn--primary">

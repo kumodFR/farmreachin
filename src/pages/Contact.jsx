@@ -20,7 +20,6 @@ export default function Contact() {
         eyebrow="Contact"
         title={CONTACT.hero.title}
         lede={CONTACT.hero.lede}
-        crumb="Contact"
       />
 
       <section className="section section--soft-green">

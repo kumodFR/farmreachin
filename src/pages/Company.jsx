@@ -23,7 +23,6 @@ export default function Company() {
         eyebrow="Our Story"
         title={COMPANY.hero.title}
         lede={COMPANY.hero.lede}
-        crumb="Our Story"
       />
 
       <section className="section section--light" aria-labelledby="story-title">

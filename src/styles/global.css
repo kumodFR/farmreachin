@@ -719,8 +719,6 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
 }
 .page-head__inner { position: relative; z-index: 1; }
 .page-head__lede { margin-top: var(--space-md); max-width: 62ch; font-size: var(--step-lead); line-height: 1.55; }
-.breadcrumbs { display: flex; gap: 8px; margin-bottom: var(--space-md); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-tertiary); }
-.breadcrumbs a { color: var(--text-tertiary); }
 
 /* ----------------------------------------------------------------- closing */
 .closing { position: relative; overflow: hidden; isolation: isolate; background: var(--surface-2); }

@@ -58,7 +58,6 @@ export default function Recognition() {
         eyebrow="Recognition"
         title={RECOGNITION.hero.title}
         lede={RECOGNITION.hero.lede}
-        crumb="Recognition"
       />
       {/* Pending entries stay in the data as marked placeholders but are not
           published until their details are confirmed. */}

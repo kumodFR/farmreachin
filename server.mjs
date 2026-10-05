@@ -120,6 +120,13 @@ const server = createServer(async (req, res) => {
     return res.end();
   }
 
+  /* One URL per page, matching vercel.json "trailingSlash": false. */
+  if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+    res.statusCode = 308;
+    res.setHeader('Location', url.pathname.replace(/\/+$/, '') + url.search);
+    return res.end();
+  }
+
   const file = await tryFile(decodeURIComponent(url.pathname));
   if (file) return send(res, file);
 

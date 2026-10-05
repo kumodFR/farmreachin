@@ -761,7 +761,7 @@ button.gal__tile:focus-visible { outline: 2px solid var(--brand-accent); outline
   text-transform: uppercase; color: var(--text-tertiary);
 }
 .site-footer__legal { display: flex; gap: var(--space-md); }
-.site-footer__legal a { color: var(--text-tertiary); }
+.site-footer__legal a { display: inline-flex; align-items: center; min-height: 24px; color: var(--text-tertiary); }
 .site-footer__legal a:hover { color: var(--brand-accent); }
 
 /* ------------------------------------------------------------------- forms */

@@ -147,6 +147,10 @@
   .rec__head { grid-column: 1; grid-row: 1; }
   .rec__narration { grid-column: 1; grid-row: 2; }
   .rec__figure { grid-column: 2; grid-row: 1 / span 2; }
+  /* Alternate entries mirror: photograph left, year/citation/narration right. */
+  .rec--flip { grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr); }
+  .rec--flip .rec__head, .rec--flip .rec__narration { grid-column: 2; }
+  .rec--flip .rec__figure { grid-column: 1; }
   .split--even { grid-template-columns: 1fr 1fr; }
   .eco { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }

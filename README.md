@@ -15,8 +15,9 @@ the HTML the server returns. The client then hydrates the same tree.
 - Two runtime dependencies: `react`, `react-dom`.
 - CSS in three files: `tokens.css` (design tokens + both themes), `global.css`
   (components), `responsive.css` (breakpoint layouts). No CSS framework.
-- Light and dark themes, both designed. **Light is the default landing
-  experience**; a stored choice always wins. The theme is set before first paint
+- Light and dark themes, both designed. A stored choice always wins; otherwise
+  the site **follows the browser/system theme**, and is light when there is no
+  preference (also live, if the system theme changes). The theme is set before first paint
   by an inline script in `index.html` (single key, `farmreach-theme`) and toggled
   from the header and the mobile drawer.
 - Overpass only, `display=swap`.
@@ -295,7 +296,7 @@ names, so both themes are controlled entirely from the token file.
 
 **Light mode is genuinely light.** `#EBF2F0` is a primary surface, not an accent:
 sections alternate white → mist → white → mist down every page, and the only dark
-surface is the footer. Cards invert against their section — `--card-on-soft`
+surface is the footer, in deep brand green (`#014A28`). Cards invert against their section — `--card-on-soft`
 resolves to white on a mist section and to mist on a white section — so no dark
 card ever appears in light mode.
 
@@ -309,7 +310,7 @@ accents are hairlines, 3px top rules, small marks and type.
 .section--light        surface-1   white        | dark primary
 .section--soft-green   surface-2   #EBF2F0      | deepest
 .section--elevated     surface-3   white card   | elevated graphite
-.on-ink                            always dark  — footer only
+.on-ink                            deep green (light) | ink (dark) — footer only
 ```
 
 Every section carries one of these classes; none hardcodes a colour.

@@ -57,7 +57,7 @@ export default function Footer() {
               <a href={`tel:${SITE.phone.replace(/\s+/g, '')}`}>{SITE.phone}</a>
             </address>
             <p className="site-footer__group">
-              <span className="site-footer__grouplabel">Startup Advisory</span>
+              <span className="site-footer__grouplabel">Agricultural Biotechnology</span>
               <Ext href={SITE.xpeditionUrl}>Xpedition Labs</Ext>
             </p>
           </div>

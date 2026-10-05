@@ -14,32 +14,6 @@ const { render, PAGES, NOT_FOUND } = await import(pathToFileURL(join(process.cwd
 
 const template = await readFile(join(DIST, 'index.html'), 'utf8');
 
-/* Visible breadcrumb trail text, one source of truth shared with the JSON-LD
-   below — kept here rather than duplicated per page component. Must match
-   each page's <PageHead crumb="..."> exactly; routes without a visible
-   breadcrumb (home, legal pages, 404) are intentionally absent so the
-   structured data never claims a breadcrumb nobody can see. */
-const BREADCRUMB_LABEL = {
-  '/farmreach-os': 'Farmreach OS',
-  '/consulting': 'Advisory',
-  '/company': 'Our Story',
-  '/recognition': 'Recognition',
-  '/gallery': 'Gallery',
-  '/contact': 'Contact'
-};
-
-const breadcrumbJsonLd = (path) => {
-  const label = BREADCRUMB_LABEL[path];
-  if (!label) return null;
-  return {
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Farmreach', item: `${ORIGIN}/` },
-      { '@type': 'ListItem', position: 2, name: label, item: `${ORIGIN}${path}` }
-    ]
-  };
-};
-
 /* Person nodes for the two leadership profiles on /company. alternateName
    covers the name variants people actually search (full given name, family
    name alone, with/without the middle initial) without inventing anything —
@@ -67,8 +41,6 @@ const SEO_ALTERNATE_NAMES = {
 
 const pageJsonLd = (path) => {
   const blocks = [];
-  const crumb = breadcrumbJsonLd(path);
-  if (crumb) blocks.push(crumb);
   if (path === '/company') {
     for (const p of EXECUTIVE_PROFILES) {
       blocks.push(personJsonLd({ ...p, seoAlternateNames: SEO_ALTERNATE_NAMES[p.id] }));

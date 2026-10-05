@@ -10,16 +10,6 @@ import { COMPANY, MILESTONES, EXECUTIVE_PROFILES } from '../data/content.js';
 import { SITE } from '../data/site.js';
 import { ExternalMark } from '../router.jsx';
 
-/* Same explicit scroll used by LegalDocument's fragment navigation — native
-   #hash scrolling is unreliable on this site, so in-page jumps are done by
-   hand, clearing the sticky header the same way. */
-function scrollToId(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const current = window.scrollY || document.documentElement.scrollTop || 0;
-  window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + current - 96), behavior: 'instant' });
-}
-
 export const meta = {
   path: '/company',
   title: 'Our Story & Leadership — Farmreach Technologies',
@@ -33,7 +23,6 @@ export default function Company() {
         eyebrow="Our Story"
         title={COMPANY.hero.title}
         lede={COMPANY.hero.lede}
-        crumb="Our Story"
       />
 
       <section className="section section--light" aria-labelledby="story-title">
@@ -109,26 +98,7 @@ export default function Company() {
           <Reveal className="advisory">
             <p className="advisory__label">{COMPANY.xpedition.label}</p>
             <h3 className="advisory__name">{COMPANY.xpedition.title}</h3>
-            <p className="advisory__intro">
-              {/* Same copy as COMPANY.xpedition.intro, split once so "our
-                  founder" links to Pradeep's profile card — the sentence
-                  otherwise doesn't say which of the two co-founders this is.
-                  href="#pradeep" keeps it a real, crawlable, right-click-able
-                  link; the click itself is handled by scrollToId (same
-                  approach as LegalDocument's fragment nav) since neither the
-                  SPA router's navigate() nor native #hash scrolling reliably
-                  lands on a same-page target here. */}
-              {COMPANY.xpedition.intro.split('our founder').map((part, i, arr) => (
-                <React.Fragment key={part}>
-                  {part}
-                  {i < arr.length - 1 ? (
-                    <a href="#pradeep" onClick={(e) => { e.preventDefault(); history.replaceState(null, '', '#pradeep'); scrollToId('pradeep'); }}>
-                      our founder
-                    </a>
-                  ) : null}
-                </React.Fragment>
-              ))}
-            </p>
+            <p className="advisory__intro">{COMPANY.xpedition.intro}</p>
             <ul className="advisory__areas">
               {COMPANY.xpedition.areas.map((a) => <li key={a}>{a}</li>)}
             </ul>

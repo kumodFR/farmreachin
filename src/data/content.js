@@ -187,11 +187,11 @@ export const COMPANY = {
     { title: 'Make intelligence actionable', body: 'Data is valuable when it helps someone make a better decision or take the right action. Our systems are designed to move from field data to insight, action and measurement.' }
   ],
   xpedition: {
-    label: 'Founder Advisory',
+    label: 'Founder Venture',
     title: 'Xpedition Labs',
-    intro: 'Alongside Farmreach, our founder works with selected organisations through Xpedition Labs \u2014 an independent advisory practice focused on building and transforming businesses.',
-    areas: ['Fund Raise', 'GTM', 'Product Strategy', 'Systems & Processes'],
-    distinction: "Xpedition Labs is not a Farmreach product or operating system. It is the founder's independent advisory practice, drawing on experience across agriculture, technology, business transformation and enterprise operations.",
+    intro: 'Xpedition Labs is an agricultural biotechnology company in Hyderabad that identifies high-value opportunities in agriculture and turns them into commercially relevant crop and seed products.',
+    areas: ['Product Strategy', 'Technology', 'Intellectual Property', 'Scientific Expertise', 'Industry Partnerships'],
+    distinction: 'Xpedition Labs is a separate company, not a Farmreach product or operating system. It builds differentiated solutions for the seed industry.',
     cta: 'Explore Xpedition Labs'
   },
   capability: [

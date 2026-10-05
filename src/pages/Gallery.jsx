@@ -18,7 +18,6 @@ export default function Gallery() {
         eyebrow="Gallery"
         title={GALLERY.hero.title}
         lede={GALLERY.hero.lede}
-        crumb="Gallery"
       />
 
       <section className="section section--soft-green" aria-labelledby="gallery-title">

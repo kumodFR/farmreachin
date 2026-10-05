@@ -10,7 +10,8 @@ export const meta = {
 };
 
 /* A curated timeline: year and citation on one side, the event photograph on
-   the other, alternating surfaces down the page. Photographs carry the page,
+   the other, alternating sides (text|photo, then photo|text) and surfaces
+   down the page. Photographs carry the page,
    so an unsupplied one leaves a labelled frame rather than a stand-in image. */
 function Entry({ entry, index }) {
   const soft = index % 2 === 1;
@@ -21,7 +22,7 @@ function Entry({ entry, index }) {
       id={entry.id}
       aria-labelledby={`${entry.id}-title`}
     >
-      <div className="container rec">
+      <div className={`container rec${soft ? ' rec--flip' : ''}`}>
         <Reveal className="rec__head">
           <p className={entry.year ? 'rec__year' : 'rec__year rec__year--pending'}>
             {entry.year || 'Year to be confirmed'}
@@ -57,7 +58,6 @@ export default function Recognition() {
         eyebrow="Recognition"
         title={RECOGNITION.hero.title}
         lede={RECOGNITION.hero.lede}
-        crumb="Recognition"
       />
       {/* Pending entries stay in the data as marked placeholders but are not
           published until their details are confirmed. */}

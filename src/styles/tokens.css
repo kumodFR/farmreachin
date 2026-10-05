@@ -57,8 +57,8 @@
   /* ------------------------------------------------------------------ type */
   --font: 'Overpass', ui-sans-serif, system-ui, sans-serif;
 
-  --step-micro: 10px;
-  --step-eyebrow: 10.5px;
+  --step-micro: 11px;
+  --step-eyebrow: 11px;
   --step-small: 13px;
   --step-body: clamp(15px, 0.5vw + 13.7px, 16.5px);
   --step-lead: clamp(17px, 0.8vw + 15px, 21px);
@@ -226,4 +226,26 @@
   --btn-2-border: var(--line-strong);
   --btn-2-text: var(--text-primary);
   --btn-2-hover-bg: transparent;
+}
+
+/* In the light theme the footer closes the page in deep brand green; the dark
+   theme keeps the ink surface above. Text uses green-tinted brand tones, which
+   hold AA contrast on #014A28 where the neutral greys and --brand-light don't. */
+[data-theme="light"] .on-ink {
+  --surface-1: var(--brand-deep);
+  --surface-2: var(--brand-deep);
+  --surface-3: var(--brand);
+  --surface-tint: rgba(255, 255, 255, 0.06);
+
+  --text-secondary: var(--brand-mist);
+  --text-tertiary: var(--brand-soft);
+
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.28);
+  --line-hair: rgba(255, 255, 255, 0.08);
+
+  --brand-accent: var(--white);
+  --brand-hairline: rgba(255, 255, 255, 0.3);
+
+  --card-on-soft: var(--brand);
 }
